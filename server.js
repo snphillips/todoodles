@@ -9,9 +9,9 @@ const app = express();
 
 
 const today = require("./routes/today")
-// const week = require("./routes/week")
-// const month = require("./routes/month")
-// const sometime = require("./routes/sometime")
+const thisweek = require("./routes/thisweek")
+const thismonth = require("./routes/thismonth")
+const sometime = require("./routes/sometime")
 
 
 // ==================================
@@ -45,9 +45,16 @@ app.get('/', function (req, res) {
   res.send(`Hello World. Let's make a todo app`);
 });
 
-
-// unclear
+// **********************************
+// today, thisweek, thismonth, sometime route
+// Two arguments:
+// 1) the path
+// 2) the variable that describes requiring the file in question
+// **********************************
 app.use("/today", today);
+app.use("/thisweek", thisweek);
+app.use("/thismonth", thismonth);
+app.use("/sometime", sometime);
 
 app.use((err, req, res, next) => {
   res.json(err);
