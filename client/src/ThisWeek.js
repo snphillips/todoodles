@@ -4,9 +4,14 @@ export default class ThisWeek extends Component {
   render() {
     return (
 
-        <app className="today">
+        <div className="today">
           <h3>this week</h3>
-        </app>
+          <form onSubmit={this.addItemThisWeek}>
+            <input placeholder="enter task">
+            </input>
+            <button type="submit">add</button>
+          </form>
+        </div>
     );
   }
 }

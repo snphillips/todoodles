@@ -4,9 +4,14 @@ export default class Today extends Component {
   render() {
     return (
 
-        <app className="today">
+        <div className="today">
           <h3>today</h3>
-        </app>
+          <form onSubmit={this.addItemToday}>
+            <input placeholder="enter task">
+            </input>
+            <button type="submit">add</button>
+          </form>
+        </div>
     );
   }
 }

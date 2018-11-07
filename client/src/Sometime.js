@@ -4,9 +4,14 @@ export default class Sometime extends Component {
   render() {
     return (
 
-        <app className="sometime">
+        <div className="sometime">
           <h3>sometime</h3>
-        </app>
+          <form onSubmit={this.addItemSometime}>
+            <input placeholder="enter task">
+            </input>
+            <button type="submit">add</button>
+          </form>
+        </div>
     );
   }
 }
