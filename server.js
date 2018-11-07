@@ -11,7 +11,7 @@ const app = express();
 const { DATABASE_URL } = process.env;
 
 
-const db = require('./queries')
+
 
 
 // ==================================
@@ -38,6 +38,7 @@ app.use(
     extended: true
   })
 );
+
 
 
 // **********************************

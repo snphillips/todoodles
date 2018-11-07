@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'snphillips',
   host: process.env.DB_HOST || 'localhost',
   database: 'todoodles',
-  password: 'password',
+  // password: 'password',
   port: process.env.DB_PORT || 5432,
 })
 
@@ -18,7 +18,7 @@ const getToDos = (request, response) => {
   })
 }
 
-// Likely won't use for this app but keep for future reference
+// Likely won't use for this app but keep for reference
 const getToDoById = (request, response) => {
   const id = parseInt(request.params.id)
 
