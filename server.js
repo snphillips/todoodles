@@ -1,3 +1,6 @@
+// so we can use environment variables from a .env file
+require('dotenv').config()
+
 //require the just installed express app
 const express = require('express');
 
@@ -7,30 +10,48 @@ const app = express();
 // to get the day of the week
 const moment = require('moment');
 
+const todo = require("./routes/todo")
+
+
+// ==================================
+// CORS
+// npm package to allow cross origin resource sharing
+// ==================================
+const cors = require('cors')
+app.use(cors())
+
+// ==================================
+// Axios - npm package promise based HTTP client
+// ==================================
+const axios = require('axios');
+
+
 // ==================================
 // body-parser middleware allows us to make use of the
 // key-value pairs stored on the req-body object.
 // ==================================
 const bodyParser = require("body-parser");
-
+// What's this mean?
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// ==================================
-// For now, let's use ejs for views
-// ==================================
-app.set('view engine', 'ejs');
-
-
-//the task array with initial placeholders for added task
-var task = ["buy socks", "practise with nodejs", "laundry", "fix bike"];
 
 
 // **********************************
 // index route
+// 1) render the ejs
+// 2) display added task, task(index.ejs) = task(array)
 // **********************************
-app.get('/', function (req, res) {
-  res.render('index');
+// app.get('/', function (req, res) {
+//   res.send(`Hello World. Let's make a todo app`);
+// });
+
+
+
+app.use("/todo", todo);
+
+app.use((err, req, res, next) => {
+  res.json(err);
 });
 
 
