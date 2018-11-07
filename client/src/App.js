@@ -10,6 +10,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
+      newToDo: '',
       todayList: ["feed cat", "shower"],
       thisWeekList: ["grocery shopping", "laundry"],
       thisMonthList: ["make dental apointment", "paint wall"],
@@ -24,24 +25,24 @@ export default class App extends Component {
 }
 
 addItemToday(e) {
-    if (this._inputElement.value !== "") {
-    var newItem = {
-      text: this._inputElement.value,
-      key: Date.now()
-    };
+  //   if (this._inputElement.value !== "") {
+  //   var newItem = {
+  //     text: this._inputElement.value,
+  //     key: Date.now()
+  //   };
 
-    this.setState((prevState) => {
-      return {
-        todayList: prevState.todayList.concat(newItem)
-      };
-    });
+  //   this.setState((prevState) => {
+  //     return {
+  //       todayList: prevState.todayList.concat(newItem)
+  //     };
+  //   });
 
-    this._inputElement.value = "";
-  }
+  //   this._inputElement.value = "";
+  // }
 
-  console.log(this.state.todayList);
+  // console.log(this.state.todayList);
 
-  e.preventDefault();
+  // e.preventDefault();
 
 }
 

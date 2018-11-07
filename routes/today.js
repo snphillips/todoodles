@@ -26,7 +26,7 @@ router.put("/:id", (request, response, next) => {
 router.delete("/:id", (request, response, next) => {
   response.send("delete one")
 
-  response.redirect('/todo');
+  response.redirect('/today');
 });
 
 

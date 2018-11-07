@@ -7,10 +7,11 @@ const express = require('express');
 //invoke express. Henseforth, app = express
 const app = express();
 
-// to get the day of the week
-const moment = require('moment');
 
-const todo = require("./routes/todo")
+const today = require("./routes/today")
+// const week = require("./routes/week")
+// const month = require("./routes/month")
+// const sometime = require("./routes/sometime")
 
 
 // ==================================
@@ -39,20 +40,32 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // **********************************
 // index route
-// 1) render the ejs
-// 2) display added task, task(index.ejs) = task(array)
 // **********************************
-// app.get('/', function (req, res) {
-//   res.send(`Hello World. Let's make a todo app`);
-// });
+app.get('/', function (req, res) {
+  res.send(`Hello World. Let's make a todo app`);
+});
 
 
-
-app.use("/todo", todo);
+// unclear
+app.use("/today", today);
 
 app.use((err, req, res, next) => {
   res.json(err);
 });
+
+
+
+// ==================================
+// Error Handlers
+// ==================================
+app.use((err, req, res, next) => {
+  res.json(err);
+  res.status(500).send('Oh no a 500 error.')
+});
+
+app.use((req, res, next) => {
+  res.status(404).send(`Oh no a 404 error. I can't find that.`)
+})
 
 
 // ==================================
@@ -67,11 +80,6 @@ const port = process.env.PORT || 8888;
 app.listen(port, function () {
   console.log(`Hello todoodles! Listening on port: ${port}!`)
 });
-
-
-
-
-
 
 
 module.exports = app;
