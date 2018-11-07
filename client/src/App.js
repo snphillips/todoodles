@@ -1,28 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import Header from './Header';
+import AddToDoForm from './AddToDoForm';
+import ListOfToDos from './ListOfToDos';
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dataSource: "http://localhost:8888/todos/",
+      // dataSource: "https://todoodles-app.herokuapp.com",
+
+    };
+
+ // This binding is necessary to make `this` work in the callback
+    this.axiosAllToDosFromAPI = this.axiosAllToDosFromAPI.bind(this)
+  }
+
+
+  axiosAllToDosFromAPI() {
+    axios.get(this.state.dataSource)
+      .then( (response) => {
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+
+
+//  ==================================================================
+//  And finally, the render
+//  ==================================================================
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+       <Header />
+       <AddToDoForm />
+       <ListOfToDos axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}/>
       </div>
     );
   }
 }
 
-export default App;
+
