@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const pool = require("../config/connection");
+// const pool = require("../config/connection");
 const router = Router();
 
 
@@ -16,6 +16,9 @@ router.get("/", (request, response, next) => {
   );
 });
 
+
+
+
 router.get("/:id", (request, response, next) => {
   response.send("get one today")
 });
@@ -23,7 +26,6 @@ router.get("/:id", (request, response, next) => {
 
 router.post("/", (request, response, next) => {
   response.send("post one today")
-
   response.redirect('/todo');
 });
 
@@ -35,7 +37,6 @@ router.put("/:id", (request, response, next) => {
 
 router.delete("/:id", (request, response, next) => {
   response.send("delete one today")
-
   response.redirect('/today');
 });
 

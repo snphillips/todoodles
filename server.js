@@ -8,6 +8,9 @@ const express = require('express');
 const app = express();
 
 
+const { DATABASE_URL } = process.env;
+
+
 const today = require("./routes/today")
 const thisweek = require("./routes/thisweek")
 const thismonth = require("./routes/thismonth")
@@ -33,7 +36,11 @@ const axios = require('axios');
 // ==================================
 const bodyParser = require("body-parser");
 // What's this mean?
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 
 
 
@@ -41,9 +48,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // **********************************
 // index route
 // **********************************
-app.get('/', function (req, res) {
-  res.send(`Hello World. Let's make a todo app`);
-});
+app.get('/', (request, response) => {
+  console.log("Hello World todoodles")
+  response.json({ info: 'Node.js, Express, and Postgres API' })
+})
 
 // **********************************
 // today, thisweek, thismonth, sometime route
@@ -86,6 +94,8 @@ const port = process.env.PORT || 8888;
 // ==================================
 app.listen(port, function () {
   console.log(`Hello todoodles! Listening on port: ${port}!`)
+  console.log(`Database URL is: ${process.env.DATABASE_URL}.`)
+  console.log(`Development or Production?: ${process.env.MODE}.`)
 });
 
 
