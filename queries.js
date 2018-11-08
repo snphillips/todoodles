@@ -4,7 +4,7 @@ const pool = process.env.DATABASE_URL || new Pool({
   user: 'snphillips',
   host: process.env.DB_HOST || 'localhost',
   database: 'todoodles',
-  // password: 'password',
+  password: 'password',
   port: process.env.DB_PORT || 5432,
 })
 
