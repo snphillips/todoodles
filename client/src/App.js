@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import _lodash from 'lodash';
 import Header from './Header';
-import AddToDoForm from './AddToDoForm';
+import Form from './Form';
 import ListOfToDos from './ListOfToDos';
 
 export default class App extends Component {
@@ -16,7 +16,7 @@ export default class App extends Component {
     };
 
  // This binding is necessary to make `this` work in the callback
-
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
     componentDidMount() {
@@ -37,6 +37,29 @@ export default class App extends Component {
         });
     }
 
+
+    handleSubmit(event) {
+      event.preventDefault();
+      const newToDo = event.target.value;
+      console.log(this.newToDo)
+      console.log('event.target.value is :', event.target.value)
+      console.log("button clicked")
+
+      axios.post(this.state.dataSource + `/createToDo`, {
+        todoitem: newToDo,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+
+
+
+
 //  ==================================================================
 //  And finally, the render
 //  ==================================================================
@@ -44,7 +67,7 @@ export default class App extends Component {
     return (
       <div className="App">
        <Header />
-       <AddToDoForm />
+       <Form handleSubmit={this.handleSubmit}/>
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}/>
