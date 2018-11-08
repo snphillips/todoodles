@@ -5,7 +5,7 @@ export default class AddToDoForm extends Component {
     return (
       <div>
         <form>
-        <input/>
+          <input/>
         </form>
       </div>
     );

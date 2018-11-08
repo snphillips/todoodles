@@ -16,7 +16,7 @@ export default class App extends Component {
     };
 
  // This binding is necessary to make `this` work in the callback
-
+    // this.createToDoList = this.createToDoList.bind(this)
   }
 
 
@@ -26,16 +26,29 @@ export default class App extends Component {
       axios.get(this.state.dataSource)
         .then( (response) => {
           // iterate over the response, adding each item to the doDoList array
-          console.log(response.data)
-          this.setState({toDoList: response.data[5].todoitem})
+          // console.log(response.data)
 
-          let toDoList = response.data[5].todoitem
-          console.log(toDoList)
+
+          let toDoListResponseData = response.data
+          console.log("original toDoListData;", toDoListResponseData)
+
+          // mapping over toDoListData array to find the list items only
+          let toDoListArray = toDoListResponseData.map((i) => i.todoitem);
+          console.log("this.toDoList:", toDoListArray)
+          this.setState({toDoList: toDoListArray})
         })
+
+
         .catch(function (error) {
           console.log(error);
         });
     }
+
+
+
+
+
+
 
 
 
@@ -53,7 +66,6 @@ export default class App extends Component {
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}/>
-
 
 
       </div>
