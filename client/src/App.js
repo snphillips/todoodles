@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import _lodash from 'lodash';
+// import _lodash from 'lodash';
 import Header from './Header';
 import AddToDoForm from './AddToDoForm';
 import ListOfToDos from './ListOfToDos';
@@ -16,44 +16,26 @@ export default class App extends Component {
     };
 
  // This binding is necessary to make `this` work in the callback
-    // this.createToDoList = this.createToDoList.bind(this)
+
   }
-
-
-
 
     componentDidMount() {
       axios.get(this.state.dataSource)
         .then( (response) => {
-          // iterate over the response, adding each item to the doDoList array
-          // console.log(response.data)
-
 
           let toDoListResponseData = response.data
           console.log("original toDoListData;", toDoListResponseData)
 
           // mapping over toDoListData array to find the list items only
           let toDoListArray = toDoListResponseData.map((i) => i.todoitem);
-          console.log("this.toDoList:", toDoListArray)
+          console.log("toDoListArray:", toDoListArray)
           this.setState({toDoList: toDoListArray})
         })
-
 
         .catch(function (error) {
           console.log(error);
         });
     }
-
-
-
-
-
-
-
-
-
-
-
 
 //  ==================================================================
 //  And finally, the render
