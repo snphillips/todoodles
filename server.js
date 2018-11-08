@@ -7,6 +7,8 @@ const express = require('express');
 //invoke express. Henseforth, app = express
 const app = express();
 
+const db = require('./queries')
+
 
 const { DATABASE_URL } = process.env;
 
