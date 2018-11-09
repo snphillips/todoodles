@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from './Header';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
+import DeleteButton from './DeleteButton';
 
 export default class App extends Component {
   constructor(props) {
@@ -12,13 +13,15 @@ export default class App extends Component {
     this.state = {
       dataSource: "http://localhost:8888/todos",
       // dataSource: "https://todoodles-app.herokuapp.com",
-      user: '',
-      toDoList: [''],
+      // isLoading: false,
+      user: '', //not using but might add auth in future
+      toDoList: [ ],
       newToDo: '',
       selectedToDo: '',
     };
 
  // This binding is necessary to make `this` work in the callback
+    this.axiosGetToDos = this.axiosGetToDos.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
@@ -27,10 +30,17 @@ export default class App extends Component {
   }
 
   //  ==================================================================
-  //  axios GET requset. Note this is wrapped in a componentDidMount...
-  //  We need the initial list to render as soon as React is ready.
+  //  1) Once React has mounted and is ready...
+  //  2) fire the axios GET requset, which is the axiosGetToDos function
   //  ==================================================================
     componentDidMount() {
+      this.axiosGetToDos();
+    }
+
+  //  ==================================================================
+  //  axios GET requset
+  //  ==================================================================
+    axiosGetToDos() {
       axios.get(this.state.dataSource)
         .then( (response) => {
 
@@ -42,7 +52,6 @@ export default class App extends Component {
           console.log("toDoListArray:", toDoListArray)
           this.setState({toDoList: toDoListArray})
         })
-
         .catch(function (error) {
           console.log(error);
         });
@@ -53,7 +62,7 @@ export default class App extends Component {
   //  The API call happens once the user clicks the 'submit' button.
   //  ==================================================================
    handleChange(event) {
-     const newToDoItem = event.target.value
+     // const newToDoItem = event.target.value
      console.log("The event.target.value is:", event.target.value)
      this.setState({newToDo: event.target.value})
     };
@@ -63,10 +72,11 @@ export default class App extends Component {
   //  ==================================================================
     handleSubmit(event) {
       event.preventDefault();
+      console.log("submit button clicked")
       this.axiosPostNewToDo();
-      // this.refreshToDoList();
-      console.log("Hello from handleSubmit")
     }
+
+
 
   //  ==================================================================
   //  axios POST
@@ -77,7 +87,8 @@ export default class App extends Component {
 
       })
       .then(function (response) {
-        // console.log(response);
+      // we see the below log in the console
+        console.log("response in console:", response);
       })
       .catch(function (error) {
         console.log(error);
@@ -103,15 +114,13 @@ export default class App extends Component {
   //  ==================================================================
   //  Delete button
   //  ==================================================================
-    handleSubmitDelete() {
-      // event.preventDefault();
-      this.axiosDeleteToDo();
+    handleSubmitDelete(event) {
+      event.preventDefault();
+      // this.axiosDeleteToDo();
       console.log("Hello from handleSubmitDelete")
     }
 
-    refreshToDoList() {
-      this.setState({ toDoList: this.toDoListArray })
-    }
+
 
 
 //  ==================================================================
@@ -131,6 +140,8 @@ export default class App extends Component {
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}/>
+
+       <DeleteButton handleSubmitDelete={this.handleSubmitDelete}/>
 
 
       </div>

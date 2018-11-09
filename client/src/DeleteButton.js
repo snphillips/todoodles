@@ -4,10 +4,19 @@ export default class DeleteButton extends Component {
   render() {
     return (
 
-      <form type="submit"
-            onSubmit={this.props.handleSubmitDelete}>
+      <div>
 
-      </form>
+
+        <input
+          className="button"
+          type="submit"
+          value="delete"
+          onClick={this.props.handleSubmitDelete}
+        />
+
+
+      </div>
+
 
     );
   }

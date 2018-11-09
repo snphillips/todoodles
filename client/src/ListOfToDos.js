@@ -7,11 +7,15 @@ export default class ListOfToDos extends Component {
     // making a const to keep things tidy
     let toDoArray = this.props.parent_state.toDoList
 
-    // Below we map over the array of list items, and
-    // create an unordered list
-    if(toDoArray.length == 1){
+
+
+    if (toDoArray.length === 1) {
       return ("")
     }
+
+    // Below we map over the array of list items, and
+    // create an unordered list
+
     return (
       <div className='todolist'>
 
