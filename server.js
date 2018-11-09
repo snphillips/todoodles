@@ -56,7 +56,7 @@ app.get('/', (request, response) => {
 // **********************************
 app.get('/todos', db.getToDos)
 app.get('/todos/:id', db.getToDoById)
-app.post('/todos', db.createToDo)
+app.post('/todos/:todoitem', db.createToDo)
 app.put('/todos/:id', db.updateToDo)
 app.delete('/todos/:id', db.deleteToDo)
 

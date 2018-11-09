@@ -10,13 +10,16 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      dataSource: "http://localhost:8888/todos/",
+      dataSource: "http://localhost:8888/todos",
       // dataSource: "https://todoodles-app.herokuapp.com",
-      toDoList: ['']
+      toDoList: [''],
+      newToDo: ''
     };
 
  // This binding is necessary to make `this` work in the callback
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
   }
 
     componentDidMount() {
@@ -37,16 +40,30 @@ export default class App extends Component {
         });
     }
 
+  //  ==================================================================
+  //  As soon as the user interacts with the form newTodo updates.
+  //  The API call happens once the user clicks the 'submit' button.
+  //  ==================================================================
+   handleChange(event) {
+     const newToDoItem = event.target.value
+     console.log("The event.target.value is:", event.target.value)
+     this.setState({newToDo: event.target.value})
+    };
 
+  //  ==================================================================
+  //  When the button is clicked, the axios POST call is made
+  //  ==================================================================
     handleSubmit(event) {
+      console.log("Hello from handleSubmit")
       event.preventDefault();
-      const newToDo = event.target.value;
-      console.log(this.newToDo)
-      console.log('event.target.value is :', event.target.value)
-      console.log("button clicked")
+      this.axiosPostNewToDo();
+    }
 
-      axios.post(this.state.dataSource + `/createToDo`, {
-        todoitem: newToDo,
+    axiosPostNewToDo() {
+      console.log(this.state.newToDo)
+      axios.post(this.state.dataSource, {
+        // todoitem: "pet snek"
+        todoitem: this.state.newToDo
       })
       .then(function (response) {
         console.log(response);
@@ -57,17 +74,20 @@ export default class App extends Component {
     }
 
 
-
-
-
 //  ==================================================================
 //  And finally, the render
 //  ==================================================================
   render() {
     return (
       <div className="App">
+
        <Header />
-       <Form handleSubmit={this.handleSubmit}/>
+
+       <Form parent_state={this.state}
+             newTodo={this.state}
+             handleChange={this.handleChange}
+             handleSubmit={this.handleSubmit}/>
+
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}/>
@@ -77,5 +97,4 @@ export default class App extends Component {
     );
   }
 }
-
 

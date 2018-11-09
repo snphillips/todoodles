@@ -4,14 +4,17 @@ export default class Form extends Component {
   render() {
     return (
 
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.props.handleSubmit}>
 
         <input id="todo"
                name="todo"
                type="text"
-               placeholder="add to do item" />
+               placeholder="add to do item"
+               value={this.props.newToDo}
+               onChange={this.props.handleChange} />
 
-        <button onClick={this.props.handleSubmit}>submit</button>
+        <input type="submit"
+               value="submit" />
 
       </form>
 
