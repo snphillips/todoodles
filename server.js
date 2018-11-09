@@ -34,9 +34,11 @@ const axios = require('axios');
 // key-value pairs stored on the req-body object.
 // ==================================
 const bodyParser = require("body-parser");
+
+
 // What's this mean?
 app.use(
-  bodyParser.urlencoded({
+  bodyParser.json({
     extended: true
   })
 );
@@ -56,7 +58,8 @@ app.get('/', (request, response) => {
 // **********************************
 app.get('/todos', db.getToDos)
 app.get('/todos/:id', db.getToDoById)
-app.post('/todos/:todoitem', db.createToDo)
+
+app.post('/todos', db.createToDo)
 app.put('/todos/:id', db.updateToDo)
 app.delete('/todos/:id', db.deleteToDo)
 

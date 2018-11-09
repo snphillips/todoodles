@@ -17,7 +17,7 @@ export default class ListOfToDos extends Component {
 
           {toDoArray.map(listitem => {
             return (
-              <li key={listitem.key}>{listitem}</li>
+              <li key={listitem && listitem.key}>{listitem}</li>
             )
           })}
 

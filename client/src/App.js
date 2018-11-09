@@ -20,6 +20,7 @@ export default class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
+    this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
   }
 
     componentDidMount() {
@@ -54,23 +55,31 @@ export default class App extends Component {
   //  When the button is clicked, the axios POST call is made
   //  ==================================================================
     handleSubmit(event) {
-      console.log("Hello from handleSubmit")
       event.preventDefault();
       this.axiosPostNewToDo();
+      console.log("Hello from handleSubmit")
     }
 
+  //  ==================================================================
+  //  axios POST
+  //  ==================================================================
     axiosPostNewToDo() {
-      console.log(this.state.newToDo)
       axios.post(this.state.dataSource, {
         // todoitem: "pet snek"
         todoitem: this.state.newToDo
+
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
+    }
+
+
+    handleSubmitDelete() {
+      // do something
     }
 
 
