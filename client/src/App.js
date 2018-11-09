@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import _lodash from 'lodash';
 import Header from './Header';
+import Introduction from './Introduction';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
 import DeleteButton from './DeleteButton';
@@ -131,6 +132,8 @@ export default class App extends Component {
       <div className="App">
 
        <Header />
+
+       <Introduction />
 
        <Form parent_state={this.state}
              newTodo={this.state}
