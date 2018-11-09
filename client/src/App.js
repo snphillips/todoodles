@@ -12,8 +12,10 @@ export default class App extends Component {
     this.state = {
       dataSource: "http://localhost:8888/todos",
       // dataSource: "https://todoodles-app.herokuapp.com",
+      user: '',
       toDoList: [''],
-      newToDo: ''
+      newToDo: '',
+      selectedToDo: '',
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -21,8 +23,13 @@ export default class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
     this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
+    this.axiosDeleteToDo = this.axiosDeleteToDo.bind(this);
   }
 
+  //  ==================================================================
+  //  axios GET requset. Note this is wrapped in a componentDidMount...
+  //  We need the initial list to render as soon as React is ready.
+  //  ==================================================================
     componentDidMount() {
       axios.get(this.state.dataSource)
         .then( (response) => {
@@ -57,6 +64,7 @@ export default class App extends Component {
     handleSubmit(event) {
       event.preventDefault();
       this.axiosPostNewToDo();
+      // this.refreshToDoList();
       console.log("Hello from handleSubmit")
     }
 
@@ -65,7 +73,6 @@ export default class App extends Component {
   //  ==================================================================
     axiosPostNewToDo() {
       axios.post(this.state.dataSource, {
-        // todoitem: "pet snek"
         todoitem: this.state.newToDo
 
       })
@@ -77,9 +84,33 @@ export default class App extends Component {
       });
     }
 
+  //  ==================================================================
+  //  axios DELETE
+  //  ==================================================================
+    axiosDeleteToDo() {
+      axios.delete(this.state.dataSource, {
+        todoitem: this.state.selectedToDo
 
+      })
+      .then(function (response) {
+        // console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+  //  ==================================================================
+  //  Delete button
+  //  ==================================================================
     handleSubmitDelete() {
-      // do something
+      // event.preventDefault();
+      this.axiosDeleteToDo();
+      console.log("Hello from handleSubmitDelete")
+    }
+
+    refreshToDoList() {
+      this.setState({ toDoList: this.toDoListArray })
     }
 
 
