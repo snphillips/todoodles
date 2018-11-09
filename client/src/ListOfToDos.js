@@ -6,6 +6,7 @@ export default class ListOfToDos extends Component {
 
     // making a const to keep things tidy
     let toDoArray = this.props.parent_state.toDoList
+    console.log("toDoArray:", toDoArray)
 
 
 

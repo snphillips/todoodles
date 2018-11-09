@@ -47,12 +47,18 @@ export default class App extends Component {
         .then( (response) => {
 
           let toDoListResponseData = response.data
-          console.log("original toDoListData;", toDoListResponseData)
+          console.log("original toDoListData:", toDoListResponseData)
 
           // mapping over toDoListData array to find the list items only
           let toDoListArray = toDoListResponseData.map((i) => i.todoitem);
           console.log("toDoListArray:", toDoListArray)
           this.setState({toDoList: toDoListArray})
+
+
+          // this.setState({toDoList: toDoListResponseData})
+
+
+
         })
         .catch(function (error) {
           console.log(error);
@@ -78,8 +84,6 @@ export default class App extends Component {
       this.axiosPostNewToDo();
     }
 
-
-
   //  ==================================================================
   //  axios POST
   //  ==================================================================
@@ -102,9 +106,7 @@ export default class App extends Component {
   //  ==================================================================
     onClickRemoveItem(event) {
       event.preventDefault();
-      // let toDoToDelete = event.target.value
       console.log("onClickRemoveItem clicked. Item to delete:", event.target.value);
-      // do you need the below line?
       this.setState({selectedToDelete: event.target.value})
       this.axiosDeleteToDo();
     }
@@ -114,7 +116,8 @@ export default class App extends Component {
   //  axios DELETE
   //  ==================================================================
     axiosDeleteToDo() {
-      console.log("selectedToDelete:", this.state.selectedToDelete)
+      // console.log("selectedToDelete:", this.state.selectedToDelete)
+      // axios.delete(this.state.dataSource + `${id}`, {
       axios.delete(this.state.dataSource, {
         todoitem: this.state.selectedToDelete
 
