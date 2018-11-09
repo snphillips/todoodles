@@ -5,7 +5,7 @@ import Header from './Header';
 import Introduction from './Introduction';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
-import DeleteButton from './DeleteButton';
+// import DeleteButton from './DeleteButton';
 
 export default class App extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class App extends Component {
       user: '', //not using but might add auth in future
       toDoList: [ ],
       newToDo: '',
-      selectedToDo: '',
+      selectedToDelete: '',
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -26,7 +26,8 @@ export default class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
-    this.handleSubmitDelete = this.handleSubmitDelete.bind(this);
+    this.onClickRemoveItem = this.onClickRemoveItem.bind(this);
+    // this.removeItem = this.removeItem.bind(this);
     this.axiosDeleteToDo = this.axiosDeleteToDo.bind(this);
   }
 
@@ -97,11 +98,25 @@ export default class App extends Component {
     }
 
   //  ==================================================================
+  //  Delete buttons (x)
+  //  ==================================================================
+    onClickRemoveItem(event) {
+      event.preventDefault();
+      // let toDoToDelete = event.target.value
+      console.log("onClickRemoveItem clicked. Item to delete:", event.target.value);
+      // do you need the below line?
+      this.setState({selectedToDelete: event.target.value})
+      this.axiosDeleteToDo();
+    }
+
+
+  //  ==================================================================
   //  axios DELETE
   //  ==================================================================
     axiosDeleteToDo() {
+      console.log("selectedToDelete:", this.state.selectedToDelete)
       axios.delete(this.state.dataSource, {
-        todoitem: this.state.selectedToDo
+        todoitem: this.state.selectedToDelete
 
       })
       .then(function (response) {
@@ -112,14 +127,8 @@ export default class App extends Component {
       });
     }
 
-  //  ==================================================================
-  //  Delete button
-  //  ==================================================================
-    handleSubmitDelete(event) {
-      event.preventDefault();
-      // this.axiosDeleteToDo();
-      console.log("Hello from handleSubmitDelete")
-    }
+
+
 
 
 
@@ -142,9 +151,10 @@ export default class App extends Component {
 
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
+                    onClickRemoveItem={this.onClickRemoveItem}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}/>
 
-       <DeleteButton handleSubmitDelete={this.handleSubmitDelete}/>
+
 
 
       </div>

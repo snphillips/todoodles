@@ -10,7 +10,7 @@ export default class DeleteButton extends Component {
         <input
           className="button"
           type="submit"
-          value="delete"
+          value="remove from list"
           onClick={this.props.handleSubmitDelete}
         />
 

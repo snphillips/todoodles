@@ -9,7 +9,7 @@ export default class Form extends Component {
         <input id="todo"
                name="todo"
                type="text"
-               placeholder="add to do item"
+               placeholder="add new todo to list"
                value={this.props.newToDo}
                onChange={this.props.handleChange} />
 
