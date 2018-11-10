@@ -34,14 +34,10 @@ const axios = require('axios');
 // key-value pairs stored on the req-body object.
 // ==================================
 const bodyParser = require("body-parser");
+app.use(bodyParser.json({extended: true}));
 
 
-// What's this mean?
-app.use(
-  bodyParser.json({
-    extended: true
-  })
-);
+
 
 
 

@@ -27,7 +27,6 @@ export default class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
     this.onClickRemoveItem = this.onClickRemoveItem.bind(this);
-    // this.removeItem = this.removeItem.bind(this);
     this.axiosDeleteToDo = this.axiosDeleteToDo.bind(this);
   }
 
@@ -46,19 +45,8 @@ export default class App extends Component {
       axios.get(this.state.dataSource)
         .then( (response) => {
 
-          let toDoListResponseData = response.data
-          console.log("original toDoListData:", toDoListResponseData)
-
-          // mapping over toDoListData array to find the list items only
-          // let toDoListArray = toDoListResponseData.map((i) => i.todoitem);
-          // console.log("toDoListArray:", toDoListArray)
-          // this.setState({toDoList: toDoListArray})
-
-
-          this.setState({toDoList: toDoListResponseData})
-
-
-
+          // console.log("response.data from the server:", response.data)
+          this.setState({toDoList: response.data})
         })
         .catch(function (error) {
           console.log(error);
@@ -70,7 +58,6 @@ export default class App extends Component {
   //  The API call happens once the user clicks the 'submit' button.
   //  ==================================================================
    handleChange(event) {
-     // const newToDoItem = event.target.value
      console.log("The event.target.value is:", event.target.value)
      this.setState({newToDo: event.target.value})
     };
@@ -85,16 +72,18 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  axios POST
+  //  POST -
   //  ==================================================================
     axiosPostNewToDo() {
       axios.post(this.state.dataSource, {
         todoitem: this.state.newToDo
-
       })
       .then(function (response) {
-      // we see the below log in the console
-        console.log("response in console:", response);
+        // this not logging
+        console.log("hello from response");
+        console.log("response from axiosPostNewToDo:", response);
+        // this not triggering a get
+        this.axiosGetToDos();
       })
       .catch(function (error) {
         console.log(error);
@@ -103,6 +92,7 @@ export default class App extends Component {
 
   //  ==================================================================
   //  Delete buttons (x)
+  //  NOT WORKING PROPERLY
   //  ==================================================================
     onClickRemoveItem(event) {
       event.preventDefault();
@@ -111,6 +101,7 @@ export default class App extends Component {
       console.log("this.state.selectedToDelete is:" , this.state.selectedToDelete)
       this.axiosDeleteToDo();
     }
+
 
 
   //  ==================================================================
@@ -129,10 +120,6 @@ export default class App extends Component {
         console.log(error);
       });
     }
-
-
-
-
 
 
 

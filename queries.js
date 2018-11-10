@@ -32,7 +32,6 @@ const getToDoById = (request, response) => {
 
 
 const createToDo = (request, response) => {
-  console.log('OKOKOK' , request.body)
   const { todoitem } = request.body
 
   pool.query('INSERT INTO todos (todoitem) VALUES ($1)', [todoitem], (error, results) => {

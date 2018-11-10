@@ -38,3 +38,11 @@ button {
   font-style: bold;
   background-color: rgba(255, 253, 191, 1);
 }
+
+canvas {
+  background-color: none;
+  border:1px solid red;
+  z-index: -1;
+  width: 50pt;
+  height: 15pt;
+}
