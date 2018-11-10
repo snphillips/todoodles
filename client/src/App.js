@@ -50,12 +50,12 @@ export default class App extends Component {
           console.log("original toDoListData:", toDoListResponseData)
 
           // mapping over toDoListData array to find the list items only
-          let toDoListArray = toDoListResponseData.map((i) => i.todoitem);
-          console.log("toDoListArray:", toDoListArray)
-          this.setState({toDoList: toDoListArray})
+          // let toDoListArray = toDoListResponseData.map((i) => i.todoitem);
+          // console.log("toDoListArray:", toDoListArray)
+          // this.setState({toDoList: toDoListArray})
 
 
-          // this.setState({toDoList: toDoListResponseData})
+          this.setState({toDoList: toDoListResponseData})
 
 
 

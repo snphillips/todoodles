@@ -23,18 +23,18 @@ export default class ListOfToDos extends Component {
         <ul>
 
        {/*   {toDoArray.map((listitem, index) => {    */}
-          {toDoArray.map((listitem, index) => {
+          {toDoArray.map((todoobject) => {
             return (
 
-              <li key={index}>
+              <li key={todoobject.id}>
 
-                <button id={listitem}
+                <button id={todoobject.id}
                         type="button"
                         className="close"
-                        value={listitem}
+                        value={todoobject.todoitem}
                         onClick={this.props.onClickRemoveItem}>&times;</button>
 
-                        {listitem}
+                        {todoobject.todoitem}
 
               </li>
             )
