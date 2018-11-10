@@ -63,11 +63,11 @@ const updateToDo = (request, response) => {
 const deleteToDo = (request, response) => {
   const id = parseInt(request.params.id)
 
-  pool.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+  pool.query('DELETE FROM todos WHERE id = $1', [id], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(200).send(`User deleted with ID: ${id}`)
+    response.status(200).send(`todoitem deleted with ID: ${id}`)
   })
 }
 

@@ -15,7 +15,7 @@ export default class App extends Component {
       dataSource: "http://localhost:8888/todos",
       // dataSource: "https://todoodles-app.herokuapp.com",
       // isLoading: false,
-      user: '', //not using but might add auth in future
+      // user: '', //not using but might add auth in future
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
@@ -45,7 +45,6 @@ export default class App extends Component {
       axios.get(this.state.dataSource)
         .then( (response) => {
 
-          // console.log("response.data from the server:", response.data)
           this.setState({toDoList: response.data})
         })
         .catch(function (error) {
@@ -97,9 +96,10 @@ export default class App extends Component {
     onClickRemoveItem(event) {
       event.preventDefault();
       console.log("onClickRemoveItem clicked. Item to delete:", event.target.id);
-      this.setState({selectedToDelete: event.target.id})
-      console.log("this.state.selectedToDelete is:" , this.state.selectedToDelete)
-      this.axiosDeleteToDo();
+      this.setState({selectedToDelete: event.target.id}, () => {
+         console.log("this.state.selectedToDelete is:" , this.state.selectedToDelete)
+         this.axiosDeleteToDo();
+      })
     }
 
 
@@ -108,7 +108,7 @@ export default class App extends Component {
   //  axios DELETE
   //  ==================================================================
     axiosDeleteToDo() {
-      // console.log("selectedToDelete:", this.state.selectedToDelete)
+      console.log("Hello from axios Delete!", this.state.selectedToDelete, "will be deleted.")
       // axios.delete(this.state.dataSource + `${id}`, {
       axios.delete(this.state.dataSource + `/${this.state.selectedToDelete}`, {
         todoitem: this.state.selectedToDelete
