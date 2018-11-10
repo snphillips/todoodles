@@ -6,7 +6,7 @@ export default class ListOfToDos extends Component {
 
     // making a const to keep things tidy
     let toDoArray = this.props.parent_state.toDoList
-    console.log("toDoArray:", toDoArray)
+    // console.log("toDoArray:", toDoArray)
 
 
 
@@ -22,12 +22,14 @@ export default class ListOfToDos extends Component {
 
         <ul>
 
+       {/*   {toDoArray.map((listitem, index) => {    */}
           {toDoArray.map((listitem, index) => {
             return (
 
               <li key={index}>
 
-                <button type="button"
+                <button id={listitem}
+                        type="button"
                         className="close"
                         value={listitem}
                         onClick={this.props.onClickRemoveItem}>&times;</button>

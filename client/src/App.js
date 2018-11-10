@@ -106,8 +106,9 @@ export default class App extends Component {
   //  ==================================================================
     onClickRemoveItem(event) {
       event.preventDefault();
-      console.log("onClickRemoveItem clicked. Item to delete:", event.target.value);
-      this.setState({selectedToDelete: event.target.value})
+      console.log("onClickRemoveItem clicked. Item to delete:", event.target.id);
+      this.setState({selectedToDelete: event.target.id})
+      console.log("this.state.selectedToDelete is:" , this.state.selectedToDelete)
       this.axiosDeleteToDo();
     }
 
@@ -118,9 +119,8 @@ export default class App extends Component {
     axiosDeleteToDo() {
       // console.log("selectedToDelete:", this.state.selectedToDelete)
       // axios.delete(this.state.dataSource + `${id}`, {
-      axios.delete(this.state.dataSource, {
+      axios.delete(this.state.dataSource + `/${this.state.selectedToDelete}`, {
         todoitem: this.state.selectedToDelete
-
       })
       .then(function (response) {
         // console.log(response);
@@ -164,4 +164,3 @@ export default class App extends Component {
     );
   }
 }
-
