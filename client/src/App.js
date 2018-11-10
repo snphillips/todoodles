@@ -42,6 +42,7 @@ export default class App extends Component {
   //  axios GET requset
   //  ==================================================================
     axiosGetToDos() {
+      console.log("Hello from get")
       axios.get(this.state.dataSource)
         .then( (response) => {
 
@@ -57,7 +58,7 @@ export default class App extends Component {
   //  The API call happens once the user clicks the 'submit' button.
   //  ==================================================================
    handleChange(event) {
-     console.log("The event.target.value is:", event.target.value)
+     // console.log("The event.target.value is:", event.target.value)
      this.setState({newToDo: event.target.value})
     };
 
@@ -66,23 +67,26 @@ export default class App extends Component {
   //  ==================================================================
     handleSubmit(event) {
       event.preventDefault();
-      console.log("submit button clicked")
-      this.axiosPostNewToDo();
+      // console.log("submit button clicked")
+      this.axiosPostNewToDo( () => {
+        this.axiosGetToDos()
+      });
     }
 
   //  ==================================================================
   //  POST -
   //  ==================================================================
     axiosPostNewToDo() {
+      console.log("Hello from post")
+
       axios.post(this.state.dataSource, {
         todoitem: this.state.newToDo
       })
       .then(function (response) {
-        // this not logging
-        console.log("hello from response");
-        console.log("response from axiosPostNewToDo:", response);
-        // this not triggering a get
-        this.axiosGetToDos();
+        // console.log(response);
+      })
+      .then( () => {
+        this.axiosGetToDos()
       })
       .catch(function (error) {
         console.log(error);
@@ -103,7 +107,6 @@ export default class App extends Component {
     }
 
 
-
   //  ==================================================================
   //  axios DELETE
   //  ==================================================================
@@ -115,6 +118,9 @@ export default class App extends Component {
       })
       .then(function (response) {
         // console.log(response);
+      })
+      .then( () => {
+        this.axiosGetToDos()
       })
       .catch(function (error) {
         console.log(error);

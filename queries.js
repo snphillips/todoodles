@@ -38,7 +38,7 @@ const createToDo = (request, response) => {
     if (error) {
       throw error
     }
-    response.status(201)
+    response.status(201).send(`Todo added.`)
   })
 }
 
