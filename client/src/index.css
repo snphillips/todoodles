@@ -37,12 +37,33 @@ button {
   margin-right: 20pt;
   font-style: bold;
   background-color: rgba(255, 254, 224, 0.001);
+  cursor: pointer;
+
 }
 
-canvas {
+/*canvas {
   background-color: none;
   border:1px solid red;
   z-index: -1;
   width: 50pt;
   height: 15pt;
+}*/
+
+.canvas {
+  /*border:1px solid red; */
+  margin-bottom: 10pt;
+  padding: 2pt 0;
+}
+
+
+input.todo-item {
+  background-color: rgba(255, 254, 224, 0.001);
+  font-family: 'EB Garamond', serif;
+  font-size: 100%;
+  border: none;
+
+}
+
+form.todo-item-form {
+  display: inline;
 }

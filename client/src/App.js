@@ -5,7 +5,7 @@ import Header from './Header';
 import Introduction from './Introduction';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
-// import DeleteButton from './DeleteButton';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -14,11 +14,10 @@ export default class App extends Component {
     this.state = {
       dataSource: "http://localhost:8888/todos",
       // dataSource: "https://todoodles-app.herokuapp.com",
-      // isLoading: false,
-      // user: '', //not using but might add auth in future
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
+      selectedToEdit: '',
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -28,6 +27,8 @@ export default class App extends Component {
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
     this.onClickRemoveItem = this.onClickRemoveItem.bind(this);
     this.axiosDeleteToDo = this.axiosDeleteToDo.bind(this);
+    this.onChangeEditItem = this.onChangeEditItem.bind(this);
+    this.axiosPutToDo = this.axiosPutToDo.bind(this);
   }
 
   //  ==================================================================
@@ -94,8 +95,7 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  Delete buttons (x)
-  //  NOT WORKING PROPERLY
+  //  DELETE (via the "x" buttons)
   //  ==================================================================
     onClickRemoveItem(event) {
       event.preventDefault();
@@ -111,7 +111,7 @@ export default class App extends Component {
   //  axios DELETE
   //  ==================================================================
     axiosDeleteToDo() {
-      console.log("Hello from axios Delete!", this.state.selectedToDelete, "will be deleted.")
+      console.log("Hello from axios DELETE!", this.state.selectedToDelete, "will be deleted.")
       // axios.delete(this.state.dataSource + `${id}`, {
       axios.delete(this.state.dataSource + `/${this.state.selectedToDelete}`, {
         todoitem: this.state.selectedToDelete
@@ -126,6 +126,56 @@ export default class App extends Component {
         console.log(error);
       });
     }
+
+
+  //  ==================================================================
+  // axios PUT (update/edit)
+  //  ==================================================================
+    onChangeEditItem(event) {
+      event.preventDefault();
+      console.log(`Item to edit has an id of:` + event.target.id + `and value of:` + event.target.value);
+      this.setState({selectedToEdit: event.target.id})
+    }
+
+
+  //  ==================================================================
+  //  axios PUT (update/edit)
+  //  ==================================================================
+    axiosPutToDo() {
+      console.log("Hello from axios PUT", this.state.selectedToEdit, "will be edited.")
+      // axios.delete(this.state.dataSource + `${id}`, {
+      axios.put(this.state.dataSource + `/${this.state.selectedToEdit}`, {
+        todoitem: this.state.selectedToEdit
+      })
+      .then(function (response) {
+        // console.log(response);
+      })
+      .then( () => {
+        this.axiosGetToDos()
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+
+  //  ==================================================================
+  //  Canvas Drawing
+  //  ==================================================================
+
+  // draw() {
+  //   console.log("hello from Draw")
+  //   let i
+  //   for (i = 0; i<8000; i++) {
+  //     let canvas = document.querySelector(".canvas")
+  //     let square= document.createElement('div')
+  //     square.setAttribute('class', "square")
+  //     canvas.appendChild(square)
+  //     square.addEventListener("mouseover", function (colorChange){
+  //        colorChange.target.style.backgroundColor = "black";
+  //      })
+  // }};
+
 
 
 
@@ -148,7 +198,11 @@ export default class App extends Component {
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
                     onClickRemoveItem={this.onClickRemoveItem}
-                    axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}/>
+                    onChangeEditItem={this.onChangeEditItem}
+                    axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
+                    axiosPutToDo={this.axiosPutToDo}
+                    draw={this.draw}/>
+
 
 
 
@@ -157,3 +211,4 @@ export default class App extends Component {
     );
   }
 }
+       // <Canvas />

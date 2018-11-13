@@ -10,9 +10,9 @@ export default class ListOfToDos extends Component {
 
 
 
-    if (toDoArray.length === 1) {
-      return ("")
-    }
+    // if (toDoArray.length === 1) {
+    //   return ("")
+    // }
 
     // Below we map over the array of list items, and
     // create an unordered list
@@ -28,7 +28,12 @@ export default class ListOfToDos extends Component {
           {toDoArray.map((todoobject) => {
             return (
 
-                <li key={todoobject.id}>
+              <li key={todoobject.id}>
+
+                <div className="canvas"
+                     onMouseDown={this.props.draw}
+                     >
+
 
                   <button id={todoobject.id}
                           type="button"
@@ -36,10 +41,20 @@ export default class ListOfToDos extends Component {
                           value={todoobject.todoitem}
                           onClick={this.props.onClickRemoveItem}>&times;</button>
 
-                          {todoobject.todoitem}
 
-                </li>
+                    <form className="todo-item-form"
+                          onSubmit={this.props.axiosPutToDo}>
 
+                      <input id={todoobject.id}
+                             todoitem={todoobject.todoitem}
+                             className="todo-item"
+                             value={todoobject.todoitem}
+                             onChange={this.props.onChangeEditItem}></input>
+
+                    </form>
+
+                </div>
+              </li>
             )
           })}
 
@@ -51,3 +66,15 @@ export default class ListOfToDos extends Component {
     );
   }
 }
+
+
+                          // <span id={todoobject.id}
+                                // className="todo-item"
+                                // value={todoobject.todoitem}
+                                // onClick={this.props.onClickEditItem}>{todoobject.todoitem}</span>
+
+
+
+
+
+

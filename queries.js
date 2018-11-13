@@ -46,9 +46,10 @@ const createToDo = (request, response) => {
 const updateToDo = (request, response) => {
   const id = parseInt(request.params.id)
   const { todoitem } = request.body
+  console.log("hehehehe")
 
   pool.query(
-    'UPDATE todoitem SET todoitem = $1, WHERE id = $2',
+    'UPDATE todos SET todoitem = $1 WHERE id = $2',
     [todoitem, id],
     (error, results) => {
       if (error) {
