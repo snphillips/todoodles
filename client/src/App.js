@@ -18,8 +18,6 @@ export default class App extends Component {
       newToDo: '',
       selectedToDelete: '',
       selectedToEdit: '',
-      selectedToEditId: '',
-      selectedToEditContent: '',
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -35,14 +33,14 @@ export default class App extends Component {
 
   //  ==================================================================
   //  1) Once React has mounted and is ready...
-  //  2) fire the axios GET requset, which is the axiosGetToDos function
+  //  2) fire the axios GET requset (the axiosGetToDos function)
   //  ==================================================================
     componentDidMount() {
       this.axiosGetToDos();
     }
 
   //  ==================================================================
-  //  axios GET requset
+  //  GET
   //  ==================================================================
     axiosGetToDos() {
       console.log("Hello from get")
@@ -57,6 +55,7 @@ export default class App extends Component {
     }
 
   //  ==================================================================
+  //  POST
   //  As soon as the user interacts with the form newTodo updates.
   //  The API call happens once the user clicks the 'submit' button.
   //  ==================================================================
@@ -66,18 +65,27 @@ export default class App extends Component {
     };
 
   //  ==================================================================
-  //  When the button is clicked, the axios POST call is made
+  //  POST
+  //  When the submit button is clicked, the axios POST requset is made.
+  //  Note we then follow up with a GET request, to fetch the list again,
+  //  which now includes our new todo item.
   //  ==================================================================
     handleSubmit(event) {
       event.preventDefault();
-      // console.log("submit button clicked")
       this.axiosPostNewToDo( () => {
         this.axiosGetToDos()
       });
+
+      // TODO: get field to be blank after submit button is clicked
+      // this isn't working at the moment
+      this.setState({newToDo: ""}, () => {
+        console.log("this.state.newToDo is:", this.state.newToDo, "<- should be blank.")
+      })
+
     }
 
   //  ==================================================================
-  //  POST -
+  //  POST
   //  ==================================================================
     axiosPostNewToDo() {
       console.log("Hello from post")
@@ -97,7 +105,8 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  DELETE (via the "x" buttons)
+  //  DELETE
+  //  (via the "x" buttons)
   //  ==================================================================
     onClickRemoveItem(event) {
       event.preventDefault();
@@ -110,7 +119,7 @@ export default class App extends Component {
 
 
   //  ==================================================================
-  //  axios DELETE
+  //  DELETE
   //  ==================================================================
     axiosDeleteToDo() {
       console.log("Hello from axios DELETE!", this.state.selectedToDelete, "will be deleted.")
@@ -131,26 +140,23 @@ export default class App extends Component {
 
 
   //  ==================================================================
-  // axios PUT (update/edit)
+  //  PUT (update/edit)
   //  ==================================================================
     onChangeEditItem(event) {
       event.preventDefault();
+      this.setState({selectedToEdit: event.target.id})
       console.log(`Item to edit has an id of:` + event.target.id + ` and value of:` + event.target.value);
-      // this.setState({selectedToEdit: event.target.id})
-      this.setState({selectedToEditContent: event.target.value})
-      this.setState({selectedToEditId: event.target.id})
-      console.log("id:", event.target.id, "value:", event.target.value)
     }
 
 
   //  ==================================================================
-  //  axios PUT (update/edit)
+  //  PUT (update/edit)
   //  ==================================================================
     axiosPutToDo() {
-      console.log("Hello from axios PUT", this.state.selectedToEditContent, "will be edited.")
+      console.log("Hello from PUT", this.state.selectedToEditContent, "will be edited.")
 
-      axios.put(this.state.dataSource + `/${this.state.selectedToEditId}`, {
-        todoitem: this.state.selectedToEditId
+      axios.put(this.state.dataSource + `/${this.state.selectedToEdit}`, {
+        todoitem: this.state.selectedToEdit
       })
       .then(function (response) {
         // console.log(response);
@@ -188,9 +194,6 @@ export default class App extends Component {
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
                     axiosPutToDo={this.axiosPutToDo}
                     />
-
-
-
 
 
       </div>

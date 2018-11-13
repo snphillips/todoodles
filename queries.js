@@ -18,7 +18,7 @@ const getToDos = (request, response) => {
   })
 }
 
-// Likely won't use for this app but keep for reference
+// Not using  for this app but keep for reference
 const getToDoById = (request, response) => {
   const id = parseInt(request.params.id)
 

@@ -6,9 +6,6 @@ export default class ListOfToDos extends Component {
 
     // making a const to keep things tidy
     let toDoArray = this.props.parent_state.toDoList
-    // console.log("toDoArray:", toDoArray)
-
-
 
     // if (toDoArray.length === 1) {
     //   return ("")
@@ -23,8 +20,6 @@ export default class ListOfToDos extends Component {
 
         <ul>
 
-
-       {/*   {toDoArray.map((listitem, index) => {    */}
           {toDoArray.map((todoobject) => {
             return (
 
@@ -49,7 +44,13 @@ export default class ListOfToDos extends Component {
                              todoitem={todoobject.todoitem}
                              className="todo-item"
                              value={todoobject.todoitem}
-                             onChange={this.props.onChangeEditItem}></input>
+                             // onChange={this.props.onChangeEditItem}
+                             onChange={ (e) => {
+                               this.setState({ selectedToEdit: e.target.value })}
+
+                             }
+                             >
+                      </input>
 
                     </form>
 
@@ -67,6 +68,9 @@ export default class ListOfToDos extends Component {
   }
 }
 
+                             // onChange={ (event) => {
+                             //    this.props.onChangeEditItem(event.target.value)
+                             //  }}
 
                           // <span id={todoobject.id}
                                 // className="todo-item"
