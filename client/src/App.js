@@ -133,8 +133,9 @@ export default class App extends Component {
   //  ==================================================================
     onChangeEditItem(event) {
       event.preventDefault();
-      console.log(`Item to edit has an id of:` + event.target.id + `and value of:` + event.target.value);
+      console.log(`Item to edit has an id of:` + event.target.id + ` and value of:` + event.target.value);
       this.setState({selectedToEdit: event.target.id})
+      console.log("id:", event.target.id, "value:", event.target.value)
     }
 
 

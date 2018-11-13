@@ -45,17 +45,19 @@ const createToDo = (request, response) => {
 
 const updateToDo = (request, response) => {
   const id = parseInt(request.params.id)
+  // one problem is that request.body is the id number, not content
   const { todoitem } = request.body
-  console.log("hehehehe")
+  console.log("Hello from updateToDo")
 
   pool.query(
-    'UPDATE todos SET todoitem = $1 WHERE id = $2',
+    'UPDATE todos SET todoitem = $2 WHERE id = $1',
     [todoitem, id],
     (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`todoitem modified with ID: ${id}`)
+      response.status(200).send(`todoitem modified with ID: ${id}` )
+
     }
   )
 }
