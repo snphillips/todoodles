@@ -18,6 +18,8 @@ export default class App extends Component {
       newToDo: '',
       selectedToDelete: '',
       selectedToEdit: '',
+      selectedToEditId: '',
+      selectedToEditContent: '',
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -112,7 +114,7 @@ export default class App extends Component {
   //  ==================================================================
     axiosDeleteToDo() {
       console.log("Hello from axios DELETE!", this.state.selectedToDelete, "will be deleted.")
-      // axios.delete(this.state.dataSource + `${id}`, {
+
       axios.delete(this.state.dataSource + `/${this.state.selectedToDelete}`, {
         todoitem: this.state.selectedToDelete
       })
@@ -134,7 +136,9 @@ export default class App extends Component {
     onChangeEditItem(event) {
       event.preventDefault();
       console.log(`Item to edit has an id of:` + event.target.id + ` and value of:` + event.target.value);
-      this.setState({selectedToEdit: event.target.id})
+      // this.setState({selectedToEdit: event.target.id})
+      this.setState({selectedToEditContent: event.target.value})
+      this.setState({selectedToEditId: event.target.id})
       console.log("id:", event.target.id, "value:", event.target.value)
     }
 
@@ -143,10 +147,10 @@ export default class App extends Component {
   //  axios PUT (update/edit)
   //  ==================================================================
     axiosPutToDo() {
-      console.log("Hello from axios PUT", this.state.selectedToEdit, "will be edited.")
-      // axios.delete(this.state.dataSource + `${id}`, {
-      axios.put(this.state.dataSource + `/${this.state.selectedToEdit}`, {
-        todoitem: this.state.selectedToEdit
+      console.log("Hello from axios PUT", this.state.selectedToEditContent, "will be edited.")
+
+      axios.put(this.state.dataSource + `/${this.state.selectedToEditId}`, {
+        todoitem: this.state.selectedToEditId
       })
       .then(function (response) {
         // console.log(response);
@@ -158,25 +162,6 @@ export default class App extends Component {
         console.log(error);
       });
     }
-
-
-  //  ==================================================================
-  //  Canvas Drawing
-  //  ==================================================================
-
-  // draw() {
-  //   console.log("hello from Draw")
-  //   let i
-  //   for (i = 0; i<8000; i++) {
-  //     let canvas = document.querySelector(".canvas")
-  //     let square= document.createElement('div')
-  //     square.setAttribute('class', "square")
-  //     canvas.appendChild(square)
-  //     square.addEventListener("mouseover", function (colorChange){
-  //        colorChange.target.style.backgroundColor = "black";
-  //      })
-  // }};
-
 
 
 
@@ -202,7 +187,7 @@ export default class App extends Component {
                     onChangeEditItem={this.onChangeEditItem}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
                     axiosPutToDo={this.axiosPutToDo}
-                    draw={this.draw}/>
+                    />
 
 
 

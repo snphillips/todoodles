@@ -4,17 +4,12 @@ require('dotenv').config()
 //require the just installed express app
 const express = require('express');
 
-//invoke express. Henseforth, app = express
+//invoke express. Henceforth, app = express
 const app = express();
 
 const db = require('./queries')
 
-
 const { DATABASE_URL } = process.env;
-
-
-
-
 
 // ==================================
 // CORS
@@ -28,18 +23,12 @@ app.use(cors())
 // ==================================
 const axios = require('axios');
 
-
 // ==================================
 // body-parser middleware allows us to make use of the
 // key-value pairs stored on the req-body object.
 // ==================================
 const bodyParser = require("body-parser");
 app.use(bodyParser.json({extended: true}));
-
-
-
-
-
 
 // **********************************
 // index route
@@ -56,15 +45,12 @@ app.get('/todos', db.getToDos)
 app.get('/todos/:id', db.getToDoById)
 app.post('/todos', db.createToDo)
 app.put('/todos/:id', db.updateToDo)
-// app.put('/todos/:todoitem', db.updateToDo)
 app.delete('/todos/:id', db.deleteToDo)
-
 
 
 app.use((err, req, res, next) => {
   res.json(err);
 });
-
 
 
 // ==================================
