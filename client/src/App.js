@@ -18,6 +18,7 @@ export default class App extends Component {
       newToDo: '',
       selectedToDelete: '',
       selectedToEdit: '',
+      // value: 'placeholder',
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -44,6 +45,7 @@ export default class App extends Component {
   //  ==================================================================
     axiosGetToDos() {
       console.log("Hello from get")
+      console.log("this.state.value is:" , this.state.value)
       axios.get(this.state.dataSource)
         .then( (response) => {
 
@@ -75,14 +77,11 @@ export default class App extends Component {
       this.axiosPostNewToDo( () => {
         this.axiosGetToDos()
       });
-
-      // TODO: get field to be blank after submit button is clicked
-      // this isn't working at the moment
-      this.setState({newToDo: ""}, () => {
-        console.log("this.state.newToDo is:", this.state.newToDo, "<- should be blank.")
-      })
-
+      // event.target.reset() clears the form
+      event.target.reset();
     }
+
+
 
   //  ==================================================================
   //  POST
@@ -143,10 +142,13 @@ export default class App extends Component {
   //  PUT (update/edit)
   //  ==================================================================
     onChangeEditItem(event) {
-      event.preventDefault();
+      // event.preventDefault();
       this.setState({selectedToEdit: event.target.id})
+      // this.setState({selectedToEdit: event.target})
+      // this.setState({selectedToEdit: event.target.value})
       console.log(`Item to edit has an id of:` + event.target.id + ` and value of:` + event.target.value);
     }
+
 
 
   //  ==================================================================
@@ -189,6 +191,7 @@ export default class App extends Component {
 
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
+                    selectedToEdit={this.state}
                     onClickRemoveItem={this.onClickRemoveItem}
                     onChangeEditItem={this.onChangeEditItem}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}

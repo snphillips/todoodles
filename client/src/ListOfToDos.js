@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 export default class ListOfToDos extends Component {
   render() {
 
-    // making a const to keep things tidy
+
+    // State
     let toDoArray = this.props.parent_state.toDoList
 
     // if (toDoArray.length === 1) {
@@ -20,36 +21,33 @@ export default class ListOfToDos extends Component {
 
         <ul>
 
-          {toDoArray.map((todoobject) => {
+          {toDoArray.map( (todoobject) => {
+
             return (
 
               <li key={todoobject.id}>
 
                 <div className="canvas"
-                     onMouseDown={this.props.draw}
+                     // onMouseDown={this.props.draw}
                      >
-
 
                   <button id={todoobject.id}
                           type="button"
-                          className="close"
+                          className="delete-x"
                           value={todoobject.todoitem}
                           onClick={this.props.onClickRemoveItem}>&times;</button>
 
-
                     <form className="todo-item-form"
-                          onSubmit={this.props.axiosPutToDo}>
+                          onSubmit={this.props.axiosPutToDo}
+                          >
 
                       <input id={todoobject.id}
                              todoitem={todoobject.todoitem}
                              className="todo-item"
                              value={todoobject.todoitem}
-                             // onChange={this.props.onChangeEditItem}
-                             onChange={ (e) => {
-                               this.setState({ selectedToEdit: e.target.value })}
-
-                             }
+                             onChange={this.props.onChangeEditItem}
                              >
+
                       </input>
 
                     </form>
@@ -67,6 +65,10 @@ export default class ListOfToDos extends Component {
     );
   }
 }
+
+                             // value={
+                             //  this.setState({value: todoobject.todoitem})
+                             // }
 
                              // onChange={ (event) => {
                              //    this.props.onChangeEditItem(event.target.value)

@@ -6,14 +6,16 @@ export default class Form extends Component {
 
       <form onSubmit={this.props.handleSubmit}>
 
-        <input id="todo"
+        <input className="input-field"
+               id="todo"
                name="todo"
                type="text"
                placeholder="add new todo to list"
                value={this.props.newToDo}
                onChange={this.props.handleChange} />
 
-        <input type="submit"
+        <input className="submit-button"
+               type="submit"
                value="submit" />
 
       </form>

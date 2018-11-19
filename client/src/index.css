@@ -12,6 +12,7 @@ body {
   font-family: 'Noto Serif', serif;
   font-family: 'Quicksand', sans-serif;
   font-family: 'EB Garamond', serif;
+  font-size: 140%
 }
 
 p {
@@ -19,7 +20,7 @@ p {
 }
 
 h1 {
-
+margin-top: 0;
 }
 
 ul {
@@ -28,17 +29,22 @@ ul {
 }
 
 li {
-  line-height: 1.6;
+  /*line-height: ;*/
 }
 
 
-button {
+button.delete-x {
   border: 0;
   margin-right: 20pt;
   font-style: bold;
   background-color: rgba(255, 254, 224, 0.001);
   cursor: pointer;
+  font-size: 130%;
+  font-weight: 700;
+}
 
+button.delete-x:hover {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /*canvas {
@@ -67,3 +73,33 @@ input.todo-item {
 form.todo-item-form {
   display: inline;
 }
+
+.input-field {
+  font-size: 70%;
+  width: 170pt;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: rgba(0, 0, 0, 1); /* Black */
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 70%;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.submit-button:hover {
+  background-color: rgba(0, 0, 0, 0.7); /* Black */
+}
+

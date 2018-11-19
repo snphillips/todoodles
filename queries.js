@@ -45,6 +45,7 @@ const createToDo = (request, response) => {
 
 const updateToDo = (request, response) => {
   const id = parseInt(request.params.id)
+  // const item = request.params.todoitem
   // one problem is that request.body is the id number, not content
   const { todoitem } = request.body
   console.log("Hello from updateToDo. request.body is:", request.body)
