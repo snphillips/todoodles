@@ -1,7 +1,7 @@
 # todoodles
 
 ## Project Description
-Currently under construction.
+CURRENTLY UNDER CONSTRUCTION
 
 The best part of a todo list?
 The catharsis of furiously scribling out your accomplishments. 
