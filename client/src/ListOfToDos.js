@@ -35,7 +35,7 @@ export default class ListOfToDos extends Component {
                           type="button"
                           className="delete-x"
                           value={todoobject.todoitem}
-                          onClick={this.props.onClickRemoveItem}>&times;</button>
+                          onClick={this.props.onClickRemoveItem}><i class="fas fa-times"></i></button>
 
                     <form className="todo-item-form"
                           onSubmit={this.props.axiosPutToDo}
@@ -66,9 +66,6 @@ export default class ListOfToDos extends Component {
   }
 }
 
-                             // value={
-                             //  this.setState({value: todoobject.todoitem})
-                             // }
 
                              // onChange={ (event) => {
                              //    this.props.onChangeEditItem(event.target.value)

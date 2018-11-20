@@ -1,3 +1,8 @@
+
+
+/*==============================
+ General Styling
+================================*/
 body {
   background-color: rgba(255, 254, 224, 1);
   margin: 0;
@@ -33,19 +38,7 @@ li {
 }
 
 
-button.delete-x {
-  border: 0;
-  margin-right: 20pt;
-  font-style: bold;
-  background-color: rgba(255, 254, 224, 0.001);
-  cursor: pointer;
-  font-size: 130%;
-  font-weight: 700;
-}
 
-button.delete-x:hover {
-  color: rgba(0, 0, 0, 0.7);
-}
 
 /*canvas {
   background-color: none;
@@ -70,6 +63,9 @@ input.todo-item {
 
 }
 
+/*==============================
+ Input Form
+================================*/
 form.todo-item-form {
   display: inline;
 }
@@ -101,5 +97,43 @@ form.todo-item-form {
 
 .submit-button:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Black */
+}
+
+/*==============================
+ X delete buttons
+================================*/
+button.delete-x {
+  border: 0;
+  margin-right: 20pt;
+  font-style: bold;
+  background-color: rgba(255, 254, 224, 0.001);
+  cursor: pointer;
+  font-size: 110%;
+  font-weight: 700;
+}
+
+button.delete-x:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+
+/*==============================
+ Footer
+================================*/
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding-right: 1%;
+  padding-top: .5em;
+  padding-bottom: .3em;
+}
+
+span.footerLink a{
+  color: rgba(0, 0, 0, 0.7);
+  padding-left: 7%;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 80%;
 }
 

@@ -5,6 +5,7 @@ import Header from './Header';
 import Introduction from './Introduction';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
+import Footer from './Footer';
 
 
 export default class App extends Component {
@@ -70,7 +71,7 @@ export default class App extends Component {
   //  POST
   //  When the submit button is clicked, the axios POST requset is made.
   //  Note we then follow up with a GET request, to fetch the list again,
-  //  which now includes our new todo item.
+  //  which now includes our *new* todo item at the bottom.
   //  ==================================================================
     handleSubmit(event) {
       event.preventDefault();
@@ -80,8 +81,6 @@ export default class App extends Component {
       // event.target.reset() clears the form
       event.target.reset();
     }
-
-
 
   //  ==================================================================
   //  POST
@@ -199,6 +198,7 @@ export default class App extends Component {
                     />
 
 
+       <Footer />
       </div>
     );
   }
