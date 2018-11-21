@@ -5,81 +5,49 @@ export default class ListOfToDos extends Component {
 
   render() {
 
+    let className = 'todo-item';
+      if (this.props.displayStrikethrough === true) {
+        className += ' strikethrough';
+    }
 
-    // State
+
+    // To keep things more readable
     let toDoArray = this.props.parent_state.toDoList
-
-    // if (toDoArray.length === 1) {
-    //   return ("")
-    // }
 
     // Below we map over the array of list items, and
     // create an unordered list
-
     return (
       <div className='todolist'>
 
 
         <ul>
-
           {toDoArray.map( (todoobject) => {
-
-
             return (
+              <li
+                key={todoobject.id}
+                className="todoListItem"
+              >
+                  <button
+                    id={todoobject.id}
+                    type="button"
+                    className="delete-x"
+                    value={todoobject.todoitem}
+                    // onClick={this.props.onClickRemoveItem}><i className="fas fa-times"></i></button>
+                    onClick={this.props.handleClickRemoveItem}>&times;</button>
 
-              <li key={todoobject.id}>
-
-                <div className="canvas"
-                     // onMouseDown={this.props.draw}
-                     >
-
-                  <button id={todoobject.id}
-                          type="button"
-                          className="delete-x"
-                          value={todoobject.todoitem}
-                          // onClick={this.props.onClickRemoveItem}><i className="fas fa-times"></i></button>
-                          onClick={this.props.handleClickRemoveItem}>&times;</button>
-
-                    <form className="todo-item-form"
-                          onSubmit={this.props.axiosPutToDo}
-                          >
-
-                      <input id={todoobject.id}
-                             todoitem={todoobject.todoitem}
-                             className="todo-item"
-                             value={todoobject.todoitem}
-                             onChange={this.props.handleChangeEditItem}
-                             >
-
-                      </input>
-
-                    </form>
-
-                </div>
+                  <span
+                    // We'll add a strikethrough with css, if the user clicks
+                    displayStrikethrough={this.props.displayStrikethrough}
+                    className={className}
+                    onClick={this.props.handleAddStrikethrough}>{todoobject.todoitem}</span>
               </li>
             )
           })}
-
-
         </ul>
-
-
       </div>
     );
   }
 }
-
-
-                             // onChange={ (event) => {
-                             //    this.props.onChangeEditItem(event.target.value)
-                             //  }}
-
-                          // <span id={todoobject.id}
-                                // className="todo-item"
-                                // value={todoobject.todoitem}
-                                // onClick={this.props.onClickEditItem}>{todoobject.todoitem}</span>
-
-
 
 
 

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import _lodash from 'lodash';
 import Header from './Header';
-import ScribbleBoard from './ScribbleBoard';
-import Introduction from './Introduction';
+// import ScribbleBoard from './ScribbleBoard';
+// import Introduction from './Introduction';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
 import Footer from './Footer';
@@ -19,13 +18,7 @@ export default class App extends Component {
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
-      selectedToEdit: '',
-      // for PUT
-      eachToDo: '',
-
-
-
-
+      displayStrikethrough: false
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -33,12 +26,9 @@ export default class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
-    this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.axiosDeleteToDo = this.axiosDeleteToDo.bind(this);
-    this.handleChangeEditItem = this.handleChangeEditItem.bind(this);
-    this.axiosPutToDo = this.axiosPutToDo.bind(this);
-
-
+    this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
+    this.handleAddStrikethrough = this.handleAddStrikethrough.bind(this);
   }
 
   //  ==================================================================
@@ -54,7 +44,6 @@ export default class App extends Component {
   //  ==================================================================
     axiosGetToDos() {
       console.log("Hello from get")
-      console.log("this.state.value is:" , this.state.value)
       axios.get(this.state.dataSource)
         .then( (response) => {
 
@@ -77,7 +66,8 @@ export default class App extends Component {
 
   //  ==================================================================
   //  POST
-  //  When the submit button is clicked, the axios POST requset is made.
+  //  When the user hits "enter" (or the submit button is clicked), the
+  //  axios POST requset is made.
   //  Note we then follow up with a GET request, to fetch the list again,
   //  which now includes our *new* todo item at the bottom of the list.
   //  ==================================================================
@@ -112,7 +102,7 @@ export default class App extends Component {
 
   //  ==================================================================
   //  DELETE
-  //  (via the "x" buttons)
+  //  (via the "x" buttons next to every TODO item)
   //  ==================================================================
     handleClickRemoveItem(event) {
       event.preventDefault();
@@ -122,7 +112,6 @@ export default class App extends Component {
          this.axiosDeleteToDo();
       })
     }
-
 
   //  ==================================================================
   //  DELETE
@@ -144,50 +133,14 @@ export default class App extends Component {
       });
     }
 
-
   //  ==================================================================
-  //  PUT (update/edit)
+  //  Strike-through line
   //  ==================================================================
-    handleChangeEditItem(event) {
-      // event.preventDefault();
-      this.setState({selectedToEdit: event.target.id})
-      // this.setState({selectedToEdit: event.target})
-      // this.setState({selectedToEdit: event.target.value})
-      console.log(`Item to edit has an id of:` + event.target.id + ` and value of:` + event.target.value);
-    }
-
-
-
-  //  ==================================================================
-  //  PUT (update/edit)
-  //  ==================================================================
-    axiosPutToDo() {
-      console.log("Hello from PUT", this.state.selectedToEditContent, "will be edited.")
-
-      axios.put(this.state.dataSource + `/${this.state.selectedToEdit}`, {
-        todoitem: this.state.selectedToEdit
-      })
-      .then(function (response) {
-        // console.log(response);
-      })
-      .then( () => {
-        this.axiosGetToDos()
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }
-
-
-
-
-
-
-
-
-
-
-
+   handleAddStrikethrough(){
+    this.setState({displayStrikethrough: true},  () => {
+      console.log("list item clicked and this.state.displayStrikethrough === ", this.state.displayStrikethrough)
+    })
+   }
 
 //  ==================================================================
 //  And finally, the render
@@ -196,11 +149,7 @@ export default class App extends Component {
     return (
       <div className="App">
 
-       <ScribbleBoard />
-
        <Header />
-
-       <Introduction />
 
        <Form parent_state={this.state}
              newTodo={this.state}
@@ -209,17 +158,17 @@ export default class App extends Component {
 
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
-                    selectedToEdit={this.state}
+                    displayStrikethrough={this.state}
                     handleClickRemoveItem={this.handleClickRemoveItem}
-                    handleChangeEditItem={this.handleChangeEditItem}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
-                    axiosPutToDo={this.axiosPutToDo}
+                    handleAddStrikethrough={this.handleAddStrikethrough}
                     />
 
-
        <Footer />
+
       </div>
     );
   }
 }
-       // <Canvas />
+       // <Introduction />
+       // <ScribbleBoard />

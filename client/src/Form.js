@@ -12,14 +12,19 @@ export default class Form extends Component {
                type="text"
                placeholder="add new todo to list"
                value={this.props.newToDo}
-               onChange={this.props.handleChange} />
+               // onKeyPress allows user to hit "enter" to submit form
+               onKeyPress={this.props.handleChange}
+               />
 
-        <input className="submit-button"
-               type="submit"
-               value="submit" />
 
       </form>
 
     );
   }
 }
+
+               // onChange={this.props.handleChange}
+
+        // <input className="submit-button"
+               // type="submit"
+               // value="submit" />
