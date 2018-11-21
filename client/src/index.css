@@ -4,7 +4,9 @@
  General Styling
 ================================*/
 body {
-  background-color: rgba(255, 254, 224, 1);
+  /*background-color: rgba(255, 254, 224, 1);*/
+background: repeating-linear-gradient(rgba(255, 254, 224, 1), rgba(255, 254, 224, 1) 30px, rgba(145, 152, 229, .2) 30px, rgba(145, 152, 229, .2) 31px);
+
   margin: 0;
   padding: 10pt;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -40,28 +42,6 @@ li {
 
 
 
-/*canvas {
-  background-color: none;
-  border:1px solid red;
-  z-index: -1;
-  width: 50pt;
-  height: 15pt;
-}*/
-
-.canvas {
-  /*border:1px solid red; */
-  margin-bottom: 10pt;
-  padding: 2pt 0;
-}
-
-
-input.todo-item {
-  background-color: rgba(255, 254, 224, 0.001);
-  font-family: 'EB Garamond', serif;
-  font-size: 100%;
-  border: none;
-
-}
 
 /*==============================
  Input Form
@@ -108,12 +88,23 @@ button.delete-x {
   font-style: bold;
   background-color: rgba(255, 254, 224, 0.001);
   cursor: pointer;
-  font-size: 110%;
+  font-size: 90%;
   font-weight: 700;
 }
 
 button.delete-x:hover {
   color: rgba(0, 0, 0, 0.7);
+}
+
+/*==============================
+ ToDo List Item
+================================*/
+input.todo-item {
+  background-color: rgba(255, 254, 224, 0.001);
+  font-family: 'EB Garamond', serif;
+  font-size: 100%;
+  border: none;
+  /*cursor: ???; make a custom cursor*/
 }
 
 
@@ -135,5 +126,32 @@ span.footerLink a{
   text-decoration: none;
   font-weight: bold;
   font-size: 80%;
+}
+
+
+/*==============================
+ Drawing - testing still
+================================*/
+span.drawArea {
+  position: absolute;
+  width: 95vw;
+  height: 95vh;
+  border: 1px solid black;
+  float: left;
+  cursor: crosshair;
+  z-index: -1;
+}
+
+.path {
+  fill: none;
+  stroke-width: 1px;
+  stroke: black;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.drawing {
+  width: 100%;
+  height: 100%;
 }
 

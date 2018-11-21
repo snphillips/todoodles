@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 
 export default class ListOfToDos extends Component {
+
   render() {
 
 
@@ -23,6 +24,7 @@ export default class ListOfToDos extends Component {
 
           {toDoArray.map( (todoobject) => {
 
+
             return (
 
               <li key={todoobject.id}>
@@ -35,7 +37,8 @@ export default class ListOfToDos extends Component {
                           type="button"
                           className="delete-x"
                           value={todoobject.todoitem}
-                          onClick={this.props.onClickRemoveItem}><i class="fas fa-times"></i></button>
+                          // onClick={this.props.onClickRemoveItem}><i className="fas fa-times"></i></button>
+                          onClick={this.props.handleClickRemoveItem}>&times;</button>
 
                     <form className="todo-item-form"
                           onSubmit={this.props.axiosPutToDo}
@@ -45,7 +48,7 @@ export default class ListOfToDos extends Component {
                              todoitem={todoobject.todoitem}
                              className="todo-item"
                              value={todoobject.todoitem}
-                             onChange={this.props.onChangeEditItem}
+                             onChange={this.props.handleChangeEditItem}
                              >
 
                       </input>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // import _lodash from 'lodash';
 import Header from './Header';
+import ScribbleBoard from './ScribbleBoard';
 import Introduction from './Introduction';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
@@ -19,7 +20,12 @@ export default class App extends Component {
       newToDo: '',
       selectedToDelete: '',
       selectedToEdit: '',
-      // value: 'placeholder',
+      // for PUT
+      eachToDo: '',
+
+
+
+
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -27,10 +33,12 @@ export default class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
-    this.onClickRemoveItem = this.onClickRemoveItem.bind(this);
+    this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.axiosDeleteToDo = this.axiosDeleteToDo.bind(this);
-    this.onChangeEditItem = this.onChangeEditItem.bind(this);
+    this.handleChangeEditItem = this.handleChangeEditItem.bind(this);
     this.axiosPutToDo = this.axiosPutToDo.bind(this);
+
+
   }
 
   //  ==================================================================
@@ -59,7 +67,7 @@ export default class App extends Component {
 
   //  ==================================================================
   //  POST
-  //  As soon as the user interacts with the form newTodo updates.
+  //  As soon as the user interacts with the form, newTodo updates.
   //  The API call happens once the user clicks the 'submit' button.
   //  ==================================================================
    handleChange(event) {
@@ -71,14 +79,14 @@ export default class App extends Component {
   //  POST
   //  When the submit button is clicked, the axios POST requset is made.
   //  Note we then follow up with a GET request, to fetch the list again,
-  //  which now includes our *new* todo item at the bottom.
+  //  which now includes our *new* todo item at the bottom of the list.
   //  ==================================================================
     handleSubmit(event) {
       event.preventDefault();
       this.axiosPostNewToDo( () => {
         this.axiosGetToDos()
       });
-      // event.target.reset() clears the form
+      // event.target.reset() clears the form once the item has been submitted
       event.target.reset();
     }
 
@@ -106,11 +114,11 @@ export default class App extends Component {
   //  DELETE
   //  (via the "x" buttons)
   //  ==================================================================
-    onClickRemoveItem(event) {
+    handleClickRemoveItem(event) {
       event.preventDefault();
-      console.log("onClickRemoveItem clicked. Item to delete:", event.target.id);
+      console.log("handleClickRemoveItem clicked. Item to delete:", event.target.id);
       this.setState({selectedToDelete: event.target.id}, () => {
-         console.log("this.state.selectedToDelete is:" , this.state.selectedToDelete)
+         // console.log("this.state.selectedToDelete is:" , this.state.selectedToDelete)
          this.axiosDeleteToDo();
       })
     }
@@ -140,7 +148,7 @@ export default class App extends Component {
   //  ==================================================================
   //  PUT (update/edit)
   //  ==================================================================
-    onChangeEditItem(event) {
+    handleChangeEditItem(event) {
       // event.preventDefault();
       this.setState({selectedToEdit: event.target.id})
       // this.setState({selectedToEdit: event.target})
@@ -172,12 +180,23 @@ export default class App extends Component {
 
 
 
+
+
+
+
+
+
+
+
+
 //  ==================================================================
 //  And finally, the render
 //  ==================================================================
   render() {
     return (
       <div className="App">
+
+       <ScribbleBoard />
 
        <Header />
 
@@ -191,8 +210,8 @@ export default class App extends Component {
        <ListOfToDos parent_state={this.state}
                     toDoList={this.state}
                     selectedToEdit={this.state}
-                    onClickRemoveItem={this.onClickRemoveItem}
-                    onChangeEditItem={this.onChangeEditItem}
+                    handleClickRemoveItem={this.handleClickRemoveItem}
+                    handleChangeEditItem={this.handleChangeEditItem}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
                     axiosPutToDo={this.axiosPutToDo}
                     />
