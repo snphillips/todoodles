@@ -84,13 +84,11 @@ li {
   /*line-height: ;*/
 }
 
-input.todo-item {
-  background-color: rgba(255, 254, 224, 0.001);
-  font-family: 'EB Garamond', serif;
-  font-size: 100%;
-  border: none;
-  /*cursor: ???; make a custom cursor, like a pencil or something cute?*/
+.todo-item {
+  /* add custom pointer */
+  cursor: pointer;
 }
+
 
 /*==============================
  Strike-through line
@@ -117,6 +115,15 @@ input.todo-item {
       from {width: 0;}
       to {width: 105%;}
   }
+
+  .bluetest{
+    color: blue;
+  }
+
+  .redtest{
+    color: red;
+  }
+
 
 /*==============================
  Footer

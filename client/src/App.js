@@ -18,7 +18,7 @@ export default class App extends Component {
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
-      displayStrikethrough: false
+      displayStrikethrough: false,
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -136,11 +136,35 @@ export default class App extends Component {
   //  ==================================================================
   //  Strike-through line
   //  ==================================================================
-   handleAddStrikethrough(){
-    this.setState({displayStrikethrough: true},  () => {
-      console.log("list item clicked and this.state.displayStrikethrough === ", this.state.displayStrikethrough)
-    })
-   }
+   // handleAddStrikethrough(){
+   //  this.setState({displayStrikethrough: true},  () => {
+   //    console.log("list item clicked and this.state.displayStrikethrough:", this.state.displayStrikethrough)
+   //  })
+   // }
+
+
+   handleAddStrikethrough() {
+       console.log("before setState, this.state.displayStrikethrough:", this.state.displayStrikethrough)
+     this.setState({ displayStrikethrough: true }, () => {
+       console.log("list item clicked and this.state.displayStrikethrough:", this.state.displayStrikethrough)
+     })
+   };
+
+
+   // handleAddStrikethrough() {
+   //   this.setState({ displayStrikethrough: true }, () => {
+
+   //    let classNames = 'todo-item';
+   //    // if (this.props.displayStrikethrough) {
+   //    if (this.props.displayStrikethrough === true) {
+   //      this.classNames += ' redtest';
+   //      // className += ' strikethrough';
+   //     console.log("list item clicked and this.state.displayStrikethrough:", this.state.displayStrikethrough, this.classNames)
+   //    }
+   //   })
+   // };
+
+
 
 //  ==================================================================
 //  And finally, the render

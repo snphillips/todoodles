@@ -3,11 +3,16 @@ import React, { Component } from 'react';
 
 export default class ListOfToDos extends Component {
 
+
+
+
   render() {
 
     let className = 'todo-item';
+      // if (this.props.displayStrikethrough) {
       if (this.props.displayStrikethrough === true) {
-        className += ' strikethrough';
+        className += ' bluetest';
+        // className += ' strikethrough';
     }
 
 
@@ -37,9 +42,12 @@ export default class ListOfToDos extends Component {
 
                   <span
                     // We'll add a strikethrough with css, if the user clicks
-                    displayStrikethrough={this.props.displayStrikethrough}
+                    // className={(this.props.displayStrikethrough === true ? 'bluetest' : 'noclass')}
                     className={className}
-                    onClick={this.props.handleAddStrikethrough}>{todoobject.todoitem}</span>
+                    onClick={this.props.handleAddStrikethrough}
+                    >
+                     {todoobject.todoitem}
+                  </span>
               </li>
             )
           })}
