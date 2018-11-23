@@ -6,7 +6,7 @@ const pool = process.env.DATABASE_URL || new Pool({
   database: 'todoodles',
   password: 'password',
   port: process.env.DB_PORT || 5432,
-  ssl:true,
+  // ssl:true,
 })
 
 
