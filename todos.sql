@@ -1,5 +1,3 @@
--- type is either:
--- today, thisweek, thismonth, sometime
 
 -- db: todoodles
 
