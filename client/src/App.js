@@ -18,7 +18,6 @@ export default class App extends Component {
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
-      displayStrikethrough: false,
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -46,12 +45,20 @@ export default class App extends Component {
       console.log("Hello from get")
       axios.get(this.state.dataSource)
         .then( (response) => {
+        // First, map over toDoArray to add a displayStrikethrough boolean
+        const toDoArray = response.data.map((element)=>{
+          element["displayStrikethrough"] = false
+          return element
+        })
+          this.setState({toDoList: toDoArray})
 
-          this.setState({toDoList: response.data})
         })
         .catch(function (error) {
           console.log(error);
         });
+
+
+
     }
 
   //  ==================================================================
@@ -136,33 +143,25 @@ export default class App extends Component {
   //  ==================================================================
   //  Strike-through line
   //  ==================================================================
-   // handleAddStrikethrough(){
-   //  this.setState({displayStrikethrough: true},  () => {
-   //    console.log("list item clicked and this.state.displayStrikethrough:", this.state.displayStrikethrough)
-   //  })
-   // }
+   handleAddStrikethrough(index) {
 
+       console.log("handleAddStrikethrough")
+       console.log(index)
+       const myArray = this.state.toDoList
 
-   handleAddStrikethrough() {
-       console.log("before setState, this.state.displayStrikethrough:", this.state.displayStrikethrough)
-     this.setState({ displayStrikethrough: true }, () => {
-       console.log("list item clicked and this.state.displayStrikethrough:", this.state.displayStrikethrough)
-     })
+        let myObject = myArray[index]
+        // debugger
+        myObject["displayStrikethrough"] = !myObject.displayStrikethrough
+        myArray[index] = myObject
+
+        this.setState({toDoList: myArray})
+
    };
 
 
-   // handleAddStrikethrough() {
-   //   this.setState({ displayStrikethrough: true }, () => {
 
-   //    let classNames = 'todo-item';
-   //    // if (this.props.displayStrikethrough) {
-   //    if (this.props.displayStrikethrough === true) {
-   //      this.classNames += ' redtest';
-   //      // className += ' strikethrough';
-   //     console.log("list item clicked and this.state.displayStrikethrough:", this.state.displayStrikethrough, this.classNames)
-   //    }
-   //   })
-   // };
+
+
 
 
 
@@ -175,14 +174,12 @@ export default class App extends Component {
 
        <Header />
 
-       <Form parent_state={this.state}
+       <Form parentState={this.state}
              newTodo={this.state}
              handleChange={this.handleChange}
              handleSubmit={this.handleSubmit}/>
 
-       <ListOfToDos parent_state={this.state}
-                    toDoList={this.state}
-                    displayStrikethrough={this.state}
+       <ListOfToDos parentState={this.state}
                     handleClickRemoveItem={this.handleClickRemoveItem}
                     axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
                     handleAddStrikethrough={this.handleAddStrikethrough}

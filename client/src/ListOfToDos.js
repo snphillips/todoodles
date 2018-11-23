@@ -8,16 +8,10 @@ export default class ListOfToDos extends Component {
 
   render() {
 
-    let className = 'todo-item';
-      // if (this.props.displayStrikethrough) {
-      if (this.props.displayStrikethrough === true) {
-        className += ' bluetest';
-        // className += ' strikethrough';
-    }
-
-
     // To keep things more readable
-    let toDoArray = this.props.parent_state.toDoList
+    let toDoArray = this.props.parentState.toDoList
+
+
 
     // Below we map over the array of list items, and
     // create an unordered list
@@ -26,7 +20,15 @@ export default class ListOfToDos extends Component {
 
 
         <ul>
-          {toDoArray.map( (todoobject) => {
+          {toDoArray.map( (todoobject, index) => {
+
+
+            let className = 'todo-item';
+              if (todoobject.displayStrikethrough === true) {
+                className += ' bluetest';
+            }
+
+
             return (
               <li
                 key={todoobject.id}
@@ -41,10 +43,11 @@ export default class ListOfToDos extends Component {
                     onClick={this.props.handleClickRemoveItem}>&times;</button>
 
                   <span
-                    // We'll add a strikethrough with css, if the user clicks
-                    // className={(this.props.displayStrikethrough === true ? 'bluetest' : 'noclass')}
+                    id={todoobject.id}
+                    // className={(this.props.parentState.displayStrikethrough === true ? 'bluetest' : 'noclass')}
                     className={className}
-                    onClick={this.props.handleAddStrikethrough}
+                    // onClick={this.props.handleAddStrikethrough}
+                    onClick={ ()=>{this.props.handleAddStrikethrough(index)}  }
                     >
                      {todoobject.todoitem}
                   </span>
