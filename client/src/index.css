@@ -89,6 +89,10 @@ li {
   cursor: pointer;
 }
 
+span {
+  position: relative;
+}
+
 
 /*==============================
  Strike-through line
