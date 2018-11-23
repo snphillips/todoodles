@@ -97,7 +97,7 @@ const port = process.env.PORT || 8888;
 // ==================================
 app.listen(port, function () {
   console.log(`Hello todoodles! Listening on port: ${port}!`)
-  console.log(`${process.env.DATABASE_URL}`)
+  console.log(`process.env.DATABASE_URL: ${process.env.DATABASE_URL}`)
 });
 
 
