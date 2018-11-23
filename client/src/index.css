@@ -102,7 +102,7 @@ li {
   background: #000; /* the color of the line */
   left: -3.5px;
   width: 105%;
-  transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  /*transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);*/
   animation: drawline 0.4s;
 }
   /* Safari 4.0 - 8.0 */
@@ -120,9 +120,7 @@ li {
     color: blue;
   }
 
-  .redtest{
-    color: red;
-  }
+
 
 
 /*==============================

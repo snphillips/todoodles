@@ -3,15 +3,10 @@ import React, { Component } from 'react';
 
 export default class ListOfToDos extends Component {
 
-
-
-
   render() {
 
     // To keep things more readable
     let toDoArray = this.props.parentState.toDoList
-
-
 
     // Below we map over the array of list items, and
     // create an unordered list
@@ -22,10 +17,11 @@ export default class ListOfToDos extends Component {
         <ul>
           {toDoArray.map( (todoobject, index) => {
 
-
+            // Here's where we add the className to add the strikethrough, if
+            // the user clicks an item. (see handleAddStrikethrough on App.js)
             let className = 'todo-item';
               if (todoobject.displayStrikethrough === true) {
-                className += ' bluetest';
+                className += ' strikethrough';
             }
 
 
@@ -44,9 +40,8 @@ export default class ListOfToDos extends Component {
 
                   <span
                     id={todoobject.id}
-                    // className={(this.props.parentState.displayStrikethrough === true ? 'bluetest' : 'noclass')}
                     className={className}
-                    // onClick={this.props.handleAddStrikethrough}
+                    // Have to pass index number, therefore must be a callback
                     onClick={ ()=>{this.props.handleAddStrikethrough(index)}  }
                     >
                      {todoobject.todoitem}

@@ -141,26 +141,24 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  Strike-through line
+  //  Strikethrough line
+  //  1) create a const of toDoListArray to keep things tidy
+  //  2) take the index number of the TODO item that's been clicked, pluck
+  //  it out of the toDoListArray(not literally), call that the selectedToDoItem
+  //  3) Toggle the displayStrikethrough boolean with !
+  //  4) Set the state with the *updated* array, that has the new information
   //  ==================================================================
    handleAddStrikethrough(index) {
+     console.log("handleAddStrikethrough click with index of:", index)
 
-       console.log("handleAddStrikethrough")
-       console.log(index)
-       const myArray = this.state.toDoList
+     let toDoListArray = this.state.toDoList
+     let selectedToDoItem = toDoListArray[index]
+     selectedToDoItem["displayStrikethrough"] = !selectedToDoItem.displayStrikethrough
+     toDoListArray[index] = selectedToDoItem
 
-        let myObject = myArray[index]
-        // debugger
-        myObject["displayStrikethrough"] = !myObject.displayStrikethrough
-        myArray[index] = myObject
-
-        this.setState({toDoList: myArray})
+    this.setState({toDoList: toDoListArray})
 
    };
-
-
-
-
 
 
 
