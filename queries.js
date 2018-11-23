@@ -1,12 +1,35 @@
+// // From Heroku instructions
+// // https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
+// // *****************
+// const { Client } = require('pg');
+
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true,
+// });
+
+// client.connect();
+
+// client.query('SELECT * FROM todos;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
+// // *****************
+
+
+
 const Pool = require('pg').Pool
 
 const pool = process.env.DATABASE_URL || new Pool({
-  user: 'snphillips',
+  user: process.env.USER,
   host: process.env.DB_HOST || 'localhost',
   database: 'todoodles',
-  password: 'password',
+  password: process.env.PW,
+  // password: 'password',
   port: process.env.DB_PORT || 5432,
-  // ssl:true,
 })
 
 
