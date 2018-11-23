@@ -36,7 +36,7 @@ form.todo-item-form {
   box-sizing: border-box;
 }
 
-/* not using at the moment */
+/* not using at the moment but keep in case you change mind */
 .submit-button {
   background-color: rgba(0, 0, 0, 1); /* Black */
   border: none;
@@ -89,14 +89,17 @@ li {
   cursor: pointer;
 }
 
-span {
-  position: relative;
-}
 
 
 /*==============================
  Strike-through line
 ================================*/
+
+/* This makes the line fit the lenght of todo list item */
+span {
+  position: relative;
+}
+
 .strikethrough:before {
   content: '';
   position: absolute;
@@ -106,7 +109,6 @@ span {
   background: #000; /* the color of the line */
   left: -3.5px;
   width: 105%;
-  /*transition: width 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);*/
   animation: drawline 0.4s;
 }
   /* Safari 4.0 - 8.0 */
@@ -119,12 +121,6 @@ span {
       from {width: 0;}
       to {width: 105%;}
   }
-
-  .bluetest{
-    color: blue;
-  }
-
-
 
 
 /*==============================
