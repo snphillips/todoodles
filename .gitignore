@@ -26,6 +26,6 @@ yarn-error.log*
 # Sarah's additions
 HOWTO.txt
 TODO.txt
-dbConfig.js
+# dbConfig.js
 secrets/
 
