@@ -43,18 +43,19 @@ app.use(bodyParser.json({extended: true}));
 // **********************************
 // index route
 // **********************************
-// app.get('/', (request, response) => {
-//   console.log("Hello World todoodles")
-//   response.json({ info: 'Node.js, Express, and Postgres API' });
-// })
+app.get('/', (request, response) => {
+  console.log("Hello World todoodles")
+  response.json({ info: 'Node.js, Express, and Postgres API' });
+})
 
-
-app.get('/', function(request, response) {
-    var result = 'App is running. Let us todoodles'
-    response.send(result)
-}).listen(app.get('port'), function() {
-    console.log('App is running, server is listening on port ', app.get('port'));
-});
+// **********************************
+// index route
+// **********************************
+// app.get('/', function(request, response) {
+//     response.send('App is running. Let us todoodles')
+// }).listen(app.get('port'), function() {
+//     console.log('App is running, server is listening on port ', app.get('port'));
+// });
 
 
 
@@ -117,6 +118,7 @@ app.listen(port, function () {
   console.log(`process.env.DATABASE: ${process.env.DATABASE}`)
   console.log(`process.env.PW: ${process.env.PW}`)
   console.log(`process.env.DB_PORT: ${process.env.DB_PORT}`)
+  console.log(`process.env.PORT: ${process.env.PORT}`)
 });
 
 
