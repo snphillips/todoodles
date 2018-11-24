@@ -24,12 +24,14 @@ const { DATABASE_URL } = process.env;
         });
 
         // client.connect results in Error: The server does not support SSL connections
+        // Solved by disabling CORS addon
         client.connect();
 
         client.query('SELECT * FROM todos;', (err, res) => {
           if (err) throw err;
           for (let row of res.rows) {
             console.log(JSON.stringify(row));
+            console.log("hello from client.query");
           }
           client.end();
         });
