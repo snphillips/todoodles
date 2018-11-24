@@ -19,7 +19,7 @@
 
 
 
-const Pool = require('pg').Pool
+// const Pool = require('pg').Pool
 
 // module.exports = process.env.DATABASE_URL || new Pool ({
 //   user: process.env.USER,
@@ -29,6 +29,10 @@ const Pool = require('pg').Pool
 //   port: process.env.DB_PORT || 5432,
 // })
 
+
+
+
+const Pool = require('pg').Pool
 
 const config = process.env.DATABASE_URL || new Pool ({
   user: process.env.USER,

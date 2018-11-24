@@ -20,18 +20,7 @@ const { DATABASE_URL } = process.env;
       ssl: true,
     });
 
-    // pool.connect();
-
-    // client.query('SELECT * FROM todos;', (err, res) => {
-    //   if (err) throw err;
-    //   for (let row of res.rows) {
-    //     console.log(JSON.stringify(row));
-    //   }
-    //   client.end();
-    // });
-
-
-
+    pool.connect();
 
 // ==================================
 // CORS
@@ -59,31 +48,6 @@ app.get('/', (request, response) => {
   console.log("Hello World todoodles")
   response.json({ appInfo: 'Todoodles API' });
 })
-
-// **********************************
-// index route
-// **********************************
-// app.get('/', function(request, response) {
-//     response.send('App is running. Let us todoodles')
-// }).listen(app.get('port'), function() {
-//     console.log('App is running, server is listening on port ', app.get('port'));
-// });
-
-
-
-    // for Heroku
-    // app.get('/todos', async (req, res) => {
-    //     try {
-    //       const client = await pool.connect()
-    //       const result = await client.query('SELECT * FROM todos');
-    //       const results = { 'results': (result) ? result.rows : null};
-    //       res.json(results.rows);
-    //       client.release();
-    //     } catch (err) {
-    //       console.error(err);
-    //       res.send("Error " + err);
-    //     }
-    //   })
 
 
 // **********************************
