@@ -77,13 +77,14 @@ app.get('/', (request, response) => {
     //       const client = await pool.connect()
     //       const result = await client.query('SELECT * FROM todos');
     //       const results = { 'results': (result) ? result.rows : null};
-    //       res.render('pages/db', results );
+    //       res.json(results.rows);
     //       client.release();
     //     } catch (err) {
     //       console.error(err);
     //       res.send("Error " + err);
     //     }
     //   })
+
 
 // **********************************
 // other routes
