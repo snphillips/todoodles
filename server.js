@@ -13,14 +13,35 @@ const { DATABASE_URL } = process.env;
 
 
     // for Heroku
-    const { Pool } = require('pg');
+    // const { Pool } = require('pg');
 
-    const pool = new Pool({
+    // const pool = new Pool({
+    //   connectionString: process.env.DATABASE_URL,
+    //   ssl: true,
+    // });
+
+    // pool.connect();
+    // pool.connect() results in Error: The server does not support SSL connections
+
+
+    // Heroku
+    // results in Error: The server does not support SSL connections
+    const { Client } = require('pg');
+
+    const client = new Client({
       connectionString: process.env.DATABASE_URL,
       ssl: true,
     });
 
-    pool.connect();
+    client.connect();
+
+    client.query('SELECT * FROM todos;', (err, res) => {
+      if (err) throw err;
+      for (let row of res.rows) {
+        console.log(JSON.stringify(row));
+      }
+      client.end();
+    });
 
 // ==================================
 // CORS
