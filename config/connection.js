@@ -13,5 +13,11 @@ const config = require('./dbConfig');
 // Connect to the database
 const db = pgp(process.env.DATABASE_URL || config);
 
+const { Pool } = require('pg');
+let pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
 module.exports = pool;
 module.exports = db;
