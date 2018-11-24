@@ -24,7 +24,6 @@ const { DATABASE_URL } = process.env;
         });
 
         // client.connect results in Error: The server does not support SSL connections
-        // Solved by disabling CORS addon
         client.connect();
 
         client.query('SELECT * FROM todos;', (err, res) => {
@@ -64,7 +63,7 @@ app.use(bodyParser.json({extended: true}));
 // index route
 // **********************************
 app.get('/', (request, response) => {
-  response.json({ appInfo: 'Todoodles API' });
+  response.json({ appInfo: 'Todoodles API. What are you going todo?' });
   console.log("Hello World todoodles from app.get /")
 })
 
