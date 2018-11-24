@@ -66,8 +66,8 @@ app.use(bodyParser.json({extended: true}));
 // index route
 // **********************************
 app.get('/', (request, response) => {
-  console.log("Hello World todoodles")
   response.json({ appInfo: 'Todoodles API' });
+  console.log("Hello World todoodles from app.get /")
 })
 
 

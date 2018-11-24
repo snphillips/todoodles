@@ -12,7 +12,7 @@ const getToDos = (request, response) => {
       throw error
     }
     response.status(200).json(results.rows)
-    // console.log("hello")
+    console.log("hello from getToDos in queries.js")
   })
 }
 
