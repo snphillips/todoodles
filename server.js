@@ -19,6 +19,7 @@ const { DATABASE_URL } = process.env;
         ssl: true
       });
 
+      pool.connect();
 
 
 // ==================================
@@ -45,7 +46,7 @@ app.use(bodyParser.json({extended: true}));
 // **********************************
 app.get('/', (request, response) => {
   console.log("Hello World todoodles")
-  response.json({ info: 'Node.js, Express, and Postgres API' });
+  response.json({ appInfo: 'Todoodles API' });
 })
 
 // **********************************
