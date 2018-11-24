@@ -12,25 +12,23 @@ const db = require('./queries')
 const { DATABASE_URL } = process.env;
 
 
+       // for Heroku
+        // const { Client } = require('pg');
 
+        // const client = new Client({
+        //   connectionString: process.env.DATABASE_URL,
+        //   ssl: true,
+        // });
 
-      // const { Client } = require('pg');
+        // client.connect();
 
-      // const client = new Client({
-      //   connectionString: process.env.DATABASE_URL,
-      //   ssl: true,
-      // });
-
-      // client.connect();
-
-      // client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-      //   if (err) throw err;
-      //   for (let row of res.rows) {
-      //     console.log(JSON.stringify(row));
-      //   }
-      //   client.end();
-      // });
-
+        // client.query('SELECT * FROM todos;', (err, res) => {
+        //   if (err) throw err;
+        //   for (let row of res.rows) {
+        //     console.log(JSON.stringify(row));
+        //   }
+        //   client.end();
+        // });
 
 
 
@@ -100,8 +98,10 @@ const port = process.env.PORT || 8888;
 // ==================================
 app.listen(port, function () {
   console.log(`Hello todoodles! Listening on port: ${port}!`)
+  console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`)
   console.log(`process.env.DATABASE_URL: ${process.env.DATABASE_URL}`)
   console.log(`process.env.USER: ${process.env.USER}`)
+  console.log(`process.env.DATABASE: ${process.env.DATABASE}`)
   console.log(`process.env.PW: ${process.env.PW}`)
 });
 

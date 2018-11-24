@@ -1,16 +1,9 @@
 
-const Pool = require('pg').Pool
+const pool = require('./config/dbConfig');
+// const pool = require('./config/connection');
 
 
-const pool = process.env.DATABASE_URL || new Pool({
-  user: process.env.USER,
-  host: process.env.DB_HOST || 'localhost',
-  database: process.env.DATABASE,
-  password: process.env.PW,
-  port: process.env.DB_PORT || 5432,
-})
 
-pool.connect();
 
 
 const getToDos = (request, response) => {
@@ -19,6 +12,7 @@ const getToDos = (request, response) => {
       throw error
     }
     response.status(200).json(results.rows)
+    // console.log("hello")
   })
 }
 
