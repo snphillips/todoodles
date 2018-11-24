@@ -60,23 +60,23 @@ app.get('/', (request, response) => {
 
 
     // for Heroku
-    // app.get('/todos', async (req, res) => {
-    //     try {
-    //       const client = await pool.connect()
-    //       const result = await client.query('SELECT * FROM todos');
-    //       const results = { 'results': (result) ? result.rows : null};
-    //       res.render('pages/db', results );
-    //       client.release();
-    //     } catch (err) {
-    //       console.error(err);
-    //       res.send("Error " + err);
-    //     }
-    //   })
+    app.get('/todos', async (req, res) => {
+        try {
+          const client = await pool.connect()
+          const result = await client.query('SELECT * FROM todos');
+          const results = { 'results': (result) ? result.rows : null};
+          res.render('pages/db', results );
+          client.release();
+        } catch (err) {
+          console.error(err);
+          res.send("Error " + err);
+        }
+      })
 
 // **********************************
 // other routes
 // **********************************
-app.get('/todos', db.getToDos)
+// app.get('/todos', db.getToDos)
 app.get('/todos/:id', db.getToDoById)
 app.post('/todos', db.createToDo)
 app.put('/todos/:id', db.updateToDo)
