@@ -19,29 +19,16 @@
 
 const Pool = require('pg').Pool
 
-// const config = process.env.DATABASE_URL || new Pool ({
-//   host: process.env.DB_HOST || 'localhost',
-//   port: process.env.DB_PORT || 5432,
-//   user: process.env.USER,
-//   database: process.env.DATABASE,
-//   password: process.env.PW,
-// })
-
-// module.exports = config;
-
-
-
-
-if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
-  config = new Pool ({
+const config = process.env.DATABASE_URL || new Pool ({
   host: process.env.DB_HOST || 'localhost',
   port: process.env.DB_PORT || 5432,
   user: process.env.USER,
   database: process.env.DATABASE,
   password: process.env.PW,
-  });
-} else {
-  config = new Pool ({database: process.env.DATABASE_URL})
-}
+})
 
 module.exports = config;
+
+
+
+
