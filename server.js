@@ -13,11 +13,11 @@ const { DATABASE_URL } = process.env;
 
 
        // for Heroku
-      // const { Pool } = require('pg');
-      // const pool = new Pool({
-      //   connectionString: process.env.DATABASE_URL,
-      //   ssl: true
-      // });
+      const { Pool } = require('pg');
+      const pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: true
+      });
 
 
 
@@ -60,7 +60,7 @@ app.get('/', (request, response) => {
 
 
     // for Heroku
-    // app.get('/snakes', async (req, res) => {
+    // app.get('/todos', async (req, res) => {
     //     try {
     //       const client = await pool.connect()
     //       const result = await client.query('SELECT * FROM todos');
