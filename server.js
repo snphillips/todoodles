@@ -20,7 +20,7 @@ const { DATABASE_URL } = process.env;
       ssl: true,
     });
 
-    // client.connect();
+    // pool.connect();
 
     // client.query('SELECT * FROM todos;', (err, res) => {
     //   if (err) throw err;
