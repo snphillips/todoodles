@@ -13,11 +13,11 @@ const { DATABASE_URL } = process.env;
 
 
        // for Heroku
-      const { Pool } = require('pg');
-      const pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: true
-      });
+      // const { Pool } = require('pg');
+      // const pool = new Pool({
+      //   connectionString: process.env.DATABASE_URL,
+      //   ssl: true
+      // });
 
       // pool.connect();
 
@@ -29,15 +29,24 @@ const { DATABASE_URL } = process.env;
     //   pool.end();
     // });
 
-    const getToDos = (request, response) => {
-  pool.query('SELECT * FROM todos', (error, results) => {
-    if (error) {
-      throw error
-    }
-    response.status(200).json(results.rows)
-    // console.log("hello")
-  })
-}
+    const { Client } = require('pg');
+
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+      ssl: true,
+    });
+
+    client.connect();
+
+    client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
+      if (err) throw err;
+      for (let row of res.rows) {
+        console.log(JSON.stringify(row));
+      }
+      client.end();
+    });
+
+
 
 
 // ==================================
