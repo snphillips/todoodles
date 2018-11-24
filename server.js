@@ -14,12 +14,13 @@ const { DATABASE_URL } = process.env;
 
 
 
-        // Heroku
+        // Heroku ****************************************
+
         const { Client } = require('pg');
 
         const client = new Client({
           connectionString: process.env.DATABASE_URL,
-          ssl: true,
+          ssl: true
         });
 
         // client.connect results in Error: The server does not support SSL connections
@@ -32,6 +33,8 @@ const { DATABASE_URL } = process.env;
           }
           client.end();
         });
+
+        // Heroku ****************************************
 
 
 
