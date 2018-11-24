@@ -38,7 +38,7 @@ const { DATABASE_URL } = process.env;
 
     client.connect();
 
-    client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
+    client.query('SELECT * FROM todos;', (err, res) => {
       if (err) throw err;
       for (let row of res.rows) {
         console.log(JSON.stringify(row));
