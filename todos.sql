@@ -13,13 +13,11 @@ INSERT INTO todos(todoitem)
 VALUES
 ('feed kitty'),
 ('go for walk'),
-('mail postcard'),
-('water plants'),
 ('laundry'),
 ('get flu shot'),
-('send thank you note'),
-('go for walk'),
+('make appointment with dentist');
 ('mail postcard'),
 ('pay taxes'),
 ('paint living room'),
-('make appointment with dentist');
+('send thank you note'),
+('water plants'),
