@@ -15,7 +15,6 @@ const { DATABASE_URL } = process.env;
 
 
         // Heroku
-        // results in Error: The server does not support SSL connections
         const { Client } = require('pg');
 
         const client = new Client({
@@ -23,7 +22,8 @@ const { DATABASE_URL } = process.env;
           ssl: true,
         });
 
-        // client.connect();
+        // client.connect results in Error: The server does not support SSL connections
+        client.connect();
 
         client.query('SELECT * FROM todos;', (err, res) => {
           if (err) throw err;
