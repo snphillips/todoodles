@@ -2,16 +2,34 @@
 const Pool = require('pg').Pool
 
 
-
+// const pool = require("./config/connection");
 
 const pool = process.env.DATABASE_URL || new Pool({
   user: process.env.USER,
   host: process.env.DB_HOST || 'localhost',
-  database: 'todoodles',
+  database: process.env.DATABASE,
   password: process.env.PW,
-  // password: 'password',
   port: process.env.DB_PORT || 5432,
 })
+
+
+
+     //  const { Pool } = require('pg');
+
+     //  const pool = new Pool({
+     //    connectionString: process.env.DATABASE_URL,
+     //    ssl: true,
+     //  });
+
+     // pool.connect();
+
+     // pool.query('SELECT * FROM todos;', (err, res) => {
+     //    if (err) throw err;
+     //    for (let row of res.rows) {
+     //      console.log(JSON.stringify(row));
+     //    }
+     //   pool.end();
+     //  });
 
 
 
