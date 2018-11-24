@@ -19,7 +19,25 @@ const { DATABASE_URL } = process.env;
         ssl: true
       });
 
-      pool.connect();
+      // pool.connect();
+
+    //   pool.query('SELECT * FROM todos;', (err, res) => {
+    //   if (err) throw err;
+    //   for (let row of res.rows) {
+    //     console.log(JSON.stringify(row));
+    //   }
+    //   pool.end();
+    // });
+
+    const getToDos = (request, response) => {
+  pool.query('SELECT * FROM todos', (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+    // console.log("hello")
+  })
+}
 
 
 // ==================================
