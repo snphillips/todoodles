@@ -43,14 +43,23 @@ app.use(bodyParser.json({extended: true}));
 // **********************************
 // index route
 // **********************************
-app.get('/', (request, response) => {
-  console.log("Hello World todoodles")
-  response.json({ info: 'Node.js, Express, and Postgres API' })
-})
+// app.get('/', (request, response) => {
+//   console.log("Hello World todoodles")
+//   response.json({ info: 'Node.js, Express, and Postgres API' });
+// })
+
+
+app.get('/', function(request, response) {
+    var result = 'App is running. Let us todoodles'
+    response.send(result)
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
+
 
 
     // for Heroku
-    .get('/snakes', async (req, res) => {
+    app.get('/snakes', async (req, res) => {
         try {
           const client = await pool.connect()
           const result = await client.query('SELECT * FROM todos');
