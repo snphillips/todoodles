@@ -13,22 +13,11 @@ const { DATABASE_URL } = process.env;
 
 
        // for Heroku
-        // const { Client } = require('pg');
-
-        // const client = new Client({
-        //   connectionString: process.env.DATABASE_URL,
-        //   ssl: true,
-        // });
-
-        // client.connect();
-
-        // client.query('SELECT * FROM todos;', (err, res) => {
-        //   if (err) throw err;
-        //   for (let row of res.rows) {
-        //     console.log(JSON.stringify(row));
-        //   }
-        //   client.end();
-        // });
+      const { Pool } = require('pg');
+      const pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: true
+      });
 
 
 
@@ -58,6 +47,21 @@ app.get('/', (request, response) => {
   console.log("Hello World todoodles")
   response.json({ info: 'Node.js, Express, and Postgres API' })
 })
+
+
+    // for Heroku
+    .get('/snakes', async (req, res) => {
+        try {
+          const client = await pool.connect()
+          const result = await client.query('SELECT * FROM todos');
+          const results = { 'results': (result) ? result.rows : null};
+          res.render('pages/db', results );
+          client.release();
+        } catch (err) {
+          console.error(err);
+          res.send("Error " + err);
+        }
+      })
 
 // **********************************
 // other routes
@@ -103,6 +107,7 @@ app.listen(port, function () {
   console.log(`process.env.USER: ${process.env.USER}`)
   console.log(`process.env.DATABASE: ${process.env.DATABASE}`)
   console.log(`process.env.PW: ${process.env.PW}`)
+  console.log(`process.env.DB_PORT: ${process.env.DB_PORT}`)
 });
 
 
