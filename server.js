@@ -8,6 +8,19 @@ const express = require('express');
 const app = express();
 
 
+const db = require('./queries')
+
+const { DATABASE_URL } = process.env;
+
+const bodyParser = require('body-parser');
+const cors = require('cors')
+
+
+// ==================================
+// Axios - npm package promise based HTTP client
+// Do I need to be requireing axios here, or only in Client?
+// ==================================
+const axios = require('axios');
 
 
         // Heroku ****************************************
@@ -32,27 +45,6 @@ const app = express();
         });
 
         // Heroku ****************************************
-
-
-
-
-// All routes are in /routes - not using
-// const routes = require('./routes');
-
-const db = require('./queries')
-
-const { DATABASE_URL } = process.env;
-
-const bodyParser = require('body-parser');
-const cors = require('cors')
-
-// ==================================
-// Axios - npm package promise based HTTP client
-// Do I need to be requireing axios here, or only in Client?
-// ==================================
-const axios = require('axios');
-
-
 
 // ==================================
 // body-parser middleware allows us to make use of the
