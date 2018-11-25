@@ -7,12 +7,6 @@ const express = require('express');
 //invoke express. Henceforth, app = express
 const app = express();
 
-const db = require('./queries')
-
-const { DATABASE_URL } = process.env;
-
-
-
 
         // Heroku ****************************************
 
@@ -23,7 +17,7 @@ const { DATABASE_URL } = process.env;
           ssl: true
         });
 
-        // client.connect results in Error: The server does not support SSL connections
+        // client.connect results in local error "Error: The server does not support SSL connections"
         client.connect();
 
         client.query('SELECT * FROM todos;', (err, res) => {
@@ -36,6 +30,12 @@ const { DATABASE_URL } = process.env;
         });
 
         // Heroku ****************************************
+
+
+const db = require('./queries')
+
+const { DATABASE_URL } = process.env;
+
 
 
 
@@ -59,12 +59,13 @@ const axios = require('axios');
 const bodyParser = require("body-parser");
 app.use(bodyParser.json({extended: true}));
 
+
 // **********************************
 // index route
 // **********************************
 app.get('/', (request, response) => {
   response.json({ appInfo: 'Todoodles API. What are you going todo?' });
-  console.log("Hello World todoodles from app.get /")
+  console.log("Hello World")
 })
 
 
@@ -100,13 +101,13 @@ app.use((req, res, next) => {
 // Set the port from an environmental variable or manually
 // Use it below in app.listen
 // ==================================
-const port = process.env.PORT || 8888;
+const PORT = process.env.PORT || 8888;
 
 // ==================================
 // Listening Port
 // ==================================
-app.listen(port, function () {
-  console.log(`Hello todoodles! Listening on port: ${port}!`)
+app.listen(PORT, function () {
+  console.log(`Hello todoodles! Listening on port: ${PORT}!`)
   console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`)
   console.log(`process.env.DATABASE_URL: ${process.env.DATABASE_URL}`)
   console.log(`process.env.USER: ${process.env.USER}`)
