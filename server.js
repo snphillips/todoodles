@@ -25,13 +25,15 @@ const axios = require('axios');
 
         // Heroku ****************************************
 
-        const { Client } = require('pg');
+        const client = require('./config/dbConfig');
 
-        const client = new Client({
+        // const { Client } = require('pg');
 
-          connectionString: process.env.DATABASE_URL,
-          ssl: true
-        });
+        // const client = new Client({
+
+        //   connectionString: process.env.DATABASE_URL,
+        //   ssl: true
+        // });
 
         // client.connect results in local error "Error: The server does not support SSL connections"
         client.connect();
@@ -40,9 +42,9 @@ const axios = require('axios');
           if (err) throw err;
           for (let row of res.rows) {
             console.log(JSON.stringify(row));
-            console.log("hello from client.query");
+            console.log("hello from Heroku client.query");
           }
-          client.end();
+          // client.end();
         });
 
         // Heroku ****************************************
