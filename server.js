@@ -10,6 +10,72 @@ const app = express();
 // All routes are in /routes - not using
 // const routes = require('./routes');
 
+const db = require('./queries')
+
+const { DATABASE_URL } = process.env;
+
+const bodyParser = require('body-parser');
+const cors = require('cors')
+
+// ==================================
+// Axios - npm package promise based HTTP client
+// Do I need to be requireing axios here, or only in Client?
+// ==================================
+const axios = require('axios');
+
+
+
+
+
+// ==================================
+// body-parser middleware allows us to make use of the
+// key-value pairs stored on the req-body object.
+// ==================================
+app.use(bodyParser.json({extended: true}));
+
+// ==================================
+// CORS
+// npm package to allow cross origin resource sharing
+// ==================================
+app.use(cors())
+
+
+// **********************************
+// index route
+// **********************************
+app.get('/', (request, response) => {
+  response.json({ appInfo: 'Todoodles API. What are you going todo?' });
+  console.log("Hello World")
+})
+
+
+// **********************************
+// other routes
+// **********************************
+app.get('/todos', db.getToDos)
+app.get('/todos/:id', db.getToDoById)
+app.post('/todos', db.createToDo)
+app.put('/todos/:id', db.updateToDo)
+app.delete('/todos/:id', db.deleteToDo)
+
+
+app.use((err, req, res, next) => {
+  res.json(err);
+});
+
+
+// ==================================
+// Error Handlers
+// ==================================
+app.use((err, req, res, next) => {
+  res.json(err);
+  res.status(500).send('Oh no a 500 error.')
+});
+
+app.use((req, res, next) => {
+  res.status(404).send(`Oh no a 404 error. I can't find that.`)
+})
+
 
         // Heroku ****************************************
 
@@ -33,71 +99,6 @@ const app = express();
         });
 
         // Heroku ****************************************
-
-
-const db = require('./queries')
-
-const { DATABASE_URL } = process.env;
-
-
-// ==================================
-// CORS
-// npm package to allow cross origin resource sharing
-// ==================================
-const cors = require('cors')
-app.use(cors())
-
-// ==================================
-// Axios - npm package promise based HTTP client
-// ==================================
-const axios = require('axios');
-
-// ==================================
-// body-parser middleware allows us to make use of the
-// key-value pairs stored on the req-body object.
-// ==================================
-const bodyParser = require("body-parser");
-app.use(bodyParser.json({extended: true}));
-
-
-// **********************************
-// index route
-// **********************************
-app.get('/', (request, response) => {
-  response.json({ appInfo: 'Todoodles API. What are you going todo?' });
-  console.log("Hello World")
-})
-
-
-// **********************************
-// other routes
-// **********************************
-app.get('/todos', db.getToDos)
-app.get('/todos/:id', db.getToDoById)
-app.post('/todos', db.createToDo)
-app.put('/todos/:id', db.updateToDo)
-app.delete('/todos/:id', db.deleteToDo)
-
-
-
-
-app.use((err, req, res, next) => {
-  res.json(err);
-});
-
-
-// ==================================
-// Error Handlers
-// ==================================
-app.use((err, req, res, next) => {
-  res.json(err);
-  res.status(500).send('Oh no a 500 error.')
-});
-
-app.use((req, res, next) => {
-  res.status(404).send(`Oh no a 404 error. I can't find that.`)
-})
-
 
 // ==================================
 // Set the port from an environmental variable or manually
