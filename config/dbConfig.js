@@ -29,6 +29,7 @@ if (process.env.DATABASE_URL) {
 
 } else {
 
+  // postgres://localhost:5432/
   config = {
     host: process.env.DB_HOST || 'localhost',
     port: process.env.DB_PORT || 5432,
