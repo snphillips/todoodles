@@ -7,6 +7,9 @@ const express = require('express');
 //invoke express. Henceforth, app = express
 const app = express();
 
+// All routes are in /routes - not using
+// const routes = require('./routes');
+
 
         // Heroku ****************************************
 
@@ -35,9 +38,6 @@ const app = express();
 const db = require('./queries')
 
 const { DATABASE_URL } = process.env;
-
-
-
 
 
 // ==================================
@@ -77,6 +77,8 @@ app.get('/todos/:id', db.getToDoById)
 app.post('/todos', db.createToDo)
 app.put('/todos/:id', db.updateToDo)
 app.delete('/todos/:id', db.deleteToDo)
+
+
 
 
 app.use((err, req, res, next) => {
