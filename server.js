@@ -7,6 +7,35 @@ const express = require('express');
 //invoke express. Henceforth, app = express
 const app = express();
 
+
+
+
+        // Heroku ****************************************
+
+        const { Client } = require('pg');
+
+        const client = new Client({
+          connectionString: process.env.DATABASE_URL,
+          ssl: true
+        });
+
+        // client.connect results in local error "Error: The server does not support SSL connections"
+        client.connect();
+
+        client.query('SELECT * FROM todos;', (err, res) => {
+          if (err) throw err;
+          for (let row of res.rows) {
+            console.log(JSON.stringify(row));
+            console.log("hello from client.query");
+          }
+          client.end();
+        });
+
+        // Heroku ****************************************
+
+
+
+
 // All routes are in /routes - not using
 // const routes = require('./routes');
 
@@ -22,8 +51,6 @@ const cors = require('cors')
 // Do I need to be requireing axios here, or only in Client?
 // ==================================
 const axios = require('axios');
-
-
 
 
 
@@ -77,28 +104,6 @@ app.use((req, res, next) => {
 })
 
 
-        // Heroku ****************************************
-
-        const { Client } = require('pg');
-
-        const client = new Client({
-          connectionString: process.env.DATABASE_URL,
-          ssl: true
-        });
-
-        // client.connect results in local error "Error: The server does not support SSL connections"
-        client.connect();
-
-        client.query('SELECT * FROM todos;', (err, res) => {
-          if (err) throw err;
-          for (let row of res.rows) {
-            console.log(JSON.stringify(row));
-            console.log("hello from client.query");
-          }
-          client.end();
-        });
-
-        // Heroku ****************************************
 
 // ==================================
 // Set the port from an environmental variable or manually

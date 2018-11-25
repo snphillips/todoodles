@@ -5,7 +5,7 @@
 ================================*/
 body {
   background-color: rgba(255, 254, 224, 1);  /* Fallback */
-  background: repeating-linear-gradient(rgba(255, 254, 224, 1), rgba(255, 254, 224, 1) 30px, rgba(145, 152, 229, .2) 30px, rgba(145, 152, 229, .2) 31px);
+  background: repeating-linear-gradient(rgba(255, 254, 224, 1), rgba(255, 254, 224, 1) 35px, rgba(145, 152, 229, .2) 35px, rgba(145, 152, 229, .2) 36px);
   margin: 0;
   padding: 10pt;
   -webkit-font-smoothing: antialiased;
