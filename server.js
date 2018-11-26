@@ -9,18 +9,18 @@ const app = express();
 
 const cors = require('cors')
 
-const { DATABASE_URL } = process.env;
-
 const bodyParser = require('body-parser');
 
 const db = require('./queries')
+
+const { DATABASE_URL } = process.env;
 
 
 // ==================================
 // Axios - npm package promise based HTTP client
 // Do I need to be requireing axios here, or only in Client?
 // ==================================
-const axios = require('axios');
+// const axios = require('axios');
 
 
         // Heroku or local database connection ************
