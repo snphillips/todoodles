@@ -4,10 +4,10 @@ require('dotenv').config()
 //require the just installed express app
 const express = require('express');
 
-const cors = require('cors')
-
 //invoke express. Henceforth, app = express
 const app = express();
+
+const cors = require('cors')
 
 const { DATABASE_URL } = process.env;
 
@@ -23,19 +23,12 @@ const db = require('./queries')
 const axios = require('axios');
 
 
-        // Heroku ****************************************
+        // Heroku or local database connection ************
 
         const client = require('./config/dbConfig');
 
-        // const { Client } = require('pg');
-
-        // const client = new Client({
-
-        //   connectionString: process.env.DATABASE_URL,
-        //   ssl: true
-        // });
-
-        // client.connect results in local error "Error: The server does not support SSL connections"
+        // client connect is connecting to the local OR Heroku database,
+        // depending on which environment we're in.
         client.connect();
 
         client.query('SELECT * FROM todos;', (err, res) => {
@@ -44,10 +37,9 @@ const axios = require('axios');
             console.log(JSON.stringify(row));
             console.log("hello from Heroku client.query");
           }
-          // client.end();
         });
 
-        // Heroku ****************************************
+        // Heroku or local database connection ************
 
 // ==================================
 // body-parser middleware allows us to make use of the
@@ -97,8 +89,6 @@ app.use((err, req, res, next) => {
 app.use((req, res, next) => {
   res.status(404).send(`Oh no a 404 error. I can't find that.`)
 })
-
-
 
 // ==================================
 // Set the port from an environmental variable or manually

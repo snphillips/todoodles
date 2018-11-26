@@ -14,7 +14,7 @@ export default class App extends Component {
 
     this.state = {
       // dataSource: "http://localhost:8888/todos",
-      dataSource: "https://todoodles-server.herokuapp.com/",
+      dataSource: "https://todoodles-server.herokuapp.com/todos",
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
@@ -42,9 +42,9 @@ export default class App extends Component {
   //  GET
   //  ==================================================================
     axiosGetToDos() {
-      console.log("Hello from get")
       axios.get(this.state.dataSource)
         .then( (response) => {
+      console.log("Hello from get", response.data)
         // First, map over toDoArray to add a displayStrikethrough boolean
         // to each todo item. (To keep track of whether item has been scratched out)
         const toDoArray = response.data.map( (element) => {
