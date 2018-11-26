@@ -16,13 +16,6 @@ const db = require('./queries')
 const { DATABASE_URL } = process.env;
 
 
-// ==================================
-// Axios - npm package promise based HTTP client
-// Do I need to be requireing axios here, or only in Client?
-// ==================================
-// const axios = require('axios');
-
-
         // Heroku or local database connection ************
 
         const client = require('./config/dbConfig');
@@ -35,7 +28,7 @@ const { DATABASE_URL } = process.env;
           if (err) throw err;
           for (let row of res.rows) {
             console.log(JSON.stringify(row));
-            console.log("hello from Heroku client.query");
+            // console.log("hello from Heroku client.query");
           }
         });
 

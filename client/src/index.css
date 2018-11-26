@@ -5,9 +5,16 @@
 ================================*/
 body {
   background-color: rgba(255, 254, 224, 1);  /* Fallback */
-  background: repeating-linear-gradient(rgba(255, 254, 224, 1), rgba(255, 254, 224, 1) 35px, rgba(145, 152, 229, .2) 35px, rgba(145, 152, 229, .2) 36px);
+  background: repeating-linear-gradient(rgba(255, 254, 224, 1),
+                                        rgba(255, 254, 224, 1) 24px,
+                                        rgba(145, 152, 229, .2) 24px,
+                                        rgba(145, 152, 229, .2) 25px);
+  /* by setting height, we solve problem of
+  background pattern repeating itself with
+  obvious, ugly break point.*/
+  height: 100vh;
   margin: 0;
-  padding: 10pt;
+  padding: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'EB Garamond', serif;
@@ -30,6 +37,7 @@ form.todo-item-form {
   font-size: 70%;
   width: 170pt;
   padding: 12px 20px;
+  padding: .5rem 1rem;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -48,7 +56,7 @@ form.todo-item-form {
   display: inline-block;
   font-size: 70%;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: .5rem;
 }
 
 .submit-button:hover {
@@ -60,7 +68,7 @@ form.todo-item-form {
 ================================*/
 button.delete-x {
   border: 0;
-  margin-right: 20pt;
+  margin-right: 1.5rem;
   font-style: bold;
   background-color: rgba(255, 254, 224, 0.001);
   cursor: pointer;
@@ -131,13 +139,13 @@ footer {
   bottom: 0;
   right: 0;
   padding-right: 1%;
-  padding-top: .5em;
-  padding-bottom: .3em;
+  padding-top: .5rem;
+  padding-bottom: .3rem;
 }
 
 span.footerLink a{
   color: rgba(0, 0, 0, 0.7);
-  padding-left: 7%;
+  padding-left: 1rem;
   text-decoration: none;
   font-weight: bold;
   font-size: 80%;

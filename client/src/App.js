@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Header from './Header';
-// import ScribbleBoard from './ScribbleBoard';
-// import Introduction from './Introduction';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
 import Footer from './Footer';
@@ -13,8 +11,8 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      // dataSource: "http://localhost:8888/todos",
       dataSource: "https://todoodles-server.herokuapp.com/todos",
+      // dataSource: "http://localhost:8888/todos",
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
@@ -35,6 +33,7 @@ export default class App extends Component {
   //  2) fire the axios GET requset (the axiosGetToDos function)
   //  ==================================================================
     componentDidMount() {
+      console.log("the data source URL is:", this.state.dataSource)
       this.axiosGetToDos();
     }
 
@@ -57,9 +56,6 @@ export default class App extends Component {
         .catch(function (error) {
           console.log(error);
         });
-
-
-
     }
 
   //  ==================================================================
@@ -163,7 +159,6 @@ export default class App extends Component {
 
 
 
-
 //  ==================================================================
 //  And finally, the render
 //  ==================================================================
@@ -190,5 +185,3 @@ export default class App extends Component {
     );
   }
 }
-       // <Introduction />
-       // <ScribbleBoard />
