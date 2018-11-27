@@ -3,9 +3,19 @@ import React, { Component } from 'react';
 export default class Header extends Component {
   render() {
     return (
-      <h1 className="header">
-        todoodles
-      </h1>
+
+    <div>
+
+      <h1 className="header">todoodles</h1>
+
+      <img className="scribble"
+           src="https://i.imgur.com/EGh0f7V.png"
+           // alt="scribble"
+           // width="190rem"
+      />
+
+
+     </div>
     );
   }
 }

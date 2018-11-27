@@ -9,20 +9,36 @@ body {
                                         rgba(255, 254, 224, 1) 24px,
                                         rgba(145, 152, 229, .2) 24px,
                                         rgba(145, 152, 229, .2) 25px);
+
+
   /* by setting height, we solve problem of
   background pattern repeating itself with
   obvious, ugly break point.*/
   height: 100vh;
   margin: 0;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'EB Garamond', serif;
   font-size: 140%
 }
 
+.red-line {
+  border-left: 1pt solid rgba(255, 0, 0, .25);
+  height: 100vh;
+}
+
+
+/*==============================
+ Header
+================================*/
+img.scribble {
+  padding-left: 1rem;
+  width: 14rem;
+}
+
 h1 {
- margin-top: 0;
+ margin: -1rem 2rem;
 }
 
 
@@ -34,9 +50,10 @@ form.todo-item-form {
 }
 
 .input-field {
+  margin-top: 1rem;
+  margin-left: 2rem;
   font-size: 70%;
   width: 170pt;
-  padding: 12px 20px;
   padding: .5rem 1rem;
   display: inline-block;
   border: 1px solid #ccc;
@@ -46,7 +63,7 @@ form.todo-item-form {
 
 /* not using at the moment but keep in case you change mind */
 .submit-button {
-  background-color: rgba(0, 0, 0, 1); /* Black */
+/*  background-color: rgba(0, 0, 0, 1);
   border: none;
   color: white;
   padding: 10px 25px;
@@ -56,7 +73,7 @@ form.todo-item-form {
   display: inline-block;
   font-size: 70%;
   font-weight: bold;
-  margin-left: .5rem;
+  margin-left: .5rem;*/
 }
 
 .submit-button:hover {
@@ -68,7 +85,8 @@ form.todo-item-form {
 ================================*/
 button.delete-x {
   border: 0;
-  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  margin-right: 1.3rem;
   font-style: bold;
   background-color: rgba(255, 254, 224, 0.001);
   cursor: pointer;
@@ -93,7 +111,6 @@ li {
 }
 
 .todo-item {
-  /* add custom pointer */
   cursor: pointer;
 }
 
@@ -103,7 +120,7 @@ li {
  Strike-through line
 ================================*/
 
-/* This makes the line fit the lenght of todo list item */
+/* The span makes the line fit the lenght of todo list item */
 span {
   position: relative;
 }
