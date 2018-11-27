@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import DayOfWeek from './DayOfWeek';
 
 export default class Header extends Component {
   render() {
@@ -8,13 +9,15 @@ export default class Header extends Component {
 
       <h1>todoodles</h1>
 
-      <img className="scribble"
-           src="https://i.imgur.com/EGh0f7V.png"
-           alt=""
-      />
-
+       <img className="scribble-underline"
+            src="https://i.imgur.com/EGh0f7V.png"
+            alt=""
+       />
 
      </div>
     );
   }
 }
+
+      // <DayOfWeek />
+

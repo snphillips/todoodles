@@ -1,7 +1,7 @@
 
 
 /*==============================
- General Styling
+ General Styling & Decorative Elements
 ================================*/
 body {
   background-color: rgba(255, 254, 224, 1);  /* Fallback */
@@ -16,7 +16,7 @@ body {
   obvious, ugly break point.*/
   top: 4rem;
   height: 100vh;
-  padding: 1rem 1rem 1rem 5rem;
+  padding: 0 1rem 1rem 5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'EB Garamond', serif;
@@ -27,6 +27,11 @@ div.red-line {
   border-left: 1pt solid rgba(255, 0, 0, .25);
   height: 100vh;
   top: 0;
+}
+
+/* not using now but keep for future*/
+.scribble {
+  width: 8rem;
 }
 
 
@@ -44,7 +49,7 @@ h1 {
  padding-top: 2rem;
 }
 
-img.scribble {
+img.scribble-underline {
   padding-left: 1.5rem;
   width: 12rem;
 }
@@ -210,7 +215,7 @@ span.footerLink a:hover{
     /*text-align: center;*/
   }
 
-  img.scribble {
+  img.scribble-underline {
     width: 10rem;
   }
 

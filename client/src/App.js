@@ -179,6 +179,7 @@ export default class App extends Component {
                     handleAddStrikethrough={this.handleAddStrikethrough}
                     />
 
+
        <Footer />
 
       </div>
