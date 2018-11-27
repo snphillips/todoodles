@@ -2,7 +2,8 @@
 
 ## Project Description
 
-Todoodles is a traditional CRUD todo app that allows the user to strike-through a completed list item.
+Todoodles is a traditional CRUD todo web app that allows the user to strike-through a completed list item.
+View the web app here: https://todoodles.surge.sh/
 
 
 
