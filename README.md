@@ -20,3 +20,4 @@ View the web app here: https://todoodles.surge.sh/
 - React client
 - client hosted on Surge
 - axios for API calls
+- PostgreSQL for database
