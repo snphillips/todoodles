@@ -6,6 +6,7 @@ Todoodles is a traditional CRUD todo web app that allows the user to strike-thro
 
 View the web app here: https://todoodles.surge.sh/
 
+https://i.imgur.com/e762ARR.png
 
 
 ## Made With
