@@ -14,8 +14,8 @@ body {
   /* by setting height, we solve problem of
   background pattern repeating itself with
   obvious, ugly break point.*/
+  top: 4rem;
   height: 100vh;
-  margin: 0;
   padding: 1rem 1rem 1rem 5rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -23,9 +23,10 @@ body {
   font-size: 140%
 }
 
-.red-line {
+div.red-line {
   border-left: 1pt solid rgba(255, 0, 0, .25);
   height: 100vh;
+  top: 0;
 }
 
 
@@ -38,7 +39,10 @@ img.scribble {
 }
 
 h1 {
- margin: -1rem 2rem;
+ margin-top: -1rem;
+ margin-bottom: -1rem;
+ margin-left: 2rem;
+ padding-top: 2rem;
 }
 
 
@@ -152,20 +156,25 @@ span {
  Footer
 ================================*/
 footer {
+  color: rgba(0, 0, 0, 0.7);
   position: fixed;
   bottom: 0;
   right: 0;
   padding-right: 1%;
   padding-top: .5rem;
   padding-bottom: .3rem;
+  font-size: 90%;
 }
 
 span.footerLink a{
   color: rgba(0, 0, 0, 0.7);
-  padding-left: 1rem;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 80%;
+  padding-left: .5rem;
+  /*font-weight: bold;*/
+}
+
+span.footerLink a:hover{
+  color: rgba(0, 0, 0, 0.5);
 }
 
 

@@ -5,7 +5,7 @@ export default class Footer extends Component {
     return (
 
         <footer>
-          <span className="footerLink"><a href="https://sarahphillipsdev.surge.sh">Sarah Phillips</a></span>
+          <span className="footerLink">made with <i class="fas fa-heart"></i><a href="https://sarahphillipsdev.surge.sh">by Sarah Phillips</a></span>
           <span className="footerLink"><a href="https://github.com/snphillips/todoodles"><i className="fab fa-github"></i></a></span>
         </footer>
     );
