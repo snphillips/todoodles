@@ -33,9 +33,8 @@ div.red-line {
 /*==============================
  Header
 ================================*/
-img.scribble {
-  padding-left: 1rem;
-  width: 14rem;
+div.header {
+ margin-left: 1rem;
 }
 
 h1 {
@@ -44,6 +43,12 @@ h1 {
  margin-left: 2rem;
  padding-top: 2rem;
 }
+
+img.scribble {
+  padding-left: 1.5rem;
+  width: 12rem;
+}
+
 
 
 /*==============================
@@ -159,11 +164,13 @@ footer {
   color: rgba(0, 0, 0, 0.7);
   position: fixed;
   bottom: 0;
-  right: 0;
-  padding-right: 1%;
+  /*text-align: center;*/
+  /*margin: 0 auto;*/
+  /*right: 0;*/
+  padding-left: 1.5rem;
   padding-top: .5rem;
   padding-bottom: .3rem;
-  font-size: 90%;
+  font-size: 80%;
 }
 
 span.footerLink a{
@@ -188,13 +195,37 @@ span.footerLink a:hover{
 @media only screen and (max-width: 600px) {
 
   body {
-    padding: 1rem 1rem 1rem 1.5rem;
+    padding: 1rem 1rem 1rem 1rem;
     top: 1rem;
+    font-size: 120%
+  }
+
+  div.header {
+    margin: auto;
+    text-align: center;
   }
 
   h1 {
     padding-top: 0rem;
- }
+    /*text-align: center;*/
+  }
+
+  img.scribble {
+    width: 10rem;
+  }
+
+   .input-field {
+     margin-left: 1rem;
+   }
+
+   button.delete-x {
+     margin-left: .5rem;
+   }
+
+   footer {
+    /*position: fixed;*/
+     margin: 0 auto;
+   }
 
 
 
