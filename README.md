@@ -7,6 +7,7 @@ Todoodles is a traditional todo web app that allows the user to strike-through a
 View the web app here: https://todoodles.surge.sh/
 
 <img src="https://i.imgur.com/e762ARR.png" width="500" alt="screengrab of app">
+<img src="https://i.imgur.com/2evJ3pF.png" width="200" alt="screengrab of app">
 
 
 ## Made With
