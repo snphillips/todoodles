@@ -10,13 +10,13 @@ body {
                                         rgba(145, 152, 229, .2) 24px,
                                         rgba(145, 152, 229, .2) 25px);
 
-
   /* by setting height, we solve problem of
   background pattern repeating itself with
   obvious, ugly break point.*/
-  top: 4rem;
   height: 100vh;
-  padding: 0 1rem 1rem 5rem;
+  /*top: 4rem;*/
+  padding: 0 1rem 0 5rem;
+  margin-bottom: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'EB Garamond', serif;
