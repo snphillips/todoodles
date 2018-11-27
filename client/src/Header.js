@@ -10,8 +10,7 @@ export default class Header extends Component {
 
       <img className="scribble"
            src="https://i.imgur.com/EGh0f7V.png"
-           // alt="scribble"
-           // width="190rem"
+           alt=""
       />
 
 
