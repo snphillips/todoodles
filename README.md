@@ -21,3 +21,7 @@ View the web app here: https://todoodles.surge.sh/
 - client hosted on Surge
 - axios for API calls
 - PostgreSQL for database
+
+## TODO
+- add loading spinner while user waits for server to wake up
+- giver users incentive to cross out todos...perhaps reveal doodles in the margins?
