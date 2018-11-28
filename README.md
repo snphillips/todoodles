@@ -23,5 +23,6 @@ View the web app here: https://todoodles.surge.sh/
 - PostgreSQL for database
 
 ## TODO
-- add loading spinner while user waits for server to wake up
+- add loading spinner while user waits for Heroku server to wake up
+- OR, move to a server host that doesn't sleep?
 - giver users incentive to cross out todos...perhaps reveal doodles in the margins?
