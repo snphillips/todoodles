@@ -25,5 +25,5 @@ View the web app here: https://todoodles.surge.sh/
 ## TODO
 - Add loading spinner while user waits for Heroku server to wake up
 - OR, move to a server host that doesn't sleep?
-- Give users incentive to cross out todos...perhaps reveal doodles in the margins?
+- Give users a playful incentive to cross out todos...perhaps reveal doodles in the margins?
 - Set up AUTH so that users aren't sharing their TODO list with the whole world? Firebase?
