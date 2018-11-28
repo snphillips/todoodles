@@ -4,7 +4,7 @@
 
 Todoodles is a traditional todo web app that allows the user to strike-through a completed list item. 
 
-Note: you'd be _crazy to actually use this app to manage your todos_...user authorization has not been set up so all users have access to, and can edit the same list.
+Note: _you'd be crazy to actually use this app to manage your todos_...user authorization has not been set up so all users have access to, and can edit the same list.
 
 I created this project to practice setting up a front end that consumes data from a back end API. 
 
@@ -23,6 +23,7 @@ View the web app here: https://todoodles.surge.sh/
 - PostgreSQL for database
 
 ## TODO
-- add loading spinner while user waits for Heroku server to wake up
+- Add loading spinner while user waits for Heroku server to wake up
 - OR, move to a server host that doesn't sleep?
-- giver users incentive to cross out todos...perhaps reveal doodles in the margins?
+- Give users incentive to cross out todos...perhaps reveal doodles in the margins?
+- Set up AUTH so that users aren't sharing their TODO list with the whole world? Firebase?
