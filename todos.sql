@@ -15,7 +15,7 @@ VALUES
 ('go for walk'),
 ('laundry'),
 ('get flu shot'),
-('make appointment with dentist');
+('make appointment with dentist'),
 ('mail postcard'),
 ('pay taxes'),
 ('paint living room'),

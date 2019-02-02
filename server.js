@@ -7,8 +7,17 @@ const express = require('express');
 //invoke express. Henceforth, app = express
 const app = express();
 
+// ==================================
+// CORS
+// npm package to allow cross origin resource sharing
+// ==================================
 const cors = require('cors')
 
+// ==================================
+// body-parser middleware allows us to make use of the
+// key-value pairs stored on the req-body object.
+// TLDR: makes forms work
+// ==================================
 const bodyParser = require('body-parser');
 
 const db = require('./queries')
@@ -16,11 +25,11 @@ const db = require('./queries')
 const { DATABASE_URL } = process.env;
 
 
-        // Heroku or local database connection ************
+        // ****** Heroku or local database connection ************
 
         const client = require('./config/dbConfig');
 
-        // client connect is connecting to the local OR Heroku database,
+        // client.connect() is connecting to the local OR Heroku database,
         // depending on which environment we're in.
         client.connect();
 
@@ -32,18 +41,11 @@ const { DATABASE_URL } = process.env;
           }
         });
 
-        // Heroku or local database connection ************
+        // ******* Heroku or local database connection ************
 
-// ==================================
-// body-parser middleware allows us to make use of the
-// key-value pairs stored on the req-body object.
-// ==================================
+
 app.use(bodyParser.json({extended: true}));
 
-// ==================================
-// CORS
-// npm package to allow cross origin resource sharing
-// ==================================
 app.use(cors())
 
 
@@ -66,9 +68,10 @@ app.put('/todos/:id', db.updateToDo)
 app.delete('/todos/:id', db.deleteToDo)
 
 
-app.use((err, req, res, next) => {
-  res.json(err);
-});
+// what's this? get rid of it
+// app.use((err, req, res, next) => {
+//   res.json(err);
+// });
 
 
 // ==================================
@@ -96,11 +99,7 @@ app.listen(PORT, function () {
   console.log(`Hello todoodles! Listening on port: ${PORT}!`)
   console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`)
   console.log(`process.env.DATABASE_URL: ${process.env.DATABASE_URL}`)
-  console.log(`process.env.USER: ${process.env.USER}`)
   console.log(`process.env.DATABASE: ${process.env.DATABASE}`)
-  console.log(`process.env.PW: ${process.env.PW}`)
-  console.log(`process.env.DB_PORT: ${process.env.DB_PORT}`)
-  console.log(`process.env.PORT: ${process.env.PORT}`)
 });
 
 

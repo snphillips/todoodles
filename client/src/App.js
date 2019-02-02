@@ -42,11 +42,15 @@ export default class App extends Component {
   //  ==================================================================
     axiosGetToDos() {
       axios.get(this.state.dataSource)
+
         .then( (response) => {
       console.log("Hello from get", response.data)
         // First, map over toDoArray to add a displayStrikethrough boolean
         // to each todo item. (To keep track of whether item has been scratched out)
         const toDoArray = response.data.map( (element) => {
+          // TODO: problem with this approach is that when you get the list
+          // of todos, you're replacing the old list, which may have items already
+          // scratched out.
           element["displayStrikethrough"] = false
           return element
         })
@@ -139,20 +143,22 @@ export default class App extends Component {
 
   //  ==================================================================
   //  Strikethrough line
-  //  1) create a const of toDoListArray to keep things tidy
-  //  2) take the index number of the TODO item that's been clicked, pluck
-  //  it out of the toDoListArray(not literally), call that the selectedToDoItem
-  //  3) Toggle the displayStrikethrough boolean with !
-  //  4) Set the state with the *updated* array, that has the new information
   //  ==================================================================
    handleAddStrikethrough(index) {
      console.log("handleAddStrikethrough click with index of:", index)
 
+  //  1) create a const of toDoListArray to keep things tidy
      let toDoListArray = this.state.toDoList
+
+  //  2) take the index number of the TODO item that's been clicked, pluck
+  //  it out of the toDoListArray(not literally), call that the selectedToDoItem
      let selectedToDoItem = toDoListArray[index]
+
+  //  3) Toggle the displayStrikethrough boolean with !
      selectedToDoItem["displayStrikethrough"] = !selectedToDoItem.displayStrikethrough
      toDoListArray[index] = selectedToDoItem
 
+  //  4) Set the state with the *updated* array, that has the new information
     this.setState({toDoList: toDoListArray})
 
    };

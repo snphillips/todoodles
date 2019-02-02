@@ -169,23 +169,20 @@ footer {
   color: rgba(0, 0, 0, 0.7);
   position: fixed;
   bottom: 0;
-  /*text-align: center;*/
-  /*margin: 0 auto;*/
-  /*right: 0;*/
   padding-left: 1.5rem;
   padding-top: .5rem;
   padding-bottom: .3rem;
   font-size: 80%;
 }
 
-span.footerLink a{
-  color: rgba(0, 0, 0, 0.7);
+span.footer-link a{
   text-decoration: none;
-  padding-left: .5rem;
+  color: rgba(0, 0, 0, 0.9);
+  /*padding-left: .5rem;*/
   /*font-weight: bold;*/
 }
 
-span.footerLink a:hover{
+span.footer-link a:hover{
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -231,12 +228,6 @@ span.footerLink a:hover{
     /*position: fixed;*/
      margin: 0 auto;
    }
-
-
-
-
-
-
 
 
 
