@@ -176,16 +176,16 @@ export default class App extends Component {
   //  ==================================================================
   axiosPutToDo() {
     // console.log("Hello from axios PUT", this.state.selectedToggleToStrikethrough, "toggle strikethrough.")
-      //  1) create a const of toDoListArray to keep things tidy
+      //  1) create variables to keep things tidy
     let toDoListArray = this.state.toDoList
     let indexToStrikethrough = this.state.selectedToToggleStrikethrough
 
     console.log("Hello from axios PUT. strikethrough is: ", toDoListArray[indexToStrikethrough].displaystrikethrough )
 
     axios.put(this.state.dataSource + `/${this.state.selectedToToggleStrikethrough}`, {
-      // displaystrikethrough: !this.state.ToDoList.displaystrikethrough
-      // temporary value until you can figure out current boolean value
-    displaystrikethrough: true
+      id: toDoListArray[indexToStrikethrough].id,
+      todoitem: toDoListArray[indexToStrikethrough].todoitem,
+      displaystrikethrough: toDoListArray[indexToStrikethrough].displaystrikethrough
   })
   .then(response => {
     console.log("response in axiosPutToDo", response);

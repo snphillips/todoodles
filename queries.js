@@ -29,7 +29,6 @@ const getToDoById = (request, response) => {
 
 
 
-
 const createToDo = (request, response) => {
   const { todoitem } = request.body
   const { displaystrikethrough }  = request.body.displaystrikethrough
@@ -39,55 +38,61 @@ const createToDo = (request, response) => {
       throw error
     }
     response.status(201).send(`Todo added with a body of ${todoitem}`)
-    console.log(`Todo added. todoitem = ${todoitem} and request.body = ${request.body}`)
     console.log(`Todo added. Item is: ${request.body.todoitem} and strikesthrough is: ${request.body.displaystrikethrough}`)
   })
 }
 
 
 
-
 const updateToDo = (request, response) => {
-  const id = parseInt(request.params.id)
-  // const item = request.params.todoitem
-  // one problem is that request.body is the id number, not content
-  // const { displaystrikethrough } = request.body
+  const position  = parseInt(request.params.id)
   const displaystrikethrough  = request.body.displaystrikethrough
-  console.log("Hello from updateToDo. request.body is:", request.body)
-  console.log("request.body.displaystrikethrough", request.body.displaystrikethrough)
+  const id  = request.body.id
+  const todoitem  = request.body.todoitem
 
-// TODO: displaystrikethrough needs to toggle here. Can be true or false.
+  console.log(`position: ${position}, id: ${id}, todoitem: ${todoitem}, request.body.displaystrikethrough: ${displaystrikethrough}`)
+
   pool.query(
-    // 'UPDATE todos SET displaystrikethrough = true WHERE id = $1',
-    `UPDATE todos SET displaystrikethrough = ${request.body.displaystrikethrough} WHERE id = $1`,
-    [id],
+    // `UPDATE todos
+    //  SET displaystrikethrough = $1
+    //  WHERE id = $2`,
+    // [displaystrikethrough, id],
+
+    `UPDATE todos
+     SET displaystrikethrough = $1
+     WHERE todoitem = $2`,
+    [displaystrikethrough, todoitem],
+
     (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`todoitem modified with id: ${id} and displaystrikethrough is: ${request.body.displaystrikethrough}` )
+      response.status(200).send(`todoitem modified with position: ${position}, id: ${id} and displaystrikethrough is: ${request.body.displaystrikethrough}` )
     }
   )
 }
 
 // const updateToDo = (request, response) => {
 //   const id = parseInt(request.params.id)
-//   // const item = request.params.todoitem
-//   // one problem is that request.body is the id number, not content
-//   const { todoitem } = request.body
-//   console.log("Hello from updateToDo. request.body is:", request.body)
+//   const displaystrikethrough   = request.body.displaystrikethrough
+
+//   console.log(`The id of ${id} and a request.body.displaystrikethrough of: ${request.body.displaystrikethrough}`)
 
 //   pool.query(
-//     'UPDATE todos SET todoitem = $2 WHERE id = $1',
-//     [todoitem, id],
+//     // 'UPDATE todos SET displaystrikethrough = true WHERE id = $1',
+//     `UPDATE todos
+//      SET displaystrikethrough = ${request.body.displaystrikethrough}
+//      WHERE id = $1`,
+//     [id],
 //     (error, results) => {
 //       if (error) {
 //         throw error
 //       }
-//       response.status(200).send(`todoitem modified with ID: ${id}` )
+//       response.status(200).send(`todoitem modified with id: ${id} and displaystrikethrough is: ${request.body.displaystrikethrough}` )
 //     }
 //   )
 // }
+
 
 
 const deleteToDo = (request, response) => {
