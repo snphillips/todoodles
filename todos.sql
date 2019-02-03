@@ -1,13 +1,12 @@
 
 -- To execute this file, type in the command line:
 -- $ psql
+-- \connect todoodles
 -- \i todos.sql
 
 -- To view rows (to ensure import was a success) type SELECT * FROM todos;
 -- To quit: \q
 -- To list databases: \l
--- To connect: \connect todoodles
-
 
 
 -- db: todoodles
@@ -18,10 +17,10 @@ DROP TABLE todos;
 CREATE TABLE todos(
   id serial,
   todoitem character varying(50),
-  strikethrough boolean
+  displaystrikethrough boolean
 );
 
-INSERT INTO todos(todoitem, strikethrough)
+INSERT INTO todos(todoitem, displaystrikethrough)
 VALUES
 ('feed kitty', false),
 ('go for walk', false),
@@ -32,10 +31,11 @@ VALUES
 ('pay taxes', false),
 ('paint living room', false),
 ('send thank you note', false),
-('water plants', false);
+('water plants', false)
 
 
 
+-- below is old table. Can delete when you are satisfied
 -- DROP TABLE todos;
 
 -- CREATE TABLE todos(

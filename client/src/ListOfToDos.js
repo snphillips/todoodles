@@ -17,10 +17,10 @@ export default class ListOfToDos extends Component {
         <ul>
           {toDoArray.map( (todoobject, index) => {
 
-            // Here's where we add the className to add the strikethrough, if
+            // Here's where we add the className to add the strikethrough css, if
             // the user clicks an item. (see handleAddStrikethrough on App.js)
             let className = 'todo-item';
-              if (todoobject.displayStrikethrough === true) {
+              if (todoobject.displaystrikethrough === true) {
                 className += ' strikethrough';
             }
 

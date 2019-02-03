@@ -16,6 +16,7 @@ export default class App extends Component {
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
+      selectedToToggleStrikethrough: '',
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -24,6 +25,7 @@ export default class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.axiosPostNewToDo = this.axiosPostNewToDo.bind(this);
     this.axiosDeleteToDo = this.axiosDeleteToDo.bind(this);
+    this.axiosPutToDo = this.axiosPutToDo.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.handleAddStrikethrough = this.handleAddStrikethrough.bind(this);
   }
@@ -38,23 +40,24 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  GET
+  //  GET - RESTfull API call
   //  ==================================================================
     axiosGetToDos() {
       axios.get(this.state.dataSource)
 
         .then( (response) => {
-      console.log("Hello from get", response.data)
-        // First, map over toDoArray to add a displayStrikethrough boolean
-        // to each todo item. (To keep track of whether item has been scratched out)
-        const toDoArray = response.data.map( (element) => {
+          console.log("Hello from get", response.data)
+          // First, map over toDoArray to add a displaystrikethrough boolean
+          // to each todo item. (To keep track of whether item has been scratched out)
+          // const toDoArray = response.data.map( (element) => {
           // TODO: problem with this approach is that when you get the list
           // of todos, you're replacing the old list, which may have items already
           // scratched out.
-          element["displayStrikethrough"] = false
-          return element
-        })
-          this.setState({toDoList: toDoArray})
+          // element["displaystrikethrough"] = false
+          // return element
+        // })
+          // this.setState({toDoList: toDoArray})
+          this.setState({toDoList: response.data})
 
         })
         .catch(function (error) {
@@ -89,13 +92,14 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  POST
+  //  POST - RESTfull API call
   //  ==================================================================
     axiosPostNewToDo() {
       console.log("Hello from post")
 
       axios.post(this.state.dataSource, {
-        todoitem: this.state.newToDo
+        todoitem: this.state.newToDo,
+        displaystrikethrough: false
       })
       .then(function (response) {
         // console.log(response);
@@ -122,7 +126,7 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  DELETE
+  //  DELETE - RESTfull API call
   //  ==================================================================
     axiosDeleteToDo() {
       console.log("Hello from axios DELETE!", this.state.selectedToDelete, "will be deleted.")
@@ -142,7 +146,7 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  Strikethrough line
+  //  PUT(Edit) - Strikethrough line
   //  ==================================================================
    handleAddStrikethrough(index) {
      console.log("handleAddStrikethrough click with index of:", index)
@@ -155,13 +159,45 @@ export default class App extends Component {
      let selectedToDoItem = toDoListArray[index]
 
   //  3) Toggle the displayStrikethrough boolean with !
-     selectedToDoItem["displayStrikethrough"] = !selectedToDoItem.displayStrikethrough
+  //  For instance, if displaystrikethrough has a value of false,
+  //  then the ! will give it a value of true
+     selectedToDoItem["displaystrikethrough"] = !selectedToDoItem.displaystrikethrough
      toDoListArray[index] = selectedToDoItem
 
   //  4) Set the state with the *updated* array, that has the new information
     this.setState({toDoList: toDoListArray})
-
+    this.setState({selectedToToggleStrikethrough: index}, () => {
+      this.axiosPutToDo()
+    })
    };
+
+  //  ==================================================================
+  //  PUT(Edit) - RESTfull API call
+  //  ==================================================================
+  axiosPutToDo() {
+    // console.log("Hello from axios PUT", this.state.selectedToggleToStrikethrough, "toggle strikethrough.")
+      //  1) create a const of toDoListArray to keep things tidy
+    let toDoListArray = this.state.toDoList
+    let indexToStrikethrough = this.state.selectedToToggleStrikethrough
+
+    console.log("Hello from axios PUT. strikethrough is: ", toDoListArray[indexToStrikethrough].displaystrikethrough )
+
+    axios.put(this.state.dataSource + `/${this.state.selectedToToggleStrikethrough}`, {
+      // displaystrikethrough: !this.state.ToDoList.displaystrikethrough
+      // temporary value until you can figure out current boolean value
+    displaystrikethrough: true
+  })
+  .then(response => {
+    console.log("response in axiosPutToDo", response);
+  })
+  // .then( () => {
+  //   this.axiosGetToDos()
+  // })
+  .catch(error => {
+    console.log(error);
+  });
+
+  }
 
 
 
