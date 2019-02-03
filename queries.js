@@ -72,26 +72,6 @@ const updateToDo = (request, response) => {
   )
 }
 
-// const updateToDo = (request, response) => {
-//   const id = parseInt(request.params.id)
-//   const displaystrikethrough   = request.body.displaystrikethrough
-
-//   console.log(`The id of ${id} and a request.body.displaystrikethrough of: ${request.body.displaystrikethrough}`)
-
-//   pool.query(
-//     // 'UPDATE todos SET displaystrikethrough = true WHERE id = $1',
-//     `UPDATE todos
-//      SET displaystrikethrough = ${request.body.displaystrikethrough}
-//      WHERE id = $1`,
-//     [id],
-//     (error, results) => {
-//       if (error) {
-//         throw error
-//       }
-//       response.status(200).send(`todoitem modified with id: ${id} and displaystrikethrough is: ${request.body.displaystrikethrough}` )
-//     }
-//   )
-// }
 
 
 
