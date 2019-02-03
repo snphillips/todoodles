@@ -11,8 +11,8 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      // dataSource: "https://todoodles-server.herokuapp.com/todos",
-      dataSource: "http://localhost:8888/todos",
+      dataSource: "https://todoodles-server.herokuapp.com/todos",
+      // dataSource: "http://localhost:8888/todos",
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
@@ -175,13 +175,13 @@ export default class App extends Component {
   //  PUT(Edit) - RESTfull API call
   //  ==================================================================
   axiosPutToDo() {
-    // console.log("Hello from axios PUT", this.state.selectedToggleToStrikethrough, "toggle strikethrough.")
-      //  1) create variables to keep things tidy
+    //  1) create variables to keep things tidy
     let toDoListArray = this.state.toDoList
     let indexToStrikethrough = this.state.selectedToToggleStrikethrough
 
     console.log("Hello from axios PUT. strikethrough is: ", toDoListArray[indexToStrikethrough].displaystrikethrough )
 
+    // 2) the payload of information that's going to be updated
     axios.put(this.state.dataSource + `/${this.state.selectedToToggleStrikethrough}`, {
       id: toDoListArray[indexToStrikethrough].id,
       todoitem: toDoListArray[indexToStrikethrough].todoitem,

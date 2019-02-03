@@ -45,6 +45,7 @@ const createToDo = (request, response) => {
 
 
 const updateToDo = (request, response) => {
+  // Here's all the information about the item we're going to edit
   const position  = parseInt(request.params.id)
   const displaystrikethrough  = request.body.displaystrikethrough
   const id  = request.body.id
@@ -52,12 +53,8 @@ const updateToDo = (request, response) => {
 
   console.log(`position: ${position}, id: ${id}, todoitem: ${todoitem}, request.body.displaystrikethrough: ${displaystrikethrough}`)
 
+  // The psql query that updates the database
   pool.query(
-    // `UPDATE todos
-    //  SET displaystrikethrough = $1
-    //  WHERE id = $2`,
-    // [displaystrikethrough, id],
-
     `UPDATE todos
      SET displaystrikethrough = $1
      WHERE todoitem = $2`,
@@ -67,7 +64,7 @@ const updateToDo = (request, response) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`todoitem modified with position: ${position}, id: ${id} and displaystrikethrough is: ${request.body.displaystrikethrough}` )
+      response.status(200).send(`todoitem at position ${position} and id of ${id} modified. Displaystrikethrough is: ${request.body.displaystrikethrough}` )
     }
   )
 }
