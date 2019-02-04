@@ -15,11 +15,11 @@ const getToDos = (request, response) => {
   })
 }
 
-// Not using  for this app but keep for reference
-const getToDoById = (request, response) => {
-  const id = parseInt(request.params.id)
 
-  pool.query('SELECT * FROM todos WHERE id = $1', [id], (error, results) => {
+const getToDoByUserId = (request, response) => {
+  const user_id = parseInt(request.params.user_id)
+
+  pool.query('SELECT * FROM todos WHERE user_id = $1', [user_id], (error, results) => {
     if (error) {
       throw error
     }
@@ -30,10 +30,12 @@ const getToDoById = (request, response) => {
 
 
 const createToDo = (request, response) => {
+  // Here's all the information about the item that's being created
+  const user_id = request.body.user_id
   const { todoitem } = request.body
-  const { displaystrikethrough }  = request.body.displaystrikethrough
+  const displaystrikethrough   = request.body.displaystrikethrough
 
-  pool.query('INSERT INTO todos (todoitem, displaystrikethrough) VALUES ($1, $2)', [todoitem, request.body.displaystrikethrough], (error, results) => {
+  pool.query('INSERT INTO todos (user_id, todoitem, displaystrikethrough) VALUES ($1, $2, $3)', [user_id, todoitem, request.body.displaystrikethrough], (error, results) => {
     if (error) {
       throw error
     }
@@ -45,13 +47,14 @@ const createToDo = (request, response) => {
 
 
 const updateToDo = (request, response) => {
-  // Here's all the information about the item we're going to edit
+  // Here's all the information about the item we're going to update/put
   const position  = parseInt(request.params.id)
   const displaystrikethrough  = request.body.displaystrikethrough
   const id  = request.body.id
   const todoitem  = request.body.todoitem
+  const user_id = request.body.user_id
 
-  console.log(`position: ${position}, id: ${id}, todoitem: ${todoitem}, request.body.displaystrikethrough: ${displaystrikethrough}`)
+  console.log(`position: ${position}, id: ${id}, user_id: ${user_id}, todoitem: ${todoitem}, request.body.displaystrikethrough: ${displaystrikethrough}`)
 
   // The psql query that updates the database
   pool.query(
@@ -64,14 +67,16 @@ const updateToDo = (request, response) => {
       if (error) {
         throw error
       }
-      response.status(200).send(`todoitem at position ${position} and id of ${id} modified. Displaystrikethrough is: ${request.body.displaystrikethrough}` )
+      response.status(200).send(`todoitem at position ${position} and id of ${id} and user_id: ${user_id} modified. Displaystrikethrough is: ${request.body.displaystrikethrough}` )
     }
   )
 }
 
 
 
-
+// do I need to add a user_id here? Or, do all todos have a unique id, regardless of user_id?
+// potential problem: if I'm deleting based on where an item shows up in the list, but the client list may
+// be different than the master list
 const deleteToDo = (request, response) => {
   const id = parseInt(request.params.id)
 

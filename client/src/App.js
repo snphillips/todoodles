@@ -11,8 +11,8 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      dataSource: "https://todoodles-server.herokuapp.com/todos",
-      // dataSource: "http://localhost:8888/todos",
+      // dataSource: "https://todoodles-server.herokuapp.com/todos",
+      dataSource: "http://localhost:8888/todos",
       toDoList: [ ],
       newToDo: '',
       selectedToDelete: '',
