@@ -92,7 +92,7 @@ const deleteToDo = (request, response) => {
 
 module.exports = {
   getToDos,
-  getToDoById,
+  getToDoByUserId,
   createToDo,
   updateToDo,
   deleteToDo,

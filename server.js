@@ -20,6 +20,14 @@ const cors = require('cors')
 // ==================================
 const bodyParser = require('body-parser');
 
+// ==================================
+// cookie-parser
+// middleware that parses cookies attached to the client request object.
+// TODO: get this to work
+// ==================================
+let cookieParser = require('cookie-parser');
+
+
 const db = require('./queries')
 
 const { DATABASE_URL } = process.env;
@@ -45,16 +53,18 @@ const { DATABASE_URL } = process.env;
 
 
 app.use(bodyParser.json({extended: true}));
-
 app.use(cors())
+app.use(cookieParser());
 
 
 // **********************************
 // index route
 // **********************************
 app.get('/', (request, response) => {
-  response.json({ appInfo: 'Todoodles API. What are you going todo?' });
+  // response.json({ appInfo: 'Todoodles API. What are you going todo?' });
+  response.cookie('name', 'todoodles-cookie').send('Todoodles cookie set to remember user'); //Sets name = express
   console.log("Hello World")
+  console.log('Cookies: ', request.cookies);
 })
 
 
@@ -62,7 +72,7 @@ app.get('/', (request, response) => {
 // other routes
 // **********************************
 app.get('/todos', db.getToDos)
-app.get('/todos/:id', db.getToDoById)
+app.get('/todos/:user_id', db.getToDoByUserId)
 app.post('/todos', db.createToDo)
 app.put('/todos/:id', db.updateToDo)
 app.delete('/todos/:id', db.deleteToDo)
