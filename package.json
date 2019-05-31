@@ -27,7 +27,7 @@
     "moment": "^2.22.2",
     "pg": "^7.6.0",
     "pg-promise": "^8.5.1",
-    "sequelize": "^4.42.0",
+    "sequelize": "^5.8.7",
     "tough-cookie": "^3.0.0"
   },
   "devDependencies": {
