@@ -35,23 +35,12 @@ VALUES
 (0,'water plants', false)
 
 
--- DROP TABLE todos;
+-- TODO: get this to work with cookies
+-- DROP TABLE users;
 
--- CREATE TABLE todos(
---   id serial,
---   todoitem character varying(50),
---   displaystrikethrough boolean
+-- CREATE TABLE users(
+--   user_id serial
 -- );
 
--- INSERT INTO todos(todoitem, displaystrikethrough)
+-- INSERT INTO users(user_id)
 -- VALUES
--- ('feed kitty', false),
--- ('go for walk', false),
--- ('laundry', false),
--- ('get flu shot', false),
--- ('make appointment with dentist', false),
--- ('mail postcard', false),
--- ('pay taxes', false),
--- ('paint living room', false),
--- ('send thank you note', false),
--- ('water plants', false)

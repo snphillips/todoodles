@@ -23,9 +23,14 @@ const bodyParser = require('body-parser');
 // ==================================
 // cookie-parser
 // middleware that parses cookies attached to the client request object.
-// TODO: get this to work
 // ==================================
 let cookieParser = require('cookie-parser');
+
+// ==================================
+// express-session
+// helps store user data between HTTP requests
+// ==================================
+let session = require('express-session');
 
 
 const db = require('./queries')
@@ -53,19 +58,33 @@ const { DATABASE_URL } = process.env;
 
 
 app.use(bodyParser.json({extended: true}));
-app.use(cors())
+app.use(cors());
 app.use(cookieParser());
+app.use(session({secret: "Shh, its a secret!"}));
 
 
 // **********************************
 // index route
 // **********************************
+// app.get('/', (request, response) => {
+//   // response.json({ appInfo: 'Todoodles API. What are you going todo?' });
+//   response.cookie('name', 'todoodles-cookie').send('Todoodles cookie set to remember user'); //Sets name = express
+//   console.log("Hello World");
+//   console.log(request.cookies);
+// })
 app.get('/', (request, response) => {
-  // response.json({ appInfo: 'Todoodles API. What are you going todo?' });
-  response.cookie('name', 'todoodles-cookie').send('Todoodles cookie set to remember user'); //Sets name = express
-  console.log("Hello World")
-  console.log('Cookies: ', request.cookies);
-})
+   if(request.session.page_views){
+      request.session.page_views++;
+      response.send("Welcome back. You've visited todoodles " + request.session.page_views + " times");
+
+   } else {
+      request.session.page_views = 1;
+      response.send("Welcome to todoodles.");
+   }
+  console.log("Hello World");
+  console.log(request.cookies);
+});
+
 
 
 // **********************************
@@ -76,12 +95,6 @@ app.get('/todos/:user_id', db.getToDoByUserId)
 app.post('/todos', db.createToDo)
 app.put('/todos/:id', db.updateToDo)
 app.delete('/todos/:id', db.deleteToDo)
-
-
-// what's this? get rid of it
-// app.use((err, req, res, next) => {
-//   res.json(err);
-// });
 
 
 // ==================================
