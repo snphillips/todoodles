@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class scribble extends Component {
-  render() {
-    return (
-
-      <img className="scribble"
-            src="https://i.imgur.com/jvGIDnM.png"
-            alt=""
-       />
-
-    );
-  }
+export default function scribble() {
+  return (
+    <img className="scribble"
+      src="https://i.imgur.com/jvGIDnM.png"
+      alt=""
+    />
+  );
 }
 

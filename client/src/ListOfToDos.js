@@ -15,13 +15,13 @@ export default class ListOfToDos extends Component {
 
 
         <ul>
-          {toDoArray.map( (todoobject, index) => {
+          {toDoArray.map((todoobject, index) => {
 
             // Here's where we add the className to add the strikethrough css, if
             // the user clicks an item. (see handleAddStrikethrough on App.js)
             let className = 'todo-item';
-              if (todoobject.displaystrikethrough === true) {
-                className += ' strikethrough';
+            if (todoobject.displaystrikethrough === true) {
+              className += ' strikethrough';
             }
 
 
@@ -30,22 +30,22 @@ export default class ListOfToDos extends Component {
                 key={todoobject.id}
                 className="todoListItem"
               >
-                  <button
-                    id={todoobject.id}
-                    type="button"
-                    className="delete-x"
-                    value={todoobject.todoitem}
-                    // onClick={this.props.onClickRemoveItem}><i className="fas fa-times"></i></button>
-                    onClick={this.props.handleClickRemoveItem}>&times;</button>
+                <button
+                  id={todoobject.id}
+                  type="button"
+                  className="delete-x"
+                  value={todoobject.todoitem}
+                  // onClick={this.props.onClickRemoveItem}><i className="fas fa-times"></i></button>
+                  onClick={this.props.handleClickRemoveItem}>&times;</button>
 
-                  <span
-                    id={todoobject.id}
-                    className={className}
-                    // Have to pass index number, therefore must be a callback
-                    onClick={ ()=>{this.props.handleAddStrikethrough(index)}  }
-                    >
-                     {todoobject.todoitem}
-                  </span>
+                <span
+                  id={todoobject.id}
+                  className={className}
+                  // Have to pass index number, therefore must be a callback
+                  onClick={() => { this.props.handleAddStrikethrough(index) }}
+                >
+                  {todoobject.todoitem}
+                </span>
               </li>
             )
           })}

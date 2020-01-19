@@ -1,23 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import DayOfWeek from './DayOfWeek';
 
-export default class Header extends Component {
-  render() {
-    return (
-
+export default function Header() {
+  return (
     <div className="header">
-
       <h1>todoodles</h1>
-
-       <img className="scribble-underline"
-            src="https://i.imgur.com/EGh0f7V.png"
-            alt=""
-       />
-
-     </div>
-    );
-  }
+      <img className="scribble-underline"
+        src="https://i.imgur.com/EGh0f7V.png"
+        alt=""
+      />
+    </div>
+  );
 }
 
-      // <DayOfWeek />
+// <DayOfWeek />
 

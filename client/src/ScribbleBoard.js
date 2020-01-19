@@ -22,84 +22,84 @@ export default class ScribbleBoard extends Component {
 
   }
 
-componentDidMount() {
-  document.addEventListener("mouseup", this.handleMouseUp);
-}
-componentWillUnmount() {
-  document.removeEventListener("mouseup", this.handleMouseUp);
-}
+  componentDidMount() {
+    document.addEventListener("mouseup", this.handleMouseUp);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("mouseup", this.handleMouseUp);
+  }
 
 
 
-/*==============================
- handleMouseDown
-================================*/
+  /*==============================
+   handleMouseDown
+  ================================*/
   handleMouseDown(mouseEvent) {
-  console.log("mouse down")
-  if (mouseEvent.button !== 0) {
-    return;
+    console.log("mouse down")
+    if (mouseEvent.button !== 0) {
+      return;
+    }
+
+    const point = this.relativeCoordinatesForEvent(mouseEvent);
+
+    this.setState(prevState => {
+      return {
+        lines: prevState.lines.push(Immutable.List([point])),
+        isDrawing: true,
+      };
+    });
   }
 
-  const point = this.relativeCoordinatesForEvent(mouseEvent);
-
-  this.setState(prevState => {
-    return {
-      lines: prevState.lines.push(Immutable.List([point])),
-      isDrawing: true,
-    };
-  });
-}
-
-relativeCoordinatesForEvent(mouseEvent) {
-  const boundingRect = this.refs.drawArea.getBoundingClientRect();
-  return new Immutable.Map({
-    x: mouseEvent.clientX - boundingRect.left,
-    y: mouseEvent.clientY - boundingRect.top,
-  });
-}
-
-
-/*==============================
- handleMouseMove
-================================*/
-handleMouseMove(mouseEvent) {
-  console.log("mouse move")
-  if (!this.state.isDrawing) {
-    return;
+  relativeCoordinatesForEvent(mouseEvent) {
+    const boundingRect = this.refs.drawArea.getBoundingClientRect();
+    return new Immutable.Map({
+      x: mouseEvent.clientX - boundingRect.left,
+      y: mouseEvent.clientY - boundingRect.top,
+    });
   }
 
-  const point = this.relativeCoordinatesForEvent(mouseEvent);
 
-  this.setState(prevState => {
-    return {
-      lines: prevState.lines.updateIn([prevState.lines.size - 1], line => line.push(point)),
-    };
-  });
-}
+  /*==============================
+   handleMouseMove
+  ================================*/
+  handleMouseMove(mouseEvent) {
+    console.log("mouse move")
+    if (!this.state.isDrawing) {
+      return;
+    }
+
+    const point = this.relativeCoordinatesForEvent(mouseEvent);
+
+    this.setState(prevState => {
+      return {
+        lines: prevState.lines.updateIn([prevState.lines.size - 1], line => line.push(point)),
+      };
+    });
+  }
 
 
 
-handleMouseUp() {
-  this.setState({ isDrawing: false });
-}
+  handleMouseUp() {
+    this.setState({ isDrawing: false });
+  }
 
 
 
-/*==============================
- Finally, the render!
-================================*/
-render() {
-  return(
+  /*==============================
+   Finally, the render!
+  ================================*/
+  render() {
+    return (
 
-    <span className="drawArea"
-          ref="drawArea"
-          onMouseDown={this.props.handleMouseDown}
-          onMouseMove={this.props.handleMouseMove}
-          >
+      <span className="drawArea"
+        ref="drawArea"
+        onMouseDown={this.props.handleMouseDown}
+        onMouseMove={this.props.handleMouseMove}
+      >
 
-      <Drawing lines={this.state.lines} />
+        <Drawing lines={this.state.lines} />
 
-    </span>
-  )
-}
+      </span>
+    )
+  }
 }

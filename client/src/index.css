@@ -1,14 +1,13 @@
-
-
 /*==============================
  General Styling & Decorative Elements
 ================================*/
 body {
-  background-color: rgba(255, 254, 224, 1);  /* Fallback */
+  background-color: rgba(255, 254, 224, 1);
+  /* Fallback */
   background: repeating-linear-gradient(rgba(255, 254, 224, 1),
-                                        rgba(255, 254, 224, 1) 24px,
-                                        rgba(145, 152, 229, .2) 24px,
-                                        rgba(145, 152, 229, .2) 25px);
+      rgba(255, 254, 224, 1) 24px,
+      rgba(145, 152, 229, .2) 24px,
+      rgba(145, 152, 229, .2) 25px);
 
   /* by setting height, we solve problem of
   background pattern repeating itself with
@@ -34,27 +33,24 @@ div.red-line {
   width: 8rem;
 }
 
-
 /*==============================
  Header
 ================================*/
 div.header {
- margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 h1 {
- margin-top: -1rem;
- margin-bottom: -1rem;
- margin-left: 2rem;
- padding-top: 2rem;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+  margin-left: 2rem;
+  padding-top: 2rem;
 }
 
 img.scribble-underline {
   padding-left: 1.5rem;
   width: 12rem;
 }
-
-
 
 /*==============================
  Input Form
@@ -77,7 +73,7 @@ form.todo-item-form {
 
 /* not using at the moment but keep in case you change mind */
 .submit-button {
-/*  background-color: rgba(0, 0, 0, 1);
+  /*  background-color: rgba(0, 0, 0, 1);
   border: none;
   color: white;
   padding: 10px 25px;
@@ -91,7 +87,8 @@ form.todo-item-form {
 }
 
 .submit-button:hover {
-  background-color: rgba(0, 0, 0, 0.7); /* Black */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* Black */
 }
 
 /*==============================
@@ -128,8 +125,6 @@ li {
   cursor: pointer;
 }
 
-
-
 /*==============================
  Strike-through line
 ================================*/
@@ -142,25 +137,37 @@ span {
 .strikethrough:before {
   content: '';
   position: absolute;
-  height: 5px; /* the thickness of the line */
+  height: 5px;
+  /* the thickness of the line */
   top: 50%;
   margin-top: -0.5px;
-  background: #000; /* the color of the line */
+  background: #000;
+  /* the color of the line */
   left: -3.5px;
   width: 105%;
   animation: drawline 0.4s;
 }
-  /* Safari 4.0 - 8.0 */
-  @-webkit-keyframes drawline {
-      from {width: 0;}
-      to {width: 105%;}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes drawline {
+  from {
+    width: 0;
   }
 
-  @keyframes drawline {
-      from {width: 0;}
-      to {width: 105%;}
+  to {
+    width: 105%;
+  }
+}
+
+@keyframes drawline {
+  from {
+    width: 0;
   }
 
+  to {
+    width: 105%;
+  }
+}
 
 /*==============================
  Footer
@@ -175,14 +182,14 @@ footer {
   font-size: 80%;
 }
 
-span.footer-link a{
+span.footer-link a {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.9);
   /*padding-left: .5rem;*/
   /*font-weight: bold;*/
 }
 
-span.footer-link a:hover{
+span.footer-link a:hover {
   color: rgba(0, 0, 0, 0.5);
 }
 
@@ -216,51 +223,16 @@ span.footer-link a:hover{
     width: 10rem;
   }
 
-   .input-field {
-     margin-left: 1rem;
-   }
+  .input-field {
+    margin-left: 1rem;
+  }
 
-   button.delete-x {
-     margin-left: .5rem;
-   }
+  button.delete-x {
+    margin-left: .5rem;
+  }
 
-   footer {
+  footer {
     /*position: fixed;*/
-     margin: 0 auto;
-   }
-
-
-
+    margin: 0 auto;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
