@@ -213,7 +213,8 @@ export default class App extends Component {
        <Form parentState={this.state}
              newTodo={this.state}
              handleChange={this.handleChange}
-             handleSubmit={this.handleSubmit}/>
+             handleSubmit={this.handleSubmit}
+             />
 
        <ListOfToDos parentState={this.state}
                     handleClickRemoveItem={this.handleClickRemoveItem}
