@@ -21,8 +21,9 @@ body {
 }
 
 #todoodles {
-  height: 100vh;
-  padding: 0 1rem 0;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
   margin-bottom: 0;
 }
 
@@ -225,9 +226,12 @@ span.footer-link a:hover{
 @media only screen and (max-width: 600px) {
 
   body {
-    padding: 1rem 1rem 1rem 1rem;
     top: 1rem;
-    font-size: 120%
+    font-size: 160%
+  }
+
+  #todoodles {
+    padding: 4rem 1rem 1rem 1rem;
   }
 
   div.header {
