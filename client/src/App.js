@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { fabric } from "fabric";
 import Header from './Header';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
@@ -30,6 +31,8 @@ export default class App extends Component {
     this.handleAddStrikethrough = this.handleAddStrikethrough.bind(this);
   }
 
+
+
   //  ==================================================================
   //  1) Once React has mounted and is ready...
   //  2) fire the axios GET requset (the axiosGetToDos function)
@@ -38,6 +41,7 @@ export default class App extends Component {
       console.log("the data source URL is:", this.state.dataSource)
       this.axiosGetToDos();
     }
+
 
   //  ==================================================================
   //  GET - RESTfull API call
@@ -146,7 +150,7 @@ export default class App extends Component {
     }
 
   //  ==================================================================
-  //  PUT(Edit) - Strikethrough line
+  //  PUT(Edit) - Strike-through line
   //  ==================================================================
    handleAddStrikethrough(index) {
      console.log("handleAddStrikethrough click with index of:", index)
@@ -199,32 +203,66 @@ export default class App extends Component {
 
   }
 
-
-
 //  ==================================================================
 //  And finally, the render
 //  ==================================================================
   render() {
+
+  //  ==================================================================
+  //  The drawing part
+  // http://jsfiddle.net/ghostoy/wTmFE/1/
+  //  ==================================================================
+    let canvas = new fabric.Canvas('canvas');
+    canvas.isDrawingMode = true;
+    canvas.freeDrawingBrush.width = 5;
+    console.log("canvas", canvas);
+
+
+
+
+
+
+
     return (
-      <div className="App red-line">
 
-       <Header />
 
-       <Form parentState={this.state}
+      <div className="App">
+
+        <canvas
+          id="canvas"
+          width="100vw"
+          height="100vh"
+          style={{
+            border: "5px solid purple",
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100vw",
+            height: "100vh"
+          }}
+        />
+
+        <section className="red-line">
+
+           <Header />
+
+           <Form
+             parentState={this.state}
              newTodo={this.state}
              handleChange={this.handleChange}
              handleSubmit={this.handleSubmit}
-             />
+            />
 
-       <ListOfToDos parentState={this.state}
-                    handleClickRemoveItem={this.handleClickRemoveItem}
-                    axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
-                    handleAddStrikethrough={this.handleAddStrikethrough}
-                    />
+           <ListOfToDos
+             parentState={this.state}
+             handleClickRemoveItem={this.handleClickRemoveItem}
+             axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
+             handleAddStrikethrough={this.handleAddStrikethrough}
+           />
 
+           <Footer />
 
-       <Footer />
-
+        </section>
       </div>
     );
   }
