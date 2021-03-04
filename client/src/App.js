@@ -226,23 +226,15 @@ export default class App extends Component {
     return (
 
 
-      <div className="App">
+      <div>
 
         <canvas
           id="canvas"
-          width="100vw"
-          height="100vh"
-          style={{
-            border: "5px solid purple",
-            position: "absolute",
-            left: 0,
-            top: 0,
-            width: "100vw",
-            height: "100vh"
-          }}
+          width="1000px"
+          height="1000px"
         />
 
-        <section className="red-line">
+        <section id="todoodles" className="red-line">
 
            <Header />
 
