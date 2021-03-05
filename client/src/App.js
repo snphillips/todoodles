@@ -214,7 +214,8 @@ export default class App extends Component {
   //  ==================================================================
     let canvas = new fabric.Canvas('canvas');
     canvas.isDrawingMode = true;
-    canvas.freeDrawingBrush.width = 5;
+    canvas.freeDrawingBrush.width = 2;
+    canvas.freeDrawingBrush.color = "#04067d";
     console.log("canvas", canvas);
 
 
@@ -228,11 +229,6 @@ export default class App extends Component {
 
       <div>
 
-        <canvas
-          id="canvas"
-          width="1000px"
-          height="1000px"
-        />
 
         <section id="todoodles" className="red-line">
 
@@ -255,6 +251,11 @@ export default class App extends Component {
            <Footer />
 
         </section>
+        <canvas
+          id="canvas"
+          width="1000px"
+          height="1000px"
+        />
       </div>
     );
   }
