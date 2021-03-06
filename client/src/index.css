@@ -63,14 +63,6 @@ canvas#canvas {
 }
 
 
-
-
-
-
-
-
-
-
 /*==============================
  Header
 ================================*/
@@ -80,7 +72,7 @@ canvas#canvas {
 
 h1 {
  margin-top: -1rem;
- margin-bottom: -1rem;
+ margin-bottom: -.5rem;
  margin-left: 2rem;
  padding-top: 2rem;
 }
@@ -131,6 +123,15 @@ input.todo-item-form {
 .submit-button:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Black */
 }
+/*==============================
+ list
+================================*/
+.todolist {
+  position: absolute;
+  /*top: 100px;*/
+  top: 11%;
+}
+
 
 /*==============================
  X delete buttons

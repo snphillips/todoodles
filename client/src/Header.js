@@ -14,10 +14,3 @@ export default class Header extends Component {
     );
   }
 }
-
-
-
-       // <img className="scribble-underline"
-       //      src="https://i.imgur.com/EGh0f7V.png"
-       //      alt=""
-       // />

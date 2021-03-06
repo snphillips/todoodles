@@ -6,16 +6,16 @@ export default class Form extends Component {
 
       <form onSubmit={this.props.handleSubmit}>
 
-        <input className="input-field"
-               id="todo"
-               name="todo"
-               type="text"
-               placeholder="add new todo to list"
-               value={this.props.newToDo}
-               // onKeyPress allows user to hit "enter" to submit form
-               onKeyPress={this.props.handleChange}
-               />
-
+        <input
+          className="input-field"
+          id="todo"
+          name="todo"
+          type="text"
+          placeholder="add new todo to list"
+          value={this.props.newToDo}
+           // onKeyPress allows user to hit "enter" to submit form
+          onKeyPress={this.props.handleChange}
+        />
 
       </form>
 
