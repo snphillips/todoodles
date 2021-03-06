@@ -95,8 +95,8 @@ img.scribble-underline {
 /*==============================
  Input Form
 ================================*/
-form.todo-item-form {
-  display: inline;
+input.todo-item-form {
+  /*display: inline;*/
 }
 
 .input-field {
@@ -109,6 +109,8 @@ form.todo-item-form {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  position:absolute;
+  z-index: 10;
 }
 
 /* not using at the moment but keep in case you change mind */
@@ -133,19 +135,19 @@ form.todo-item-form {
 /*==============================
  X delete buttons
 ================================*/
-button.delete-x {
+.delete-x {
   border: 0;
   margin-left: 1.5rem;
   margin-right: 1.3rem;
-  font-style: bold;
   background-color: rgba(255, 254, 224, 0.001);
-  cursor: pointer;
   font-size: 90%;
   font-weight: 700;
+  cursor: pointer;
 }
 
-button.delete-x:hover {
+.delete-x:hover {
   color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
 }
 
 /*==============================

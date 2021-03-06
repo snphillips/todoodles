@@ -423,29 +423,30 @@ export default class App extends Component {
 
         <span className="red-line"/>
 
-        <canvas id="canvas" width="500" height="500"></canvas>
 
-          <div className="content-container">
+        <div className="content-container">
 
-           <Header />
+         <Header />
 
-           <Form
-             parentState={this.state}
-             newTodo={this.state}
-             handleChange={this.handleChange}
-             handleSubmit={this.handleSubmit}
-            />
+         <Form
+           parentState={this.state}
+           newTodo={this.state}
+           handleChange={this.handleChange}
+           handleSubmit={this.handleSubmit}
+          />
 
-           </div>
+         <ListOfToDos
+           parentState={this.state}
+           handleClickRemoveItem={this.handleClickRemoveItem}
+           axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
+           handleAddStrikethrough={this.handleAddStrikethrough}
+         />
+
+         </div>
 
 
+        <canvas id="canvas" width="500" height="500"/>
 
-           <ListOfToDos
-             parentState={this.state}
-             handleClickRemoveItem={this.handleClickRemoveItem}
-             axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
-             handleAddStrikethrough={this.handleAddStrikethrough}
-           />
 
 
 

@@ -9,15 +9,15 @@ export default class Header extends Component {
 
       <h1>todoodles</h1>
 
-       <img className="scribble-underline"
-            src="https://i.imgur.com/EGh0f7V.png"
-            alt=""
-       />
 
      </div>
     );
   }
 }
 
-      // <DayOfWeek />
 
+
+       // <img className="scribble-underline"
+       //      src="https://i.imgur.com/EGh0f7V.png"
+       //      alt=""
+       // />
