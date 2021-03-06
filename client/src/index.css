@@ -239,11 +239,20 @@ span.footer-link a:hover{
 
   body {
     top: 1rem;
-    font-size: 160%
+    font-size: 100%
   }
 
   #todoodles {
-    padding: 4rem 1rem 1rem 1rem;
+    padding: 1rem;
+  }
+
+  .content-container {
+    margin-left: 1rem;
+    margin-top: 1rem;
+  }
+
+  .red-line {
+    left: 12%;
   }
 
   div.header {
@@ -253,6 +262,7 @@ span.footer-link a:hover{
 
   h1 {
     padding-top: 0rem;
+    margin: 0 auto;
     /*text-align: center;*/
   }
 
@@ -264,12 +274,17 @@ span.footer-link a:hover{
      margin-left: 1rem;
    }
 
+   .todolist {
+      top: 21%;
+   }
+
    button.delete-x {
      margin-left: .5rem;
+     margin-right: .5rem;
    }
 
    footer {
-    /*position: fixed;*/
+     padding: 1rem 0;
      margin: 0 auto;
    }
 
