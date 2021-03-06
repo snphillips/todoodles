@@ -213,19 +213,29 @@ export default class App extends Component {
 
 
   doodleCanvas() {
+    "use strict";
     const canvas = document.getElementById("canvas");
-    console.log("canvas", canvas);
+    // the canvas will be the height & width of the window
+    // sadly, can't be resized.
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     let context = '';
-    var clickX = [];
-    var clickY = [];
-    var clickDrag = [];
-    var paint;
+    let clickX = [];
+    let clickY = [];
+    let clickDrag = [];
+    let paint;
     canvas.addEventListener('mousedown', mouseWins);
     canvas.addEventListener('touchstart', touchWins);
     context = canvas.getContext("2d");
-    context.strokeStyle = "#16328c";
+    context.lineWidth = 1;
+    context.shadowBlur = 1.5;
+    context.shadowColor = "#16328c";
     context.lineJoin = "round";
-    context.lineWidth = 2;
+    context.fillStyle = "#16328c";
+    context.strokeStyle = "#16328c";
+    context.imageSmoothingQuality = "high";
+    context.lineCap = "round";
+    console.log("context", context);
 
     /**
      * Add information where the user clicked at.
@@ -247,7 +257,7 @@ export default class App extends Component {
       // Clears the canvas
       context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
-      for (var i = 0; i < clickX.length; i += 1) {
+      for (let i = 0; i < clickX.length; i += 1) {
           if (!clickDrag[i] && i == 0) {
               context.beginPath();
               context.moveTo(clickX[i], clickY[i]);
@@ -270,7 +280,7 @@ export default class App extends Component {
     * @return {void}
     */
     function drawNew() {
-      var i = clickX.length - 1
+      let i = clickX.length - 1
       if (!clickDrag[i]) {
           if (clickX.length == 0) {
               context.beginPath();
@@ -291,8 +301,8 @@ export default class App extends Component {
 
   function mouseDownEventHandler(e) {
       paint = true;
-      var x = e.pageX - canvas.offsetLeft;
-      var y = e.pageY - canvas.offsetTop;
+      let x = e.pageX - canvas.offsetLeft;
+      let y = e.pageY - canvas.offsetTop;
       if (paint) {
           addClick(x, y, false);
           drawNew();
@@ -313,8 +323,8 @@ export default class App extends Component {
     }
 
     function mouseMoveEventHandler(e) {
-      var x = e.pageX - canvas.offsetLeft;
-      var y = e.pageY - canvas.offsetTop;
+      let x = e.pageX - canvas.offsetLeft;
+      let y = e.pageY - canvas.offsetTop;
       if (paint) {
           addClick(x, y, true);
           drawNew();
@@ -412,6 +422,9 @@ export default class App extends Component {
         <section id="todoodles">
 
         <span className="red-line"/>
+
+        <canvas id="canvas" width="500" height="500"></canvas>
+
           <div className="content-container">
 
            <Header />
@@ -423,6 +436,10 @@ export default class App extends Component {
              handleSubmit={this.handleSubmit}
             />
 
+           </div>
+
+
+
            <ListOfToDos
              parentState={this.state}
              handleClickRemoveItem={this.handleClickRemoveItem}
@@ -430,8 +447,8 @@ export default class App extends Component {
              handleAddStrikethrough={this.handleAddStrikethrough}
            />
 
-           </div>
-        <canvas id="canvas" width="400" height="400"/>
+
+
 
 
 
