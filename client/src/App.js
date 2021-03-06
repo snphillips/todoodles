@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { fabric } from "fabric";
+// import { fabric } from "fabric";
 import Header from './Header';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
 import Footer from './Footer';
+
+
+
+
+
+
 
 
 export default class App extends Component {
@@ -29,17 +35,19 @@ export default class App extends Component {
     this.axiosPutToDo = this.axiosPutToDo.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.handleAddStrikethrough = this.handleAddStrikethrough.bind(this);
+    this.doodleCanvas = this.doodleCanvas.bind(this);
   }
 
 
 
   //  ==================================================================
   //  1) Once React has mounted and is ready...
-  //  2) fire the axios GET requset (the axiosGetToDos function)
+  //  2) fire the axios GET request (the axiosGetToDos function)
   //  ==================================================================
     componentDidMount() {
       console.log("the data source URL is:", this.state.dataSource)
       this.axiosGetToDos();
+      this.doodleCanvas();
     }
 
 
@@ -203,23 +211,195 @@ export default class App extends Component {
 
   }
 
+
+  doodleCanvas() {
+    const canvas = document.getElementById("canvas");
+    console.log("canvas", canvas);
+    let context = '';
+    var clickX = [];
+    var clickY = [];
+    var clickDrag = [];
+    var paint;
+    canvas.addEventListener('mousedown', mouseWins);
+    canvas.addEventListener('touchstart', touchWins);
+    context = canvas.getContext("2d");
+    context.strokeStyle = "#16328c";
+    context.lineJoin = "round";
+    context.lineWidth = 2;
+
+    /**
+     * Add information where the user clicked at.
+     * @param {number} x
+     * @param {number} y
+     * @return {boolean} dragging
+     */
+    function addClick(x, y, dragging) {
+      clickX.push(x);
+      clickY.push(y);
+      clickDrag.push(dragging);
+    }
+
+
+    /**
+     * Redraw the complete canvas.
+     */
+    function redraw() {
+      // Clears the canvas
+      context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
+      for (var i = 0; i < clickX.length; i += 1) {
+          if (!clickDrag[i] && i == 0) {
+              context.beginPath();
+              context.moveTo(clickX[i], clickY[i]);
+              context.stroke();
+          } else if (!clickDrag[i] && i > 0) {
+              context.closePath();
+
+              context.beginPath();
+              context.moveTo(clickX[i], clickY[i]);
+              context.stroke();
+          } else {
+              context.lineTo(clickX[i], clickY[i]);
+              context.stroke();
+          }
+      }
+    }
+
+    /**
+    * Draw the newly added point.
+    * @return {void}
+    */
+    function drawNew() {
+      var i = clickX.length - 1
+      if (!clickDrag[i]) {
+          if (clickX.length == 0) {
+              context.beginPath();
+              context.moveTo(clickX[i], clickY[i]);
+              context.stroke();
+          } else {
+              context.closePath();
+
+              context.beginPath();
+              context.moveTo(clickX[i], clickY[i]);
+              context.stroke();
+          }
+      } else {
+          context.lineTo(clickX[i], clickY[i]);
+          context.stroke();
+      }
+    }
+
+  function mouseDownEventHandler(e) {
+      paint = true;
+      var x = e.pageX - canvas.offsetLeft;
+      var y = e.pageY - canvas.offsetTop;
+      if (paint) {
+          addClick(x, y, false);
+          drawNew();
+      }
+  }
+
+    function touchstartEventHandler(e) {
+      paint = true;
+      if (paint) {
+          addClick(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop, false);
+          drawNew();
+      }
+    }
+
+    function mouseUpEventHandler(e) {
+      context.closePath();
+      paint = false;
+    }
+
+    function mouseMoveEventHandler(e) {
+      var x = e.pageX - canvas.offsetLeft;
+      var y = e.pageY - canvas.offsetTop;
+      if (paint) {
+          addClick(x, y, true);
+          drawNew();
+      }
+    }
+
+    function touchMoveEventHandler(e) {
+      if (paint) {
+          addClick(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop, true);
+          drawNew();
+      }
+    }
+
+    function setUpHandler(isMouseandNotTouch, detectEvent) {
+        removeRaceHandlers();
+        if (isMouseandNotTouch) {
+            canvas.addEventListener('mouseup', mouseUpEventHandler);
+            canvas.addEventListener('mousemove', mouseMoveEventHandler);
+            canvas.addEventListener('mousedown', mouseDownEventHandler);
+            mouseDownEventHandler(detectEvent);
+        } else {
+            canvas.addEventListener('touchstart', touchstartEventHandler);
+            canvas.addEventListener('touchmove', touchMoveEventHandler);
+            canvas.addEventListener('touchend', mouseUpEventHandler);
+            touchstartEventHandler(detectEvent);
+        }
+    }
+
+    function mouseWins(e) {
+      setUpHandler(true, e);
+    }
+
+    function touchWins(e) {
+      setUpHandler(false, e);
+    }
+
+    function removeRaceHandlers() {
+      canvas.removeEventListener('mousedown', mouseWins)
+      canvas.removeEventListener('touchstart', touchWins)
+    }
+
+    canvas.addEventListener('mousedown', mouseWins);
+    canvas.addEventListener('touchstart', touchWins);
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //  ==================================================================
+
 //  And finally, the render
 //  ==================================================================
   render() {
 
   //  ==================================================================
   //  The drawing part
-  // http://jsfiddle.net/ghostoy/wTmFE/1/
+  //  http://fabricjs.com/fabric-intro-part-4#free_drawing
+  //  https://stackoverflow.com/questions/23258284/collision-detection-fabrics-js
+  //  http://jsfiddle.net/MartinThoma/vSDTW/2/
   //  ==================================================================
-    let canvas = new fabric.Canvas('canvas');
-    canvas.isDrawingMode = true;
-    canvas.freeDrawingBrush.width = 2;
-    canvas.freeDrawingBrush.color = "#04067d";
-    console.log("canvas", canvas);
-
-
-
+    // let canvas = new fabric.Canvas('canvas');
+    // canvas.isDrawingMode = true;
+    // canvas.freeDrawingBrush.width = 2;
+    // canvas.freeDrawingBrush.color = "#04067d";
+    // console.log("canvas", canvas);
+    // <canvas
+    //   id="canvas"
+    //   width="1000px"
+    //   height="1000px"
+    // />
 
 
 
@@ -229,8 +409,10 @@ export default class App extends Component {
 
       <div>
 
+        <section id="todoodles">
 
-        <section id="todoodles" className="red-line">
+        <span className="red-line"/>
+          <div className="content-container">
 
            <Header />
 
@@ -248,14 +430,13 @@ export default class App extends Component {
              handleAddStrikethrough={this.handleAddStrikethrough}
            />
 
-           <Footer />
+           </div>
+        <canvas id="canvas" width="400" height="400"/>
 
+
+
+           <Footer />
         </section>
-        <canvas
-          id="canvas"
-          width="1000px"
-          height="1000px"
-        />
       </div>
     );
   }

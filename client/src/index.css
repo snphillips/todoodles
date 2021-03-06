@@ -4,11 +4,6 @@
  General Styling & Decorative Elements
 ================================*/
 body {
-  background-color: rgba(255, 254, 224, 1);  /* Fallback */
-  background: repeating-linear-gradient(rgba(255, 254, 224, 1),
-                                        rgba(255, 254, 224, 1) 24px,
-                                        rgba(145, 152, 229, .2) 24px,
-                                        rgba(145, 152, 229, .2) 25px);
 
   /* by setting height, we solve problem of
   background pattern repeating itself with
@@ -21,10 +16,15 @@ body {
 }
 
 #todoodles {
-  height: 100%;
-  width: 100%;
-  padding: 1rem;
-  margin-bottom: 0;
+  background-color: rgba(255, 254, 224, 1);  /* Fallback */
+  background: repeating-linear-gradient(rgba(255, 254, 224, 1),
+                                        rgba(255, 254, 224, 1) 24px,
+                                        rgba(145, 152, 229, .2) 24px,
+                                        rgba(145, 152, 229, .2) 25px);
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
 }
 
 .red-line {
@@ -33,6 +33,11 @@ body {
   position: absolute;
   top: 0;
   left: 6rem;
+}
+
+.content-container {
+  margin-left: 5rem;
+  /*display: none;*/
 }
 
 /* not using now but keep for future*/
@@ -44,15 +49,15 @@ body {
  Drawing Canvas via Fabric.js
 ================================*/
 canvas#canvas {
-  display: inline-block;
-  /*border: 5px solid purple;*/
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  max-height: 100%;
+  /*display: inline-block;*/
+  border: 5px solid purple;
+  /*position: absolute;*/
+  /*left: 0;*/
+  /*top: 0;*/
+  /*width: 100%;*/
+  /*max-width: 100%;*/
+  /*height: 100%;*/
+  /*max-height: 100%;*/
 }
 
 
