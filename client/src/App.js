@@ -211,7 +211,9 @@ export default class App extends Component {
 
   }
 
-
+  //  ==================================================================
+  //  The canvas drawing part
+  //  ==================================================================
   doodleCanvas() {
     "use strict";
     const canvas = document.getElementById("canvas");
@@ -258,20 +260,20 @@ export default class App extends Component {
       context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
       for (let i = 0; i < clickX.length; i += 1) {
-          if (!clickDrag[i] && i == 0) {
-              context.beginPath();
-              context.moveTo(clickX[i], clickY[i]);
-              context.stroke();
-          } else if (!clickDrag[i] && i > 0) {
-              context.closePath();
+        if (!clickDrag[i] && i == 0) {
+            context.beginPath();
+            context.moveTo(clickX[i], clickY[i]);
+            context.stroke();
+        } else if (!clickDrag[i] && i > 0) {
+            context.closePath();
 
-              context.beginPath();
-              context.moveTo(clickX[i], clickY[i]);
-              context.stroke();
-          } else {
-              context.lineTo(clickX[i], clickY[i]);
-              context.stroke();
-          }
+            context.beginPath();
+            context.moveTo(clickX[i], clickY[i]);
+            context.stroke();
+        } else {
+            context.lineTo(clickX[i], clickY[i]);
+            context.stroke();
+        }
       }
     }
 
@@ -282,24 +284,24 @@ export default class App extends Component {
     function drawNew() {
       let i = clickX.length - 1
       if (!clickDrag[i]) {
-          if (clickX.length == 0) {
-              context.beginPath();
-              context.moveTo(clickX[i], clickY[i]);
-              context.stroke();
-          } else {
-              context.closePath();
+        if (clickX.length == 0) {
+            context.beginPath();
+            context.moveTo(clickX[i], clickY[i]);
+            context.stroke();
+        } else {
+            context.closePath();
 
-              context.beginPath();
-              context.moveTo(clickX[i], clickY[i]);
-              context.stroke();
-          }
+            context.beginPath();
+            context.moveTo(clickX[i], clickY[i]);
+            context.stroke();
+        }
       } else {
           context.lineTo(clickX[i], clickY[i]);
           context.stroke();
       }
     }
 
-  function mouseDownEventHandler(e) {
+    function mouseDownEventHandler(e) {
       paint = true;
       let x = e.pageX - canvas.offsetLeft;
       let y = e.pageY - canvas.offsetTop;
@@ -307,13 +309,13 @@ export default class App extends Component {
           addClick(x, y, false);
           drawNew();
       }
-  }
+    }
 
     function touchstartEventHandler(e) {
       paint = true;
       if (paint) {
-          addClick(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop, false);
-          drawNew();
+        addClick(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop, false);
+        drawNew();
       }
     }
 
@@ -326,31 +328,31 @@ export default class App extends Component {
       let x = e.pageX - canvas.offsetLeft;
       let y = e.pageY - canvas.offsetTop;
       if (paint) {
-          addClick(x, y, true);
-          drawNew();
+        addClick(x, y, true);
+        drawNew();
       }
     }
 
     function touchMoveEventHandler(e) {
       if (paint) {
-          addClick(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop, true);
-          drawNew();
+        addClick(e.touches[0].pageX - canvas.offsetLeft, e.touches[0].pageY - canvas.offsetTop, true);
+        drawNew();
       }
     }
 
     function setUpHandler(isMouseandNotTouch, detectEvent) {
-        removeRaceHandlers();
-        if (isMouseandNotTouch) {
-            canvas.addEventListener('mouseup', mouseUpEventHandler);
-            canvas.addEventListener('mousemove', mouseMoveEventHandler);
-            canvas.addEventListener('mousedown', mouseDownEventHandler);
-            mouseDownEventHandler(detectEvent);
-        } else {
-            canvas.addEventListener('touchstart', touchstartEventHandler);
-            canvas.addEventListener('touchmove', touchMoveEventHandler);
-            canvas.addEventListener('touchend', mouseUpEventHandler);
-            touchstartEventHandler(detectEvent);
-        }
+      removeRaceHandlers();
+      if (isMouseandNotTouch) {
+        canvas.addEventListener('mouseup', mouseUpEventHandler);
+        canvas.addEventListener('mousemove', mouseMoveEventHandler);
+        canvas.addEventListener('mousedown', mouseDownEventHandler);
+        mouseDownEventHandler(detectEvent);
+      } else {
+        canvas.addEventListener('touchstart', touchstartEventHandler);
+        canvas.addEventListener('touchmove', touchMoveEventHandler);
+        canvas.addEventListener('touchend', mouseUpEventHandler);
+        touchstartEventHandler(detectEvent);
+      }
     }
 
     function mouseWins(e) {
@@ -368,92 +370,38 @@ export default class App extends Component {
 
     canvas.addEventListener('mousedown', mouseWins);
     canvas.addEventListener('touchstart', touchWins);
-
   }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //  ==================================================================
-
 //  And finally, the render
 //  ==================================================================
   render() {
 
-  //  ==================================================================
-  //  The drawing part
-  //  http://fabricjs.com/fabric-intro-part-4#free_drawing
-  //  https://stackoverflow.com/questions/23258284/collision-detection-fabrics-js
-  //  http://jsfiddle.net/MartinThoma/vSDTW/2/
-  //  ==================================================================
-    // let canvas = new fabric.Canvas('canvas');
-    // canvas.isDrawingMode = true;
-    // canvas.freeDrawingBrush.width = 2;
-    // canvas.freeDrawingBrush.color = "#04067d";
-    // console.log("canvas", canvas);
-    // <canvas
-    //   id="canvas"
-    //   width="1000px"
-    //   height="1000px"
-    // />
-
-
-
-
     return (
 
-
-      <div>
-
+      <div id="app">
         <section id="todoodles">
-
-        <span className="red-line"/>
-
-
-        <div className="content-container">
-
-         <Header />
-
-         <Form
-           parentState={this.state}
-           newTodo={this.state}
-           handleChange={this.handleChange}
-           handleSubmit={this.handleSubmit}
-          />
-
-         <ListOfToDos
-           parentState={this.state}
-           handleClickRemoveItem={this.handleClickRemoveItem}
-           axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
-           handleAddStrikethrough={this.handleAddStrikethrough}
-         />
-
-         </div>
-
-
-        <canvas id="canvas" width="500" height="500"/>
-
-
-
-
-
-
-
-           <Footer />
+          <span className="red-line"/>
+          <div className="content-container">
+           <Header />
+           <Form
+             parentState={this.state}
+             newTodo={this.state}
+             handleChange={this.handleChange}
+             handleSubmit={this.handleSubmit}
+            />
+           <ListOfToDos
+             parentState={this.state}
+             handleClickRemoveItem={this.handleClickRemoveItem}
+             axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
+             handleAddStrikethrough={this.handleAddStrikethrough}
+           />
+           </div>
+          <canvas id="canvas" width="100" height="100"/>
+          <Footer />
         </section>
       </div>
     );

@@ -22,9 +22,3 @@ export default class Form extends Component {
     );
   }
 }
-
-               // onChange={this.props.handleChange}
-
-        // <input className="submit-button"
-               // type="submit"
-               // value="submit" />
