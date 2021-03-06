@@ -67,6 +67,7 @@ div#app {
   position: absolute;
   left: 0;
   top: 0;
+  cursor: url('/pencil.png') 0 13, crosshair;
 }
 
 
@@ -135,7 +136,7 @@ input.todo-item-form {
 ================================*/
 .todolist {
   position: absolute;
-  top: 13%;
+  top: 123px;
   z-index: 1;
 }
 
@@ -171,7 +172,7 @@ li {
 }
 
 .todo-item {
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 
 /*==============================
@@ -235,7 +236,7 @@ span.footer-link a:hover{
  Media Queries
 ********************************/
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
 
   body {
     top: 1rem;

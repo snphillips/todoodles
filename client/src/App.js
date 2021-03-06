@@ -217,10 +217,14 @@ export default class App extends Component {
   doodleCanvas() {
     "use strict";
     const canvas = document.getElementById("canvas");
+    const paperWidth = document.getElementById("todoodles").offsetWidth;
+    const paperHeight = document.getElementById("todoodles").offsetHeight;
     // the canvas will be the height & width of the window
     // sadly, can't be resized.
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // canvas.width = window.innerWidth;
+    canvas.width = paperWidth;
+    // canvas.height = window.innerHeight;
+    canvas.height = paperHeight;
     let context = '';
     let clickX = [];
     let clickY = [];
@@ -230,14 +234,16 @@ export default class App extends Component {
     canvas.addEventListener('touchstart', touchWins);
     context = canvas.getContext("2d");
     context.lineWidth = 1;
-    context.shadowBlur = 1.5;
-    context.shadowColor = "#16328c";
+    context.shadowBlur = 1.2;
+    context.shadowColor = "#000";
     context.lineJoin = "round";
-    context.fillStyle = "#16328c";
-    context.strokeStyle = "#16328c";
+    context.fillStyle = "#000";
+    context.strokeStyle = "#000";
     context.imageSmoothingQuality = "high";
     context.lineCap = "round";
     console.log("context", context);
+    console.log("paperWidth", paperWidth)
+    console.log("paperHeight", paperHeight)
 
     /**
      * Add information where the user clicked at.
