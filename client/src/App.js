@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import { fabric } from "fabric";
 import Header from './Header';
 import Form from './Form';
 import ListOfToDos from './ListOfToDos';
 import Footer from './Footer';
-
-
-
-
-
 
 
 
@@ -24,6 +18,8 @@ export default class App extends Component {
       newToDo: '',
       selectedToDelete: '',
       selectedToToggleStrikethrough: '',
+      toDoItemDomArray: [],
+      toDoItemBoxArray: []
     };
 
  // This binding is necessary to make `this` work in the callback
@@ -37,6 +33,9 @@ export default class App extends Component {
     this.handleAddStrikethrough = this.handleAddStrikethrough.bind(this);
     this.doodleCanvas = this.doodleCanvas.bind(this);
   }
+  // end of constructor
+  // ***************************
+
 
 
 
@@ -45,10 +44,11 @@ export default class App extends Component {
   //  2) fire the axios GET request (the axiosGetToDos function)
   //  ==================================================================
     componentDidMount() {
-      console.log("the data source URL is:", this.state.dataSource)
+      // console.log("the data source URL is:", this.state.dataSource)
       this.axiosGetToDos();
       this.doodleCanvas();
     }
+
 
 
   //  ==================================================================
@@ -211,17 +211,102 @@ export default class App extends Component {
 
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //  ==================================================================
   //  The canvas drawing part
+  //  Adapted from: http://jsfiddle.net/MartinThoma/vSDTW/2/
   //  ==================================================================
   doodleCanvas() {
-    "use strict";
+    // "use strict";
     const canvas = document.getElementById("canvas");
-    const paperWidth = document.getElementById("todoodles").offsetWidth;
-    const paperHeight = document.getElementById("todoodles").offsetHeight;
+    let paperWidth = document.getElementById("todoodles").offsetWidth;
+    let paperHeight = document.getElementById("todoodles").offsetHeight;
+
+
+      // // =========================
+      // // collision detection
+      // // =========================
+      // // get 2D context
+      //  var context = canvas.getContext('2d');
+      //  // var context2 = canvas.getContext('2d');
+
+      // let testBox = {x:40, y:280, width: 250, height: 20 };
+      // // let testBox = toDoItemBoxArray[4]
+      // console.log("testBox", testBox)
+
+      // // place holders for mouse x,y position
+      // var pencilX = 0;
+      // var pencilY = 0;
+
+      // // loop
+      // setInterval(onTimerTick, 33);
+
+      // // render loop
+      // function onTimerTick() {
+      //   // clear the canvas
+      //   // canvas.width = canvas.width;
+
+      //   // see if a collision happened
+      //   var collision = contains(testBox, pencilX, pencilY);
+      //   // var collision2 = contains(this.toDoItemBoxArray, pencilX, pencilY);
+      //   var color = collision ? "purple" : "blue"
+
+      //   // render out square
+      //   context.fillStyle = color;
+      //   // context2.fillStyle = color;
+      //   context.fillRect (testBox.x,testBox.y,testBox.width,testBox.height);
+      //   // context2.fillRect (testBox.x,testBox.y,testBox.width,testBox.height);
+      //   }
+
+      //   // update mouse position
+      //   canvas.onmousemove = function(e) {
+      //       pencilX = e.offsetX;
+      //       pencilY = e.offsetY;
+      // }
+
+      // // test for collision between an object and a point
+      // function contains(target, x, y) {
+      //   return (
+      //     // left
+      //     x >= target.x &&
+      //     // right
+      //     x <= target.x + target.width &&
+      //     // top
+      //     y >= target.y &&
+      //     // bottom
+      //     y <= target.y + target.height
+      //          );
+      // }
+
+
+
+
+
+
+
+
+
+
     // the canvas will be the height & width of the window
     // sadly, can't be resized.
     // canvas.width = window.innerWidth;
+    canvas.width = paperWidth;
     canvas.width = paperWidth;
     // canvas.height = window.innerHeight;
     canvas.height = paperHeight;
@@ -245,6 +330,8 @@ export default class App extends Component {
     console.log("paperWidth", paperWidth)
     console.log("paperHeight", paperHeight)
 
+
+
     /**
      * Add information where the user clicked at.
      * @param {number} x
@@ -259,38 +346,13 @@ export default class App extends Component {
 
 
     /**
-     * Redraw the complete canvas.
-     */
-    function redraw() {
-      // Clears the canvas
-      context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-
-      for (let i = 0; i < clickX.length; i += 1) {
-        if (!clickDrag[i] && i == 0) {
-            context.beginPath();
-            context.moveTo(clickX[i], clickY[i]);
-            context.stroke();
-        } else if (!clickDrag[i] && i > 0) {
-            context.closePath();
-
-            context.beginPath();
-            context.moveTo(clickX[i], clickY[i]);
-            context.stroke();
-        } else {
-            context.lineTo(clickX[i], clickY[i]);
-            context.stroke();
-        }
-      }
-    }
-
-    /**
     * Draw the newly added point.
     * @return {void}
     */
     function drawNew() {
       let i = clickX.length - 1
       if (!clickDrag[i]) {
-        if (clickX.length == 0) {
+        if (clickX.length === 0) {
             context.beginPath();
             context.moveTo(clickX[i], clickY[i]);
             context.stroke();
@@ -337,6 +399,7 @@ export default class App extends Component {
         addClick(x, y, true);
         drawNew();
       }
+      console.log("drawing x & y are:", x, y)
     }
 
     function touchMoveEventHandler(e) {
@@ -374,6 +437,10 @@ export default class App extends Component {
       canvas.removeEventListener('touchstart', touchWins)
     }
 
+
+
+
+
     canvas.addEventListener('mousedown', mouseWins);
     canvas.addEventListener('touchstart', touchWins);
   }
@@ -404,6 +471,8 @@ export default class App extends Component {
              handleClickRemoveItem={this.handleClickRemoveItem}
              axiosAllToDosFromAPI={this.axiosAllToDosFromAPI}
              handleAddStrikethrough={this.handleAddStrikethrough}
+             toDoItemDomArray={this.state.toDoItemDomArray}
+             toDoItemBoxArray={this.state.toDoItemBoxArray}
            />
            </div>
           <canvas id="canvas" width="100" height="100"/>
