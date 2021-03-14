@@ -1,10 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-/*@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');*/
-/*@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap');*/
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Kalam&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
 
 /*==============================
  General Styling & Decorative Elements
@@ -19,13 +14,6 @@ body {
   /* by setting height, we solve problem of
   background pattern repeating itself with
   obvious, ugly break point.*/
-  /*top: 4rem;*/
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: 'EB Garamond', serif;
-  font-family: 'Permanent Marker', cursive;
-  font-family: 'Patrick Hand', cursive;
-  font-family: 'Kalam', cursive;
   font-family: 'Caveat', cursive;
   font-size: 160%;
   height: 100%;
@@ -44,10 +32,10 @@ body {
 #todoodles-paper {
   position: relative;
   display: block;
-  height: 92%;
-  width: 98%;
+  height: 100%;
+  width: 96%;
   padding: 0;
-  margin: .5rem auto 1rem auto;
+  margin: 1rem auto;
   box-shadow: rgba(0, 0, 0, 0.50) 0px 3px 8px;
   background-color: rgba(255, 254, 224, 1);  /* Fallback */
   background: repeating-linear-gradient(rgba(255, 254, 224, 1),
@@ -84,15 +72,16 @@ body {
   cursor: url('/pencil.png') 0 13, crosshair;
 }
 
-
 /*==============================
  Header
 ================================*/
 .header {
  margin-left: 1rem;
+
 }
 
 h1 {
+ font-weight: 400;
  margin-top: -1rem;
  margin-bottom: -.5rem;
  margin-left: 2rem;
@@ -103,8 +92,6 @@ img.scribble-underline {
   padding-left: 1.5rem;
   width: 12rem;
 }
-
-
 
 /*==============================
  Input Form
@@ -145,6 +132,7 @@ input.todo-item-form {
 .submit-button:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Black */
 }
+
 /*==============================
  list
 ================================*/
@@ -153,7 +141,6 @@ input.todo-item-form {
   top: 123px;
   z-index: 1;
 }
-
 
 /*==============================
  X delete buttons
@@ -208,16 +195,17 @@ span {
   width: 105%;
   animation: drawline 0.4s;
 }
-  /* Safari 4.0 - 8.0 */
-  @-webkit-keyframes drawline {
-      from {width: 0;}
-      to {width: 105%;}
-  }
 
-  @keyframes drawline {
-      from {width: 0;}
-      to {width: 105%;}
-  }
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes drawline {
+    from {width: 0;}
+    to {width: 105%;}
+}
+
+@keyframes drawline {
+    from {width: 0;}
+    to {width: 105%;}
+}
 
 
 /*==============================
@@ -225,9 +213,15 @@ span {
 ================================*/
 footer {
   display: block;
-  color: rgba(0, 0, 0, 0.5);
-  margin: .5rem;
+  position: relative;
+  padding: .25rem;
+}
+
+.footer-content {
+  text-align: right;
   font-size: 80%;
+  font-weight: 400;
+  margin: .25rem .5rem;
 }
 
 span.footer-link a{
@@ -236,7 +230,7 @@ span.footer-link a{
 }
 
 span.footer-link a:hover{
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .fa-heart {
@@ -299,8 +293,6 @@ span.footer-link a:hover{
      padding: 1rem 0;
      margin: 0 auto;
    }
-
-
 
 }
 
