@@ -20,6 +20,7 @@ body {
   width: 100%;
   color: rgba(0,0,0,.95);
   cursor: url('/pencil.png') 0 13, crosshair;
+  touch-action: none;
 }
 
 #app {
@@ -35,7 +36,7 @@ body {
   height: 92%;
   width: 96%;
   padding: 0;
-  margin: 1rem auto;
+  margin: .5rem auto;
   box-shadow: rgba(0, 0, 0, 0.50) 0px 3px 8px;
   background-color: rgba(255, 254, 224, 1);  /* Fallback */
   background: repeating-linear-gradient(rgba(255, 254, 224, 1),
@@ -248,7 +249,7 @@ span.footer-link a:hover{
 
   body {
     top: 1rem;
-    font-size: 100%
+    font-size: 130%
   }
 
   #todoodles {
@@ -270,7 +271,7 @@ span.footer-link a:hover{
   }
 
   h1 {
-    padding-top: 0rem;
+    padding-top: 1rem;
     margin: 0 auto;
     /*text-align: center;*/
   }
@@ -292,10 +293,13 @@ span.footer-link a:hover{
      margin-right: .5rem;
    }
 
-   footer {
-     padding: 1rem 0;
-     margin: 0 auto;
-   }
+  footer {
+
+  }
+
+  .footer-content {
+
+  }
 
 }
 
