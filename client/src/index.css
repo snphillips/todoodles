@@ -1,7 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
 
-
 /*==============================
  General Styling & Decorative Elements
 ================================*/
@@ -18,7 +17,6 @@ body {
   font-family: 'Caveat', cursive;
   font-size: 160%;
   font-weight: 600;
-  /*height: 100%;*/
   width: 100%;
   color: rgba(0,0,0,.80);
   touch-action: none;
@@ -82,7 +80,6 @@ body {
 ================================*/
 .header {
   margin-left: 1rem;
-
 }
 
 h1 {
@@ -227,7 +224,7 @@ footer {
   text-align: right;
   font-size: 80%;
   font-weight: 400;
-  margin: 1rem 1.5rem;
+  margin: .25rem .5rem;
 }
 
 span.footer-link a{
@@ -298,6 +295,7 @@ span.footer-link a:hover{
   footer {
 
   }
+
 
   .footer-content {
 
