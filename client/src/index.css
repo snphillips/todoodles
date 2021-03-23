@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+
 
 /*==============================
  General Styling & Decorative Elements
@@ -13,27 +15,30 @@ body {
   /* by setting height, we solve problem of
   background pattern repeating itself with
   obvious, ugly break point.*/
-  /*top: 4rem;*/
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: 'EB Garamond', serif;
-  font-size: 140%;
-  height: 100%;
+  font-family: 'Caveat', cursive;
+  font-size: 160%;
+  font-weight: 600;
+  /*height: 100%;*/
   width: 100%;
+  color: rgba(0,0,0,.80);
+  touch-action: none;
+  overflow-y: auto;
 }
 
-div#app {
-  width: 100%;
-  height: 100%;
-}
-
-#todoodles {
-  display: block;
+#app {
   position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#todoodles-paper {
+  position: relative;
+  display: block;
   height: 92%;
-  width: 98%;
+  width: 94%;
   padding: 0;
-  margin: .5rem auto 5rem auto;
+  margin: .5rem auto;
   box-shadow: rgba(0, 0, 0, 0.50) 0px 3px 8px;
   background-color: rgba(255, 254, 224, 1);  /* Fallback */
   background: repeating-linear-gradient(rgba(255, 254, 224, 1),
@@ -51,6 +56,8 @@ div#app {
 }
 
 .content-container {
+  display: block;
+  position: relative;
   margin-left: 5rem;
   margin-top: 1rem;
 }
@@ -67,18 +74,19 @@ div#app {
   position: absolute;
   left: 0;
   top: 0;
-  cursor: url('/pencil.png') 0 13, crosshair;
+  cursor: url('/pencil.png') 0 20, crosshair;
 }
-
 
 /*==============================
  Header
 ================================*/
 .header {
- margin-left: 1rem;
+  margin-left: 1rem;
+
 }
 
 h1 {
+ font-weight: 500;
  margin-top: -1rem;
  margin-bottom: -.5rem;
  margin-left: 2rem;
@@ -90,13 +98,11 @@ img.scribble-underline {
   width: 12rem;
 }
 
-
-
 /*==============================
  Input Form
 ================================*/
 input.todo-item-form {
-  /*display: inline;*/
+  display: block;
 }
 
 .input-field {
@@ -131,15 +137,16 @@ input.todo-item-form {
 .submit-button:hover {
   background-color: rgba(0, 0, 0, 0.7); /* Black */
 }
+
 /*==============================
  list
 ================================*/
 .todolist {
-  position: absolute;
-  top: 123px;
+  display: block;
+  margin-top: 4rem;
+  position: relative;
   z-index: 1;
 }
-
 
 /*==============================
  X delete buttons
@@ -194,38 +201,42 @@ span {
   width: 105%;
   animation: drawline 0.4s;
 }
-  /* Safari 4.0 - 8.0 */
-  @-webkit-keyframes drawline {
-      from {width: 0;}
-      to {width: 105%;}
-  }
 
-  @keyframes drawline {
-      from {width: 0;}
-      to {width: 105%;}
-  }
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes drawline {
+    from {width: 0;}
+    to {width: 105%;}
+}
+
+@keyframes drawline {
+    from {width: 0;}
+    to {width: 105%;}
+}
 
 
 /*==============================
  Footer
 ================================*/
 footer {
-  color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  bottom: 0;
-  padding: 1rem .5rem;
+  display: block;
+  position: relative;
+  /*padding: .25rem;*/
+}
+
+.footer-content {
+  text-align: right;
   font-size: 80%;
+  font-weight: 400;
+  margin: 1rem 1.5rem;
 }
 
 span.footer-link a{
   text-decoration: none;
   color: rgba(0, 0, 0, 0.9);
-  /*padding-left: .5rem;*/
-  /*font-weight: bold;*/
 }
 
 span.footer-link a:hover{
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .fa-heart {
@@ -240,7 +251,6 @@ span.footer-link a:hover{
 
   body {
     top: 1rem;
-    font-size: 100%
   }
 
   #todoodles {
@@ -262,7 +272,8 @@ span.footer-link a:hover{
   }
 
   h1 {
-    padding-top: 0rem;
+    font-size: 200%;
+    padding-top: 1rem;
     margin: 0 auto;
     /*text-align: center;*/
   }
@@ -276,7 +287,7 @@ span.footer-link a:hover{
    }
 
    .todolist {
-      top: 21%;
+   margin-left: 1rem;
    }
 
    button.delete-x {
@@ -284,12 +295,13 @@ span.footer-link a:hover{
      margin-right: .5rem;
    }
 
-   footer {
-     padding: 1rem 0;
-     margin: 0 auto;
-   }
+  footer {
 
+  }
 
+  .footer-content {
+
+  }
 
 }
 

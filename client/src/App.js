@@ -215,15 +215,13 @@ export default class App extends Component {
   //  The canvas drawing part
   //  ==================================================================
   doodleCanvas() {
-    "use strict";
     const canvas = document.getElementById("canvas");
-    const paperWidth = document.getElementById("todoodles").offsetWidth;
-    const paperHeight = document.getElementById("todoodles").offsetHeight;
-    // the canvas will be the height & width of the window
+    const paperWidth = document.getElementById("todoodles-paper").offsetWidth;
+    const paperHeight = document.getElementById("todoodles-paper").offsetHeight;
+
+    // the canvas will be the height & width of the "paper"
     // sadly, can't be resized.
-    // canvas.width = window.innerWidth;
     canvas.width = paperWidth;
-    // canvas.height = window.innerHeight;
     canvas.height = paperHeight;
     let context = '';
     let clickX = [];
@@ -235,10 +233,10 @@ export default class App extends Component {
     context = canvas.getContext("2d");
     context.lineWidth = 1;
     context.shadowBlur = 1.2;
-    context.shadowColor = "#000";
+    context.shadowColor = "#0d0d0d";
     context.lineJoin = "round";
-    context.fillStyle = "#000";
-    context.strokeStyle = "#000";
+    context.fillStyle = "#0d0d0d";
+    context.strokeStyle = "#0d0d0d";
     context.imageSmoothingQuality = "high";
     context.lineCap = "round";
     console.log("context", context);
@@ -389,7 +387,7 @@ export default class App extends Component {
     return (
 
       <div id="app">
-        <section id="todoodles">
+        <section id="todoodles-paper">
           <span className="red-line"/>
           <div className="content-container">
            <Header />
@@ -407,8 +405,8 @@ export default class App extends Component {
            />
            </div>
           <canvas id="canvas" width="100" height="100"/>
-          <Footer />
         </section>
+        <Footer />
       </div>
     );
   }
