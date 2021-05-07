@@ -23,7 +23,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "immutable": "^4.0.0-rc.12",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "pg": "^7.6.0",
     "pg-promise": "^8.5.1",
