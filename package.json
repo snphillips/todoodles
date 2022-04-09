@@ -24,7 +24,7 @@
     "express-session": "^1.15.6",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.19",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "pg": "^7.6.0",
     "pg-promise": "^8.5.1",
     "sequelize": "^5.15.1",
